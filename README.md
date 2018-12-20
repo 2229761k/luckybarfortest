@@ -1,10 +1,5 @@
-# betting-dapp
+# luckybar
 
-A simple decentralized application where users can bet on a number between 1-10 in exchange for ether. Designed for browser usage with Metamask using Vue.JS.
-
-Dapp front-end deployed at https://betting-dapp.herokuapp.com on the Ropsten test network.
-
-Betting-Dapp Casino smart contract registered and verified at https://ropsten.etherscan.io/address/0x51cf271deceb13b1711a9b5108917f43ea65fd05.
 
 ## Build Setup
 
