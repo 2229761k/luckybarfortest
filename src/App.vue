@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div id="app">
     <router-view/>
   </div>
 </template>
@@ -11,15 +11,8 @@ export default {
 </script>
 
 <style>
-.container {
- padding-right: 15px;
- padding-left: 15px;
- margin-right: auto;
- margin-left: auto;
-}
-@media (min-width: 768px) {
- .container {
- width: 750px;
- }
+#app{
+background: #1f181c;
+
 }
 </style>

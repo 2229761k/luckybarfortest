@@ -1,12 +1,21 @@
 <template>
+<div>
   <div>
- <hello-metamask/>
- <casino-component/>
+    <Header />
+  </div>
+  <section>
+   <casino-component/>
+  </section>
+ <br><br><br><br>
+ <Question />
 </div>
 </template>
 <script>
 import HelloMetamask from '@/components/hello-metamask'
+import Header from '@/components/Header'
 import CasinoComponent from '@/components/casino-component'
+import Question from '@/components/Question'
+
 export default {
   name: 'casino-dapp',
   beforeCreate () {
@@ -15,7 +24,10 @@ export default {
   },
   components: {
     'hello-metamask': HelloMetamask,
-    'casino-component': CasinoComponent
+    'Header': Header,
+    'casino-component': CasinoComponent,
+    'Question':Question,
+
   }
 }
 </script>

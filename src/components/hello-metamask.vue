@@ -1,11 +1,31 @@
 <template>
-  <div class='metamask-info'>
-    <p v-if="isInjected" id="has-metamask"><i aria-hidden="true" class="fa fa-check"></i> Metamask installed</p>
-    <p v-else id="no-metamask"><i aria-hidden="true" class="fa fa-times"></i> Metamask not found</p>
-    <p>Network: {{ network }}</p>
-    <p>Account: {{ coinbase }}</p>
-    <p>Balance: {{ balance }} Wei // {{ ethBalance }} Eth</p>
-  </div>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="/">LuckyBar</a>
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#section1">Play!</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#section2">Question?</a>
+            </li>
+        </ul>
+        <div class="navbar-collapse ">
+            <ul class="navbar-nav ml-auto">
+              <li>
+                <p v-if="isInjected" id="has-metamask"><i aria-hidden="true" class="fa fa-check"></i> Metamask Connected</p>
+                <p v-else id="no-metamask"><i aria-hidden="true" class="fa fa-times"></i> Metamask Connection failed</p>
+                <!-- <p class="metainfo">Network: {{ network }}</p> -->
+                <p class="metainfo">Account: {{ coinbase }}</p>
+                <p class="metainfo">Balance: {{ ethBalance }} Eth</p>
+              </li>
+            </ul>
+        </div>
+
+    </nav>  
+
 </template>
 
 <script>
@@ -26,6 +46,11 @@ export default {
 </script>
 
 <style scoped>
+.metainfo{
+  color: white;
+  font-size: 0.7rem;
+  height: 1px;
+}
 .metamask-info {
   text-align:center;
 }

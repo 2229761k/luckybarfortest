@@ -1,15 +1,60 @@
 <template>
-  <div class="casino container">
-    <h1>Welcome to the Casino</h1>
-    <h4>Just click bet and get what your lucky goddess grant you!</h4>
-    Amount to bet: <input v-model="amount" placeholder="0 Ether">
-    <button v-on:click="clickBet">Bet</button>
+<div>
+  <div class="ingame" id="section1">
+    <el-row :gutter="24" style="opacity: 0.8">
+      <el-col :span="10" :offset="13">                  
+        <el-tabs type="border-card" style="width: 700px; text-align: center">
+          <el-tabs :tab-position="tabPosition" style="height: 340px;">
+            <el-tab-pane label="Eth to Eth">Eth to Eth
+              <hr>
+              <h4>Exchange Rate: 1:1 +-50% </h4>
+              <h4>Just click bet and get what your lucky goddess grant you!</h4>
+              Amount to play: <input v-model="amount" placeholder="0 Ether">
+              <button v-on:click="clickBet">Play</button>
+            </el-tab-pane>
+            <el-tab-pane label="Eth to Toka">Eth to Toka
+              <hr>
+              <h4>Exchange Rate: 1:1000000 +-50% </h4>
+              <h4>Just click bet and get what your lucky goddess grant you!</h4>
+              Amount to play: <input v-model="amount" placeholder="0 Ether">
+              <button v-on:click="clickBet">Play</button>
+            </el-tab-pane>
+            <el-tab-pane label="Toka to Toka">Toka to Toka
+              <hr>
+              <h4>Exchange Rate: 1:1 +-50% </h4>
+              <h4>Just click bet and get what your lucky goddess grant you!</h4>
+              Amount to play: <input v-model="amount" placeholder="0 Toka">
+              <button v-on:click="clickBet">Play</button>
+            </el-tab-pane>
+            <el-tab-pane label="Toka to Eth">Toka to Eth
+              <hr>
+              <h4>Exchange Rate: 1000000:1 +-50% </h4>
+              <h4>Just click bet and get what your lucky goddess grant you!</h4>
+              Amount to play: <input v-model="amount" placeholder="0 Toka">
+              <button v-on:click="clickBet">Play</button>
+            </el-tab-pane>
+          </el-tabs>
+          <hr />
+          <el-tabs :tab-position="tabPosition" style="height: 200px;">
+            <el-tab-pane label="My Result">My Result
+              <img v-if="pending" id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
+              <!-- game result -->
+              <div class="event" v-if="winEvent">
+                <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i> Congragulations, you have won {{winEvent._amount}} wei</p>
+                <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i> Sorry you lost, try again. You have got just {{winEvent._amount}} wei</p>
+              </div>
+            </el-tab-pane>
+            <el-tab-pane label="Total Result">Total Result
 
-    <img v-if="pending" id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
-    <div class="event" v-if="winEvent">
-      <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i> Congragulations, you have won {{winEvent._amount}} wei</p>
-      <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i> Sorry you lost, try again. You have got just {{winEvent._amount}} wei</p>
-    </div>
+            </el-tab-pane>
+            <el-tab-pane label="Ranking">Ranking
+
+            </el-tab-pane>
+          </el-tabs>
+        </el-tabs>
+      </el-col>
+    </el-row>
+  </div>
   </div>
 </template>
 
@@ -18,6 +63,7 @@ export default {
   name: 'casino',
   data () {
     return {
+      tabPosition: 'left',
       amount: null,
       pending: false,
       winEvent: null
@@ -59,6 +105,14 @@ export default {
 </script>
 
 <style scoped>
+.ingame{
+background-image: url("../assets/ingame.gif");
+margin-top: 100px;
+background-repeat: no-repeat;  
+background-size: 40% 100%;  
+background-position: center center;
+
+} 
 .casino {
      margin-top: 50px;
      text-align:center;
