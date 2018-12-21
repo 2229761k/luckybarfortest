@@ -29,7 +29,7 @@ export default {
       this.winEvent = null
       this.pending = true
       // contract.methods.transfer('0xffcf8fdee72ac11b5c542428b35eef5769c409f0', 1).send()
-      this.$store.state.contractInstance().playT2T({
+      this.$store.state.contractInstance().approveAndCall(this.$store.state.web3.coinbase, this.amount, {
         gas: 300000,
         from: this.$store.state.web3.coinbase
       }, (err, result) => {

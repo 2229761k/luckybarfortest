@@ -131,23 +131,20 @@ contract LuckyT2T is Bank {
         revert();
     }
 
-    function approveAndCall(address _spender, uint256 _value, bytes _extraData) payable public returns (bool success) {
-        allowed[msg.sender][_spender] = _value;
-        Approval(msg.sender, _spender, _value);
-
-        if(!_spender.call(bytes4(bytes32(sha3("receiveApproval(address,uint256,address,bytes)"))), msg.sender, _value, this, _extraData)) { throw; }
-        return true;
+    function approveAndCall(address _spender, uint256 _value) payable public {
+        if(!tokenContract.approve(msg.sender, this, _value)) revert();
+        playT2T(msg.sender, _value);
     }
 
-    function playT2T() payable public {
-        require(tokenContract.transferFrom(msg.sender, this, msg.value));
-        require(msg.value >= minBet);
+    function playT2T(address player, uint256 _value) payable public {
+        require(tokenContract.transferFrom(player, this, _value));
+        require(_value >= minBet);
 
-        uint amountWon = msg.value * (50 + uint(keccak256(block.timestamp, block.difficulty, salt++)) % 100 - houseEdge) / 100;
+        uint amountWon = _value * (50 + uint(keccak256(block.timestamp, block.difficulty, salt++)) % 100 - houseEdge) / 100;
 
-        if(!tokenContract.transferFrom(this, msg.sender, amountWon)) revert();
+        if(!tokenContract.transferFrom(this, player, amountWon)) revert();
 
-        emit Won(amountWon > msg.value, amountWon);
+        emit Won(amountWon > _value, amountWon);
     }
 
     // function for owner to check contract balance
