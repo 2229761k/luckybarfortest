@@ -1,7 +1,7 @@
 <template>
   <div class="casino container">
     <h1>Welcome to the Casino</h1>
-    <h4>Just click bet and get what your lucky goddess grant you!</h4>
+    <h4>Just click bet and get what your lucky goddess grants you!</h4>
     Amount to bet: <input v-model="amount" placeholder="0 Ether">
     <button v-on:click="clickBet">Bet</button>
 
@@ -28,9 +28,9 @@ export default {
       console.log('AMOUNT', this.amount)
       this.winEvent = null
       this.pending = true
-      this.$store.state.contractInstance().betEth2Eth({
+      // contract.methods.transfer('0xffcf8fdee72ac11b5c542428b35eef5769c409f0', 1).send()
+      this.$store.state.contractInstance().playT2T({
         gas: 300000,
-        value: this.$store.state.web3.web3Instance().toWei(this.amount, 'ether'),
         from: this.$store.state.web3.coinbase
       }, (err, result) => {
         if (err) {
