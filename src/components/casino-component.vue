@@ -69,25 +69,34 @@ export default {
       winEvent: null
     }
   },
-  methods: { clickBet (event) { console.log('AMOUNT', this.amount) this.winEvent = null this.pending = true  
-  //contract.methods.transfer('0xffcf8fdee72ac11b5c542428b35eef5769c409f0', 1).send() 
-  this.$store.state.contractInstance().approveAndCall(this.$store.state.web3.coinbase, this.amount, { 
-    gas: 300000, 
-    from: this.$store.state.web3.coinbase 
-    }, (err, result) => { if (err) { console.log(err) this.pending = false 
-    } else { 
-      let Won = this.$store.state.contractInstance().Won() 
-      Won.watch((err, result) => { 
-        if (err) { console.log('could not get event Won()') 
-        } else { 
-          this.winEvent = result.args this.winEvent._amount = parseInt(result.args._amount, 10) 
-          this.pending = false 
-          } 
-          }) 
-          } 
-          }) 
-          } 
-          },
+    methods: {
+    clickBet (event) {
+      console.log('AMOUNT', this.amount)
+      this.winEvent = null
+      this.pending = true
+      // contract.methods.transfer('0xffcf8fdee72ac11b5c542428b35eef5769c409f0', 1).send()
+      this.$store.state.contractInstance().approveAndCall(this.$store.state.web3.coinbase, this.amount, {
+        gas: 300000,
+        from: this.$store.state.web3.coinbase
+      }, (err, result) => {
+        if (err) {
+          console.log(err)
+          this.pending = false
+        } else {
+          let Won = this.$store.state.contractInstance().Won()
+          Won.watch((err, result) => {
+            if (err) {
+              console.log('could not get event Won()')
+            } else {
+              this.winEvent = result.args
+              this.winEvent._amount = parseInt(result.args._amount, 10)
+              this.pending = false
+            }
+          })
+        }
+      })
+    }
+  },
   mounted () {
     console.log('dispatching getContractInstance')
     this.$store.dispatch('getContractInstance')
