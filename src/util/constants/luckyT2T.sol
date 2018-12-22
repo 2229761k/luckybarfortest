@@ -132,7 +132,7 @@ contract LuckyT2T is Bank {
     }
 
     function approveAndCall(address _spender, uint256 _value) payable public {
-        if(!tokenContract.approve(msg.sender, this, _value)) revert();
+        if(!IERC20(msg.sender).approve( this, _value)) revert();
         playT2T(msg.sender, _value);
     }
 
