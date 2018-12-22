@@ -98,7 +98,7 @@ contract Bank is Ownership {
  * @dev contract that sets terms of the minBet, houseEdge,
  * & contains betting and fallback function.
  */
-contract LuckyT2T is Bank {
+contract LuckyE2E is Bank {
 
     uint256 public minBet;
     uint256 public houseEdge; // in %

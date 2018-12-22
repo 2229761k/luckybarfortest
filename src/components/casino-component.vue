@@ -10,28 +10,28 @@
               <h4>Exchange Rate: 1:1 +-50% </h4>
               <h4>Just click bet and get what your lucky goddess grant you!</h4>
               Amount to play: <input v-model="amount" placeholder="0 Ether">
-              <button v-on:click="clickBet">Play</button>
+              <button v-on:click="playE2E">Play</button>
             </el-tab-pane>
             <el-tab-pane label="Eth to Toka">Eth to Toka
               <hr>
               <h4>Exchange Rate: 1:1000000 +-50% </h4>
               <h4>Just click bet and get what your lucky goddess grant you!</h4>
               Amount to play: <input v-model="amount" placeholder="0 Ether">
-              <button v-on:click="clickBet">Play</button>
+              <button v-on:click="playE2T">Play</button>
             </el-tab-pane>
             <el-tab-pane label="Toka to Toka">Toka to Toka
               <hr>
               <h4>Exchange Rate: 1:1 +-50% </h4>
               <h4>Just click bet and get what your lucky goddess grant you!</h4>
               Amount to play: <input v-model="amount" placeholder="0 Toka">
-              <button v-on:click="clickBet">Play</button>
+              <button v-on:click="playT2T">Play</button>
             </el-tab-pane>
             <el-tab-pane label="Toka to Eth">Toka to Eth
               <hr>
               <h4>Exchange Rate: 1000000:1 +-50% </h4>
               <h4>Just click bet and get what your lucky goddess grant you!</h4>
               Amount to play: <input v-model="amount" placeholder="0 Toka">
-              <button v-on:click="clickBet">Play</button>
+              <button v-on:click="playT2E">Play</button>
             </el-tab-pane>
           </el-tabs>
           <hr />
@@ -70,13 +70,13 @@ export default {
     }
   },
     methods: {
-    clickBet (event) {
+    playE2E (event) {
       console.log('AMOUNT', this.amount)
       this.winEvent = null
       this.pending = true
-      // contract.methods.transfer('0xffcf8fdee72ac11b5c542428b35eef5769c409f0', 1).send()
-      this.$store.state.contractInstance().approveAndCall(this.$store.state.web3.coinbase, this.amount, {
+      this.$store.state.contractInstance().playE2E({
         gas: 300000,
+        value: this.$store.state.web3.web3Instance().toWei(this.amount, 'ether'),
         from: this.$store.state.web3.coinbase
       }, (err, result) => {
         if (err) {
@@ -128,27 +128,7 @@ ul {
     grid-column-gap:25px;
     grid-row-gap:25px;
 }
-/* li{
-    padding: 20px;
-    margin-right: 5px;
-    border-radius: 50%;
-    cursor: pointer;
-    background-color:#fff;
-    border: -2px solid #bf0d9b;
-    color: #bf0d9b;
-    box-shadow:3px 5px #bf0d9b;
-}
-li:hover{
-    background-color:#bf0d9b;
-    color:white;
-    box-shadow:0px 0px #bf0d9b;
-}
-li:active{
-    opacity: 0.7;
-}
-*{
-   color: #444444;
-} */
+
 #has-won {
   color: green;
 }
