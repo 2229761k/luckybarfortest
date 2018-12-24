@@ -38,6 +38,7 @@ interface IERC20 {
  * @dev Ownership contract establishes ownership (via owner address) and provides basic authorization control
  * functions (transferring of ownership and ownership modifier).
  */
+ 
 contract Ownership {
     address public owner;
 
@@ -92,6 +93,13 @@ contract Bank is Ownership {
     function deposit() payable public onlyOwner {
         require(msg.value > 0);
     }
+    
+      /**
+   * @dev Transfer tokens from one address to another
+   * @param from address The address which you want to send tokens from
+   * @param to address The address which you want to transfer to
+   * @param value uint256 the amount of tokens to be transferred
+   */
 }
 
 /**
@@ -103,22 +111,27 @@ contract LuckyT2T is Bank {
     uint256 public minBet;
     uint256 public houseEdge; // in %
     uint256 private salt;
-    address private token;
-    IERC20 private tokenContract;
+    IERC20 private token;
+    address public manager;
+    
     // Either True or False + amount
     event Won(bool _status, uint _amount);
 
     // sets the stakes of the bet
     constructor(uint _houseEdge) payable public {
-        require(_houseEdge <= 100);
+        require(houseEdge <= 100);
         estalishOwnership();
         setProperties("thisissaltIneedtomakearandomnumber", 100e18, _houseEdge);
-        setToken(0x0bfd1945683489253e401485c6bbb2cfaedca313); // toka mainnet
+        setToken(0xdc04977a2078c8ffdf086d618d1f961b6c546222); // toka mainnet
+        manager = owner;
     }
 
     function setToken(address _token) public onlyOwner {
-        token = _token;
-        tokenContract = IERC20(token);
+        token = IERC20(_token);
+    }
+
+    function setManager(address _manager) public onlyOwner {
+        manager = _manager;
     }
 
     function setProperties(string _salt, uint _minBet, uint _fee) public onlyOwner {
@@ -131,18 +144,12 @@ contract LuckyT2T is Bank {
         revert();
     }
 
-    function approveAndCall(address _spender, uint256 _value) payable public {
-        if(!IERC20(msg.sender).approve( this, _value)) revert();
-        playT2T(msg.sender, _value);
-    }
-
-    function playT2T(address player, uint256 _value) payable public {
-        require(tokenContract.transferFrom(player, this, _value));
-        require(_value >= minBet);
-
-        uint amountWon = _value * (50 + uint(keccak256(block.timestamp, block.difficulty, salt++)) % 100 - houseEdge) / 100;
-
-        if(!tokenContract.transferFrom(this, player, amountWon)) revert();
+    function playT2T(uint256 _value) payable public {
+        require(value >= minBet);
+        require(token.transferFrom(msg.sender, manager, _value));
+        
+        uint256 amountWon = _value * (50 + uint256(keccak256(block.timestamp, block.difficulty, salt++)) % 100 - houseEdge) / 100;
+        require(token.transferFrom(manager, msg.sender, amountWon));
 
         emit Won(amountWon > _value, amountWon);
     }
@@ -152,9 +159,6 @@ contract LuckyT2T is Bank {
         return address(this).balance;
     }
     function checkContractBalanceToka() onlyOwner public view returns(uint) {
-        return tokenContract.balanceOf(this);
+        return token.balanceOf(manager);
     }
 }
-
-
-

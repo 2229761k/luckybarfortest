@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import state from './state'
 import getWeb3 from '../util/getWeb3'
 import pollWeb3 from '../util/pollWeb3'
-import getContract from '../util/getContract'
+import { getContract, getToken } from '../util/getContract'
 
 Vue.use(Vuex)
 export const store = new Vuex.Store({
@@ -30,6 +30,10 @@ export const store = new Vuex.Store({
     registerContractInstance (state, payload) {
       console.log('Casino contract instance: ', payload)
       state.contractInstance = () => payload
+    },
+    registerTokenContractInstance (state, payload) {
+      console.log('Token contract instance: ', payload)
+      state.tokenInstance = () => payload
     }
   },
   actions: {
@@ -49,6 +53,11 @@ export const store = new Vuex.Store({
     getContractInstance ({commit}) {
       getContract.then(result => {
         commit('registerContractInstance', result)
+      }).catch(e => console.log(e))
+    },
+    getTokenContractInstance ({commit}) {
+      getToken.then(result => {
+        commit('registerTokenContractInstance', result)
       }).catch(e => console.log(e))
     }
   }
