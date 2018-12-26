@@ -126,9 +126,8 @@ export default {
       console.log('AMOUNT', this.amount)
       this.winEvent = null
       this.pending = true
-      this.$store.state.tokenInstance().approve(this.$store.state.contractInstance().address ,this.amount, {
+      this.$store.state.tokenInstance().approve(this.$store.state.contractInstance().address ,this.amount * (10 ** 18), {
         gas: 300000,
-        //value: this.$store.state.web3.web3Instance().toWei(this.amount, 'ether'),
         from: this.$store.state.web3.coinbase
       }, (err, result) => {
         if (err) {
@@ -140,11 +139,8 @@ export default {
             if (err) {
               console.log('could not get event Approval()')
             } else {
-              console.log('Approval result:', result.args.value)
-              let xamount = result.args.value
-              console.log('Approved AMOUNT', xamount)
 
-              this.$store.state.contractInstance().playT2T(xamount, {
+              this.$store.state.contractInstance().playT2T(result.args.value, {
                 gas: 300000,
                 from: this.$store.state.web3.coinbase
               }, (err, result) => {
