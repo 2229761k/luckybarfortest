@@ -1,7 +1,10 @@
 <template>
 <div>
-  <div class="ingame" id="section1">
-    <el-row :gutter="24" style="opacity: 0.8">
+  <div style="position: relative; z-index: 1;">
+    <img src="../assets/ingame.gif" >
+  </div>
+  <div class="ingame" id="section1" style="position: relative; left:100px; top: -1400px; z-index: 2;">
+    <el-row :gutter="24" style="opacity: 0.8; ">
       <el-col :span="10" :offset="13">                  
         <el-tabs type="border-card" style="width: 700px; text-align: center">
           <el-tabs :tab-position="tabPosition" style="height: 340px;">
@@ -202,14 +205,14 @@ export default {
 </script>
 
 <style scoped>
-.ingame{
+/* .ingame{
 background-image: url("../assets/ingame.gif");
 margin-top: 100px;
 background-repeat: no-repeat;  
-background-size: 40% 100%;  
+background-size: 50% 100%;  
 background-position: center center;
 
-} 
+}  */
 .casino {
      margin-top: 50px;
      text-align:center;

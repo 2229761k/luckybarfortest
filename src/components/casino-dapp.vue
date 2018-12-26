@@ -1,11 +1,7 @@
 <template>
 <div>
-  <div>
-    <Header />
-  </div>
-  <section>
-   <casino-component/>
-  </section>
+  <Header />
+  <casino-component/>
  <br><br><br><br>
  <Question />
 </div>

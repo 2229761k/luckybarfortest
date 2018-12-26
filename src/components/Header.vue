@@ -23,7 +23,10 @@ export default {
 <style>
 .headerimg{
     background-image: url("../assets/lucky_header.jpg");
-    height: 1050px
+    height: 1050px;
+    background-repeat: no-repeat;
+    background-position: center center;
+
 }
 .button1 {
     border: 1px solid black;
