@@ -3,14 +3,14 @@
   <div class="ingame" style="position: relative; z-index: 1; margin-top: 100px; ">
     <img src="../assets/ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 400px'>
   </div>
-  <div style="position: relative; top: -700px; z-index: 2;">
+  <div style="position: relative; top: -800px; z-index: 2;">
     <el-row :gutter="24" style="opacity: 0.8; ">
       <el-col :span="10" :offset="16">                  
-        <el-tabs type="border-card" style="width: 400px; text-align: center">
+        <el-tabs type="border-card" style="width: 450px; text-align: center">
           <el-tabs :tab-position="tabPosition" style="height: 340px;">
             <el-tab-pane label="Eth to Eth">Eth to Eth
               <hr>
-              <h4>Exchange Rate: 1:1 +-50% </h4>
+              <p>Exchange Rate: 1:1 +-50% </p>
               Amount to play: <input v-model="amount" placeholder="0 Ether">
               <button v-on:click="playE2E">Play</button>
             </el-tab-pane>
@@ -22,13 +22,13 @@
             </el-tab-pane>
             <el-tab-pane label="Toka to Toka">Toka to Toka
               <hr>
-              <h4>Exchange Rate: 1:1 +-50% </h4>
+              <p>Exchange Rate: 1:1 +-50% </p>
               Amount to play: <input v-model="amount" placeholder="0 Toka">
               <button v-on:click="playT2T">Play</button>
             </el-tab-pane>
             <el-tab-pane label="Toka to Eth">Toka to Eth
               <hr>
-              <h4>Exchange Rate: 1000000:1 +-50% </h4>
+              <p>Exchange Rate: 1000000:1 +-50% </p>
               Amount to play: <input v-model="amount" placeholder="0 Toka">
               <button v-on:click="playT2E">Play</button>
             </el-tab-pane>
