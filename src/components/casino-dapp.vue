@@ -2,7 +2,6 @@
 <div>
   <Header />
   <casino-component/>
-  <br><br><br><br>
   <Question />
 </div>
 </template>

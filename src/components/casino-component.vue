@@ -1,13 +1,18 @@
 <template>
 <div id="section1" >
-  <div class="ingame" style="position: relative; z-index: 1; margin-top: 100px; ">
+  <div class="ingame" style="position: relative; z-index: 1; margin-top: 200px; ">
     <img src="../assets/ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 400px'>
+    <div  v-if="winEvent">
+        <img v-if="winEvent._status" id="has-won" src="../assets/win_ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 400px'>
+        <img v-else id="has-lost" src="../assets/lose_ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 400px'>
+    </div>
   </div>
-  <div style="position: relative; top: -800px; z-index: 2;">
+
+  <div style="position: relative; top: -600px; z-index: 2;">
     <el-row :gutter="24" style="opacity: 0.8; ">
-      <el-col :span="10" :offset="16">                  
+      <el-col :span="1" :offset="16">                  
         <el-tabs type="border-card" style="width: 450px; text-align: center">
-          <el-tabs :tab-position="tabPosition" style="height: 340px;">
+          <el-tabs :tab-position="tabPosition" >
             <el-tab-pane label="Eth to Eth">Eth to Eth
               <hr>
               <p>Exchange Rate: 1:1 +-50% </p>
@@ -201,9 +206,7 @@ export default {
 </script>
 
 <style scoped>
-.ingame{
-  object-fit: contain
-}
+
 .casino {
      margin-top: 50px;
      text-align:center;

@@ -2,9 +2,9 @@
 <div class="navbar-nav headerimg">
         <el-row :gutter="12" style="padding-top:600px">
             <el-col :span="2" :offset="5">           
-                <a class="nav-link " href="#section1"><img src="../assets/play_button.png"/></a>
-                <br>
-                <a class="nav-link " href="#section2"><img src="../assets/help_button.png"/></a>
+                <a v-scroll-to="'#section1'" ><img src="../assets/play_button.png"/></a>
+                <br><br>
+                <a v-scroll-to="'#section2'" ><img src="../assets/help_button.png"/></a>
             
             </el-col>
         </el-row>
@@ -28,4 +28,5 @@ export default {
 .header_container{
     margin-top: 100px
 }
+
 </style>
