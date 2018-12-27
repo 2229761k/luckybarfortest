@@ -1,6 +1,9 @@
 <template>
-     <section class="bg-light" id="section2">
-       <br><br><br><br><br>
+     <div class="bg-light" id="section2">
+       <br><br><br>
+      <div>
+        <img src="../assets/dona.jpg" alt="" style="height:800px; float: right">
+      </div>
       <div class="row">
         <div class="col-lg-8 mx-auto">
           <h1>FAQ</h1>
@@ -26,7 +29,8 @@
           <p class="lead">Nothing! All of the ether raised by tickets goes to the winner. </p>
         </div>
       </div>
-    </section>   
+
+    </div>   
 </template>
 
 <script>
@@ -36,5 +40,8 @@ export default {
 </script>
 
 <style>
-
+/* .bg-light{
+    background-image: url("../assets/dona.jpg");
+    background-repeat: no-repeat;
+} */
 </style>

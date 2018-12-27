@@ -1,14 +1,16 @@
-<template>
+5<template>
 <div id="section1" >
   <div class="ingame" style="position: relative; z-index: 1; margin-top: 200px; ">
-    <img src="../assets/ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 400px'>
     <div  v-if="winEvent">
-        <img v-if="winEvent._status" id="has-won" src="../assets/win_ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 400px'>
-        <img v-else id="has-lost" src="../assets/lose_ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 400px'>
+        <img v-if="winEvent._status" id="has-won" src="../assets/win_ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 340px'>
+        <img v-else id="has-lost" src="../assets/lose_ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 340px'>
     </div>
+    <div v-else>
+        <img src="../assets/ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 340px'>
+    </div>    
   </div>
 
-  <div style="position: relative; top: -600px; z-index: 2;">
+  <div style="position: relative; top: -700px; z-index: 2;">
     <el-row :gutter="24" style="opacity: 0.8; ">
       <el-col :span="1" :offset="16">                  
         <el-tabs type="border-card" style="width: 450px; text-align: center">
