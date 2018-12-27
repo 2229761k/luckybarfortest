@@ -1,15 +1,15 @@
 import Web3 from 'web3'
-import {address, ABI} from './constants/t2tContract'
+import {address, ABI} from './constants/gameContract'
 import {tokenAddress, tokenABI} from './constants/tokenContract'
 
 let getContract = new Promise(function (resolve, reject) {
   let web3 = new Web3(window.web3.currentProvider)
-  let t2tContract = web3.eth.contract(ABI)
-  let t2tContractInstance = t2tContract.at(address)
+  let gameContract = web3.eth.contract(ABI)
+  let gameContractInstance = gameContract.at(address)
 
-  console.log("t2tContract Address")
-  console.log(t2tContractInstance.address)
-  resolve(t2tContractInstance)
+  console.log("Game Contract Address")
+  console.log(gameContractInstance.address)
+  resolve(gameContractInstance)
 })
 
 let getToken = new Promise(function (resolve, reject) {

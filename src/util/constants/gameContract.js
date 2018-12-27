@@ -1,7 +1,25 @@
 /* eslint-disable */
 
-const address = '0x70c529669d0003e31e2da5dc69cafb8800e06fc6'
+const address = '0x2a98a3b50eb0085cef9cafd0b62e4bf9f47dda99'
 const ABI = [
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_salt",
+				"type": "string"
+			},
+			{
+				"name": "_E2TRatio",
+				"type": "uint256"
+			}
+		],
+		"name": "setProperties",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
 	{
 		"constant": false,
 		"inputs": [],
@@ -96,6 +114,29 @@ const ABI = [
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [],
+		"name": "playE2T",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "houseEdgeE2E",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [],
 		"name": "checkContractBalance",
@@ -110,25 +151,45 @@ const ABI = [
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
+		"constant": true,
+		"inputs": [],
+		"name": "houseEdgeT2E",
+		"outputs": [
 			{
-				"name": "_salt",
-				"type": "string"
-			},
-			{
-				"name": "_minBet",
-				"type": "uint256"
-			},
-			{
-				"name": "_fee",
+				"name": "",
 				"type": "uint256"
 			}
 		],
-		"name": "setProperties",
-		"outputs": [],
 		"payable": false,
-		"stateMutability": "nonpayable",
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "minBetT2E",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "E2TRatio",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -146,9 +207,58 @@ const ABI = [
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "T2T",
+				"type": "uint256"
+			},
+			{
+				"name": "E2T",
+				"type": "uint256"
+			},
+			{
+				"name": "T2E",
+				"type": "uint256"
+			},
+			{
+				"name": "E2E",
+				"type": "uint256"
+			}
+		],
+		"name": "setGameFee",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "playE2E",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_value",
+				"type": "uint256"
+			}
+		],
+		"name": "playT2E",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [],
-		"name": "minBet",
+		"name": "minBetE2T",
 		"outputs": [
 			{
 				"name": "",
@@ -166,6 +276,48 @@ const ABI = [
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "minBetT2T",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "houseEdgeE2T",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "houseEdgeT2T",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -194,7 +346,7 @@ const ABI = [
 	{
 		"constant": true,
 		"inputs": [],
-		"name": "houseEdge",
+		"name": "minBetE2E",
 		"outputs": [
 			{
 				"name": "",
@@ -220,12 +372,33 @@ const ABI = [
 		"type": "function"
 	},
 	{
+		"constant": false,
 		"inputs": [
 			{
-				"name": "_houseEdge",
+				"name": "T2T",
+				"type": "uint256"
+			},
+			{
+				"name": "E2T",
+				"type": "uint256"
+			},
+			{
+				"name": "T2E",
+				"type": "uint256"
+			},
+			{
+				"name": "E2E",
 				"type": "uint256"
 			}
 		],
+		"name": "setGameMinBet",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"payable": true,
 		"stateMutability": "payable",
 		"type": "constructor"
