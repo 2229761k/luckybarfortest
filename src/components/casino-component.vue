@@ -1,66 +1,73 @@
 5<template>
-<div id="section1" >
-  <div class="ingame" style="position: relative; z-index: 1; margin-top: 200px; ">
-    <div  v-if="winEvent">
+<div id="section1" class="ingame" >
+  <!-- <div class="ingame" style="position: relative; z-index: 1; margin-top: 200px; "> -->
+    <!-- <div  v-if="winEvent">
         <img v-if="winEvent._status" id="has-won" src="../assets/win_ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 340px'>
         <img v-else id="has-lost" src="../assets/lose_ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 340px'>
+    </div> -->
+  <div style="position: relative; z-index: 1; ">
+      <img src="../assets/ingame_bg.png" style="margin-left:595px;">
+  </div>
+  <!-- <div style="position:relative; z-index:1">
+      <img src="../assets/ingame_bg.jpg" style='width:60%; margin-left: 380px'>
+  </div>         -->
+  <!-- </div> -->
+
+
+  <div  style="position: relative; top: -610px; z-index: 2; opacity:0.6">
+      <el-row :gutter="24" class="font_change">
+        <el-col :span="2" :offset="17">    
+              
+          <el-tabs type="border-card"   style="width: 400px; text-align: center">
+            <el-tabs :tab-position="tabPosition" >
+              <el-tab-pane label="ETH to ETH" ><p>ETH to ETH</p>
+                <hr>
+                <p>Exchange Rate: <br> 1:1 +-50%</p>
+                <input v-model="amount" placeholder="0 ETH" style="width:40%">
+                <button v-on:click="playE2E">Play</button>
+              </el-tab-pane>
+              <el-tab-pane label="ETH to TOKA"><p>ETH to TOKA</p>
+                <hr>
+                <p>Exchange Rate: <br> 1:1000000 +-50% </p>
+                <input v-model="amount" placeholder="0 ETH" style="width:40%">
+                <button v-on:click="playE2T">Play</button>
+              </el-tab-pane>
+              <el-tab-pane label="TOKA to TOKA"><p>TOKA to TOKA</p>
+                <hr>
+                <p>Exchange Rate: <br> 1:1 +-50% </p>
+                <input v-model="amount" placeholder="0 TOKA" style="width:40%">
+                <button v-on:click="playT2T">Play</button>
+              </el-tab-pane>
+              <el-tab-pane label="TOKA to ETH"><p>TOKA to ETH</p>
+                <hr>
+                <p>Exchange Rate: <br>1000000:1 +-50% </p>
+                <input v-model="amount" placeholder="0 TOKA" style="width:40%">
+                <button v-on:click="playT2E">Play</button>
+              </el-tab-pane>
+            </el-tabs>
+            <hr>
+            <el-tabs :tab-position="tabPosition" style="height: 200px;">
+              <el-tab-pane label="My Result"><p>My Result</p>
+                <img v-if="pending" id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
+                <!-- game result -->
+                <div class="event" v-if="winEvent">
+                  <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i> Congragulations, you have won {{winEvent._amount}} wei</p>
+                  <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i> Sorry you lost, try again. You have got just {{winEvent._amount}} wei</p>
+                </div>
+              </el-tab-pane>
+              <el-tab-pane label="Total Result"><p>Total Result</p>
+
+              </el-tab-pane>
+              <el-tab-pane label="Ranking"><p>Ranking</p>
+              </el-tab-pane>
+            </el-tabs>
+          </el-tabs>
+
+        </el-col>
+
+      </el-row>
     </div>
-    <div v-else>
-        <img src="../assets/ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 340px'>
-    </div>    
   </div>
-
-  <div style="position: relative; top: -700px; z-index: 2;">
-    <el-row :gutter="24" class="font_change">
-      <el-col :span="1" :offset="16">                  
-        <el-tabs type="border-card"   style="width: 400px; text-align: center">
-          <el-tabs :tab-position="tabPosition" >
-            <el-tab-pane label="ETH to ETH" ><p>ETH to ETH</p>
-              <hr>
-              <p>Exchange Rate: <br> 1:1 +-50%</p>
-              <input v-model="amount" placeholder="0 ETH" style="width:40%">
-              <button v-on:click="playE2E">Play</button>
-            </el-tab-pane>
-            <el-tab-pane label="ETH to TOKA"><p>ETH to TOKA</p>
-              <hr>
-              <p>Exchange Rate: <br> 1:1000000 +-50% </p>
-              <input v-model="amount" placeholder="0 ETH" style="width:40%">
-              <button v-on:click="playE2T">Play</button>
-            </el-tab-pane>
-            <el-tab-pane label="TOKA to TOKA"><p>TOKA to TOKA</p>
-              <hr>
-              <p>Exchange Rate: <br> 1:1 +-50% </p>
-              <input v-model="amount" placeholder="0 TOKA" style="width:40%">
-              <button v-on:click="playT2T">Play</button>
-            </el-tab-pane>
-            <el-tab-pane label="TOKA to ETH"><p>TOKA to ETH</p>
-              <hr>
-              <p>Exchange Rate: <br>1000000:1 +-50% </p>
-              <input v-model="amount" placeholder="0 TOKA" style="width:40%">
-              <button v-on:click="playT2E">Play</button>
-            </el-tab-pane>
-          </el-tabs>
-          <hr>
-          <el-tabs :tab-position="tabPosition" style="height: 200px;">
-            <el-tab-pane label="My Result"><p>My Result</p>
-              <img v-if="pending" id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
-              <!-- game result -->
-              <div class="event" v-if="winEvent">
-                <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i> Congragulations, you have won {{winEvent._amount}} wei</p>
-                <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i> Sorry you lost, try again. You have got just {{winEvent._amount}} wei</p>
-              </div>
-            </el-tab-pane>
-            <el-tab-pane label="Total Result"><p>Total Result</p>
-
-            </el-tab-pane>
-            <el-tab-pane label="Ranking"><p>Ranking</p>
-            </el-tab-pane>
-          </el-tabs>
-        </el-tabs>
-      </el-col>
-    </el-row>
-  </div>
-</div>
 </template>
 
 <script>
@@ -225,6 +232,15 @@ export default {
 
 <style scoped>
 @import "https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou";
+
+.ingame{
+    background-image: url("../assets/ingame_2.gif");
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%
+} 
+
+
 p {
   font-family: 'ZCOOL QingKe HuangYou', cursive;
   font-size: 25px
@@ -232,7 +248,9 @@ p {
 
 .font_change{
     font-family: 'ZCOOL QingKe HuangYou', cursive;
-    font-size: 20px
+    font-size: 20px;
+    /* background-image: url("../assets/ui-test.png") !important; 
+    background-repeat: no-repeat; */
 }
 
 .casino {

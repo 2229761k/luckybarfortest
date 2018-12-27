@@ -1,7 +1,7 @@
 <template>
 <div class="headerimg">
     <dir style="position: relative; z-index:1; margin: 0px; padding:0px">
-        <img src="../assets/lucky_header.jpg" alt="">
+        <img src="../assets/lucky_header.gif" alt="" style="width: 2000px;">
     </dir>
     <dir style="position: relative; z-index:2; top:-300px">
         <el-row :gutter="12">
