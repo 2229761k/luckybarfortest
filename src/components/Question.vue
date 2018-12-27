@@ -29,7 +29,7 @@
           <p class="lead">Nothing! All of the ether raised by tickets goes to the winner. </p>
         </div>
       </div>
-
+      <br><br><br>
     </div>   
 </template>
 

@@ -11,38 +11,38 @@
   </div>
 
   <div style="position: relative; top: -700px; z-index: 2;">
-    <el-row :gutter="24" style="opacity: 0.8; ">
+    <el-row :gutter="24" class="font_change">
       <el-col :span="1" :offset="16">                  
-        <el-tabs type="border-card" style="width: 450px; text-align: center">
+        <el-tabs type="border-card"   style="width: 400px; text-align: center">
           <el-tabs :tab-position="tabPosition" >
-            <el-tab-pane label="Eth to Eth">Eth to Eth
+            <el-tab-pane label="ETH to ETH" ><p>ETH to ETH</p>
               <hr>
-              <p>Exchange Rate: 1:1 +-50% </p>
-              Amount to play: <input v-model="amount" placeholder="0 Ether">
+              <p>Exchange Rate: <br> 1:1 +-50%</p>
+              <input v-model="amount" placeholder="0 ETH" style="width:40%">
               <button v-on:click="playE2E">Play</button>
             </el-tab-pane>
-            <el-tab-pane label="Eth to Toka">Eth to Toka
+            <el-tab-pane label="ETH to TOKA"><p>ETH to TOKA</p>
               <hr>
-              <p>Exchange Rate: 1:1000000 +-50% </p>
-              Amount to play: <input v-model="amount" placeholder="0 Ether">
+              <p>Exchange Rate: <br> 1:1000000 +-50% </p>
+              <input v-model="amount" placeholder="0 ETH" style="width:40%">
               <button v-on:click="playE2T">Play</button>
             </el-tab-pane>
-            <el-tab-pane label="Toka to Toka">Toka to Toka
+            <el-tab-pane label="TOKA to TOKA"><p>TOKA to TOKA</p>
               <hr>
-              <p>Exchange Rate: 1:1 +-50% </p>
-              Amount to play: <input v-model="amount" placeholder="0 Toka">
+              <p>Exchange Rate: <br> 1:1 +-50% </p>
+              <input v-model="amount" placeholder="0 TOKA" style="width:40%">
               <button v-on:click="playT2T">Play</button>
             </el-tab-pane>
-            <el-tab-pane label="Toka to Eth">Toka to Eth
+            <el-tab-pane label="TOKA to ETH"><p>TOKA to ETH</p>
               <hr>
-              <p>Exchange Rate: 1000000:1 +-50% </p>
-              Amount to play: <input v-model="amount" placeholder="0 Toka">
+              <p>Exchange Rate: <br>1000000:1 +-50% </p>
+              <input v-model="amount" placeholder="0 TOKA" style="width:40%">
               <button v-on:click="playT2E">Play</button>
             </el-tab-pane>
           </el-tabs>
-          <hr />
+          <hr>
           <el-tabs :tab-position="tabPosition" style="height: 200px;">
-            <el-tab-pane label="My Result">My Result
+            <el-tab-pane label="My Result"><p>My Result</p>
               <img v-if="pending" id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
               <!-- game result -->
               <div class="event" v-if="winEvent">
@@ -50,11 +50,10 @@
                 <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i> Sorry you lost, try again. You have got just {{winEvent._amount}} wei</p>
               </div>
             </el-tab-pane>
-            <el-tab-pane label="Total Result">Total Result
+            <el-tab-pane label="Total Result"><p>Total Result</p>
 
             </el-tab-pane>
-            <el-tab-pane label="Ranking">Ranking
-
+            <el-tab-pane label="Ranking"><p>Ranking</p>
             </el-tab-pane>
           </el-tabs>
         </el-tabs>
@@ -75,14 +74,14 @@ export default {
       winEvent: null
     }
   },
-    methods: {
+  mETHods: {
     playE2E (event) {
       console.log('AMOUNT', this.amount)
       this.winEvent = null
       this.pending = true
       this.$store.state.contractInstance().playE2E({
         gas: 300000,
-        value: this.$store.state.web3.web3Instance().toWei(this.amount, 'ether'),
+        value: this.$store.state.web3.web3Instance().toWei(this.amount, 'ETH'),
         from: this.$store.state.web3.coinbase
       }, (err, result) => {
         if (err) {
@@ -108,7 +107,7 @@ export default {
       this.pending = true
       this.$store.state.contractInstance().playE2E({
         gas: 300000,
-        value: this.$store.state.web3.web3Instance().toWei(this.amount, 'ether'),
+        value: this.$store.state.web3.web3Instance().toWei(this.amount, 'ETH'),
         from: this.$store.state.web3.coinbase
       }, (err, result) => {
         if (err) {
@@ -177,7 +176,7 @@ export default {
       this.pending = true
       this.$store.state.contractInstance().playE2E({
         gas: 300000,
-        value: this.$store.state.web3.web3Instance().toWei(this.amount, 'ether'),
+        value: this.$store.state.web3.web3Instance().toWei(this.amount, 'ETH'),
         from: this.$store.state.web3.coinbase
       }, (err, result) => {
         if (err) {
@@ -208,6 +207,16 @@ export default {
 </script>
 
 <style scoped>
+@import "https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou";
+p {
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  font-size: 25px
+}
+
+.font_change{
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    font-size: 20px
+}
 
 .casino {
      margin-top: 50px;
