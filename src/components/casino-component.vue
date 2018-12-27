@@ -74,8 +74,8 @@ export default {
       winEvent: null
     }
   },
-  mETHods: {
-      playE2E (event) {
+  methods: {
+    playE2E (event) {
       console.log('AMOUNT', this.amount)
       this.winEvent = null
       this.pending = true

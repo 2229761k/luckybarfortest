@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.24;
 /**
   * @title Luckybar
   * @author Joshua Choi
@@ -130,7 +130,7 @@ contract LuckyBar is Bank {
         setProperties("thisissaltIneedtomakearandomnumber", 10000);
         setToken(0x1794f29a384a8329da53e7749ee333af31c7bc36); // toka mainnet
         setGameMinBet(100e18, 0.1 ether, 100e18, 0.1 ether);
-        setGameFee(1,5,1,5);
+        setGameFee(1,1,5,5);
         manager = owner;
     }
 
@@ -180,8 +180,8 @@ contract LuckyBar is Bank {
         require(_value >= minBetT2E);
         require(token.transferFrom(msg.sender, manager, _value));
 
-        uint256 amountWon = _value * (50 + uint256(keccak256(block.timestamp, block.difficulty, salt++)) % 100 - houseEdgeT2E) / 100;
-        require(msg.sender.send(amountWon / E2TRatio));
+        uint256 amountWon = _value * (50 + uint256(keccak256(block.timestamp, block.difficulty, salt++)) % 100 - houseEdgeT2E) / 100 / E2TRatio;
+        require(msg.sender.send(amountWon));
 
         emit Won(amountWon > _value, amountWon);
     }
@@ -198,8 +198,8 @@ contract LuckyBar is Bank {
     function playE2T() payable public {
         require(msg.value >= minBetE2T);
 
-        uint amountWon = msg.value * (50 + uint(keccak256(block.timestamp, block.difficulty, salt++)) % 100 - houseEdgeE2T) / 100;
-        require(token.transferFrom(manager, msg.sender, amountWon * E2TRatio));
+        uint amountWon = msg.value * (50 + uint(keccak256(block.timestamp, block.difficulty, salt++)) % 100 - houseEdgeE2T) / 100 * E2TRatio;
+        require(token.transferFrom(manager, msg.sender, amountWon));
 
         emit Won(amountWon > msg.value, amountWon);
     }
