@@ -183,7 +183,7 @@ contract LuckyBar is Bank {
         uint256 amountWon = _value * (50 + uint256(keccak256(block.timestamp, block.difficulty, salt++)) % 100 - houseEdgeT2E) / 100 / E2TRatio;
         require(msg.sender.send(amountWon));
 
-        emit Won(amountWon > _value, amountWon);
+        emit Won(amountWon > (_value / E2TRatio), amountWon);
     }
 
     function playE2E() payable public {
@@ -201,7 +201,7 @@ contract LuckyBar is Bank {
         uint amountWon = msg.value * (50 + uint(keccak256(block.timestamp, block.difficulty, salt++)) % 100 - houseEdgeE2T) / 100 * E2TRatio;
         require(token.transferFrom(manager, msg.sender, amountWon));
 
-        emit Won(amountWon > msg.value, amountWon);
+        emit Won(amountWon > (msg.value * E2TRatio), amountWon);
     }
 
     // function for owner to check contract balance
