@@ -24,7 +24,7 @@ export default {
     'Header': Header,
     'casino-component': CasinoComponent,
     'Question':Question,
-    'Footer':Footer,
+    'Footer':Footer
 
   }
 }

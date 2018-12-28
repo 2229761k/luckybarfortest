@@ -1,11 +1,11 @@
 <template>
      <div class="bg-light" id="section2">
        <br><br><br>
-        <div class="col-lg-12 mx-auto">
+        <div>
           <img src="../assets/dona.png" alt="" style="height:300px; float: right; margin-top:300px; margin-right:100px">
         </div>
         <div class="row">
-          <div class="col-lg-8 mx-auto" style="">
+          <div style="">
             <h1>FAQ</h1>
             <h4>What is Etherball?</h4>
             <p class="lead">Etherball is a lottery built on top of the Etherum blockchain. Because of its decentralized

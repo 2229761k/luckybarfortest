@@ -1,22 +1,14 @@
-5<template>
-<div id="section1" class="ingame" >
-  <!-- <div class="ingame" style="position: relative; z-index: 1; margin-top: 200px; "> -->
-    <!-- <div  v-if="winEvent">
-        <img v-if="winEvent._status" id="has-won" src="../assets/win_ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 340px'>
-        <img v-else id="has-lost" src="../assets/lose_ingame.gif" style='height: 60%; width: 60%; object-fit: contain; margin-left: 340px'>
-    </div> -->
-  <div style="position: relative; z-index: 1; ">
-      <img src="../assets/ingame_bg.png" style="margin-left:595px;">
-  </div>
-  <!-- <div style="position:relative; z-index:1">
-      <img src="../assets/ingame_bg.jpg" style='width:60%; margin-left: 380px'>
-  </div>         -->
-  <!-- </div> -->
-
-
-  <div  style="position: relative; top: -610px; z-index: 2; opacity:0.6">
+<template>
+ <div id="section1" align="center" style="height: 1155px;">
+    <div class="background-image">
+        <img src="../assets/ingame_2.gif" >
+    </div>
+    <div class="input-window-border">
+        <img src="../assets/ui-test.png" >
+    </div>
+    <div id="game-result" class="input-window">
       <el-row :gutter="24" class="font_change">
-        <el-col :span="2" :offset="17">    
+        <el-col :span="2" :offset="17">
               
           <el-tabs type="border-card"   style="width: 400px; text-align: center">
             <el-tabs :tab-position="tabPosition" >
@@ -107,13 +99,27 @@ export default {
 <style scoped>
 @import "https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou";
 
-.ingame{
-    background-image: url("../assets/ingame_2.gif");
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 100%
-} 
+.background-image{
+    z-index: 1;
+    position:relative;
+}
 
+.input-window{
+    z-index: 3;
+    position:relative;
+    top: -1350px;
+    left: 300px;
+    width: 400px;
+    opacity: 1;
+}
+
+.input-window-border {
+    z-index: 2;
+    position:relative;
+    top: -900px;
+    left: 600px;
+    width: 400px;
+}
 
 p {
   font-family: 'ZCOOL QingKe HuangYou', cursive;
@@ -127,10 +133,10 @@ p {
     background-repeat: no-repeat; */
 }
 
-.casino {
+/* .casino {
      margin-top: 50px;
      text-align:center;
-}
+} */
 #loader {
   width:150px;
 }
