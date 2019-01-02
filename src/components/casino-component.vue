@@ -1,16 +1,19 @@
 <template>
- <div id="section1" align="center" style="height: 1155px;">
-    <div class="background-image">
-        <img src="../assets/ingame_2.gif" >
+ <div id="section1" align="center" style="position:relative;width: 100%;height: auto;">
+
+    <div class="event" v-if="winEvent">
+      <div v-if="winEvent._status" id="has-won" class="win-effect"></div>
+      <div v-else id="has-lost" class="lose-effect"></div>
+    </div>
+      <div class="background-image">
+        <img src="../assets/ingame_2.gif" style="" >
     </div>
     <div class="input-window-border">
         <img src="../assets/ui-test.png" >
-    </div>
-    <div id="game-result" class="input-window">
+        <div id="game-result" class="input-window">
       <el-row :gutter="24" class="font_change">
         <el-col :span="2" :offset="17">
-              
-          <el-tabs type="border-card"   style="width: 400px; text-align: center">
+          <el-tabs type="border-card"   style="width: 400px; text-align: center;">
             <el-tabs :tab-position="tabPosition" >
               <el-tab-pane label="ETH to ETH" ><p>ETH to ETH</p>
                 <hr>
@@ -54,11 +57,10 @@
               </el-tab-pane>
             </el-tabs>
           </el-tabs>
-
         </el-col>
-
       </el-row>
     </div>
+    </div> 
   </div>
 </template>
 
@@ -97,33 +99,68 @@ export default {
 </script>
 
 <style scoped>
-@import "https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou";
+@import "https://fonts.googleapis.com/css?family=Press+Start+2P";
 
 .background-image{
     z-index: 1;
-    position:relative;
+    display: block; 
+    /* width:70%; */
+}
+
+.win-effect{
+    z-index: 2;
+    position: absolute;
+    top: 0%;
+    width: 100%;
+
+    background-image: url("../assets/win.gif");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.lose-effect{
+    z-index: 2;
+    position: absolute;
+    top: 0%;
+    width: 100%;
+
+    background-image: url("../assets/lose.gif");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .input-window{
     z-index: 3;
-    position:relative;
-    top: -1350px;
-    left: 300px;
+    position: absolute;
+    top: 3%;
+    left: -70%;
     width: 400px;
     opacity: 1;
 }
 
 .input-window-border {
     z-index: 2;
-    position:relative;
-    top: -900px;
-    left: 600px;
+    position: absolute;
+    top: 10%;
+    left: 70%;
     width: 400px;
 }
 
 p {
-  font-family: 'ZCOOL QingKe HuangYou', cursive;
-  font-size: 25px
+font-family: 'Press Start 2P', cursive;
+font-size: 20px
 }
 
 .font_change{

@@ -1,11 +1,7 @@
 <template>
      <div class="bg-light" id="section2">
        <br><br><br>
-        <div>
-          <img src="../assets/dona.png" alt="" style="height:300px; float: right; margin-top:300px; margin-right:100px">
-        </div>
-        <div class="row">
-          <div style="">
+        <div class="container" style="z-index:1;height: 1400px;">
             <h1>FAQ</h1>
             <h4>What is Etherball?</h4>
             <p class="lead">Etherball is a lottery built on top of the Etherum blockchain. Because of its decentralized
@@ -27,8 +23,10 @@
               game resets automatically too, so you can play more games quicker.</p>
             <h4>What's your share?</h4>
             <p class="lead">Nothing! All of the ether raised by tickets goes to the winner. </p>
-          </div>
-      </div>
+        </div>
+        <!-- <div style="z-index:2 ">
+          <img src="../assets/dona.png" alt="" style="height: 500px;">
+        </div> -->
       <br><br><br>
     </div>   
 </template>

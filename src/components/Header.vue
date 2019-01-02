@@ -1,18 +1,18 @@
 <template>
 <div class="headerimg">
-    <dir style="position: relative; z-index:1; margin: 0px; padding:0px">
-        <img src="../assets/lucky_header.gif" alt="" style="width: 2000px;">
-    </dir>
-    <dir style="position: relative; z-index:2; top:-300px">
+    <div style="position: relative; z-index:1; margin: 0px; padding:0px">
+        <img src="../assets/lucky_header.gif" alt="" style="width: 100%;">
+    </div>
+    <div style="position: relative; z-index:2; top:-300px">
         <el-row :gutter="12">
             <el-col :span="2" :offset="5" style="cursor: pointer">           
-                <a v-scroll-to="'#section1'" @click="clickImg" ><img src="../assets/play_button.png" style="width:250px"/></a>
+                <a v-scroll-to="'#section1'" @click="clickImg" ><img src="../assets/play_button.png" style="width:250; "/></a>
                 <br><br>
-                <a v-scroll-to="'#section2'" @click="clickImg"><img src="../assets/help_button.png" style="width:250px"/></a>
+                <a v-scroll-to="'#section2'" @click="clickImg"><img src="../assets/help_button.png" style="width:250"/></a>
                 <br><br>
             </el-col>
         </el-row>
-    </dir>
+    </div>
 </div>
 </template>
 
