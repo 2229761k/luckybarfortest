@@ -61,10 +61,10 @@ let state = {
       })
     },
     playT2E: function (window) {
-      console.log('AMOUNT', this.amount)
+      console.log('AMOUNT', window.amount)
       window.winEvent = null
       window.pending = true
-      window.$store.state.tokenInstance().approve(window.$store.state.contractInstance().address ,this.amount * (10 ** 18), {
+      window.$store.state.tokenInstance().approve(window.$store.state.contractInstance().address ,window.amount * (10 ** 18), {
         gas: 300000,
         from: window.$store.state.web3.coinbase
       }, (err, result) => {
@@ -104,10 +104,10 @@ let state = {
       })
     },
     playT2T:function (window) {
-      console.log('AMOUNT', this.amount)
+      console.log('AMOUNT', window.amount)
       window.winEvent = null
       window.pending = true
-      window.$store.state.tokenInstance().approve(window.$store.state.contractInstance().address ,this.amount * (10 ** 18), {
+      window.$store.state.tokenInstance().approve(window.$store.state.contractInstance().address ,window.amount * (10 ** 18), {
         gas: 300000,
         from: window.$store.state.web3.coinbase
       }, (err, result) => {
