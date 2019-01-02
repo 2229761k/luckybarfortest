@@ -103,7 +103,7 @@ let state = {
         }
       })
     },
-    playT2T:function (window) {
+    playT2T: function (window) {
       console.log('AMOUNT', window.amount)
       window.winEvent = null
       window.pending = true
