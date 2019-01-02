@@ -5,9 +5,17 @@
       <div v-if="winEvent._status" id="has-won" class="win-effect"></div>
       <div v-else id="has-lost" class="lose-effect"></div>
     </div>
-      <div class="background-image">
-        <img src="../assets/ingame_2.gif" style="" >
+    <!-- <div class="win-effect"></div> -->
+
+    <div class="background-image" v-if="winEvent">
+        <img v-if="winEvent._status" id="has-won" src="../assets/ingame_2.gif" style="opacity:0.6" >
+        <img v-else id="has-lost" src="../assets/ingame_2.gif" style="opacity:0.6" >       
     </div>
+
+    <div class="background-image" >
+        <img src="../assets/ingame_2.gif"  >
+    </div>
+    
     <div class="input-window-border">
         <img src="../assets/ui-test.png" >
         <div id="game-result" class="input-window">
@@ -17,7 +25,7 @@
             <el-tabs :tab-position="tabPosition" >
               <el-tab-pane label="ETH to ETH" ><p>ETH to ETH</p>
                 <hr>
-                <p>Exchange Rate: <br> 1:1 +-50%</p>
+                <p>Exchange Rate: <br> 1:1 <br>+-50%</p>
                 <input v-model="amount" placeholder="0 ETH" style="width:40%">
                 <button v-on:click="playE2E">Play</button>
               </el-tab-pane>
@@ -29,7 +37,7 @@
               </el-tab-pane>
               <el-tab-pane label="TOKA to TOKA"><p>TOKA to TOKA</p>
                 <hr>
-                <p>Exchange Rate: <br> 1:1 +-50% </p>
+                <p>Exchange Rate: <br> 1:1 <br>+-50% </p>
                 <input v-model="amount" placeholder="0 TOKA" style="width:40%">
                 <button v-on:click="playT2T">Play</button>
               </el-tab-pane>
@@ -144,23 +152,23 @@ export default {
 .input-window{
     z-index: 3;
     position: absolute;
-    top: 3%;
+    top: 4%;
     left: -70%;
     width: 400px;
-    opacity: 1;
+    opacity: 0.8;
 }
 
 .input-window-border {
     z-index: 2;
     position: absolute;
-    top: 10%;
+    top: 20%;
     left: 70%;
     width: 400px;
 }
 
 p {
 font-family: 'Press Start 2P', cursive;
-font-size: 20px
+font-size: 17px
 }
 
 .font_change{
