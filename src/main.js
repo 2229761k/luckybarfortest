@@ -10,10 +10,14 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import axios from 'axios'
+
+
 var VueScrollTo = require('vue-scrollto');
  
 Vue.use(VueScrollTo)
- 
+Vue.use(axios)
+
 // You can also pass in the default options
 Vue.use(VueScrollTo, {
      container: "body",

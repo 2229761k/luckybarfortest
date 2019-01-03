@@ -6,9 +6,15 @@
     <div style="position: relative; z-index:2; top:-300px">
         <el-row :gutter="12">
             <el-col :span="2" :offset="5" style="cursor: pointer">           
-                <a v-scroll-to="'#section1'" @click="clickImg" ><img src="../assets/play_button.png" style="width:250; "/></a>
+                <a v-scroll-to="'#section1'" @click="clickImg" >
+                    <img v-if="click" src="../assets/after_play.png" style="width:250; "/>      
+                    <img v-else src="../assets/play_button.png" style="width:250; "/>
+                </a>
                 <br><br>
-                <a v-scroll-to="'#section2'" @click="clickImg"><img src="../assets/help_button.png" style="width:250"/></a>
+                <a v-scroll-to="'#section2'" @click="clickImg">
+                    <img v-if="click" src="../assets/help_button.png" style="width:250"/>
+                    <img v-else src="../assets/after_help.png" style="width:250; "/>
+                </a>
                 <br><br>
             </el-col>
         </el-row>

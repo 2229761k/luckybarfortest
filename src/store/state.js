@@ -7,6 +7,7 @@ let state = {
     balance: null,
     error: null
   },
+  
   functions: {
     playE2E: function (window) {
       console.log('AMOUNT', window.amount)
@@ -20,6 +21,8 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
+          setTimeout("location.reload()", 6000);
+
         } else {
           let Won = window.$store.state.contractInstance().Won()
           Won.watch((err, result) => {
@@ -29,6 +32,7 @@ let state = {
               window.winEvent = result.args
               window.winEvent._amount = parseInt(result.args._amount, 10)
               window.pending = false
+              setTimeout("location.reload()", 6000);
             }
           })
         }
@@ -46,6 +50,8 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
+          setTimeout("location.reload()", 6000);
+
         } else {
           let Won = window.$store.state.contractInstance().Won()
           Won.watch((err, result) => {
@@ -55,6 +61,8 @@ let state = {
               window.winEvent = result.args
               window.winEvent._amount = parseInt(result.args._amount, 10)
               window.pending = false
+              setTimeout("location.reload()", 6000);
+         
             }
           })
         }
@@ -71,6 +79,8 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
+          setTimeout("location.reload()", 6000);
+
         } else {
           let Approval = window.$store.state.tokenInstance().Approval()
           Approval.watch((err, result) => {
@@ -85,6 +95,9 @@ let state = {
                 if (err) {
                   console.log(err)
                   window.pending = false
+                  setTimeout(() => {
+                    window.location.reload(true);
+                  }, 4000);
                 } else {
                   let Won = window.$store.state.contractInstance().Won()
                   Won.watch((err, result) => {
@@ -94,6 +107,8 @@ let state = {
                       window.winEvent = result.args
                       window.winEvent._amount = parseInt(result.args._amount, 10)
                       window.pending = false
+                      setTimeout("location.reload()", 6000);
+
                     }
                   })
                 }
@@ -114,6 +129,8 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
+          setTimeout("location.reload()", 6000);
+
         } else {
           let Approval = window.$store.state.tokenInstance().Approval()
           Approval.watch((err, result) => {
@@ -128,6 +145,8 @@ let state = {
                 if (err) {
                   console.log(err)
                   window.pending = false
+                  setTimeout("location.reload()", 6000);
+
                 } else {
                   let Won = window.$store.state.contractInstance().Won()
                   Won.watch((err, result) => {
@@ -137,6 +156,8 @@ let state = {
                       window.winEvent = result.args
                       window.winEvent._amount = parseInt(result.args._amount, 10)
                       window.pending = false
+                      setTimeout("location.reload()", 6000);
+
                     }
                   })
                 }

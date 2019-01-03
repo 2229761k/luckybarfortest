@@ -3,19 +3,21 @@
 
     <div class="event" v-if="winEvent">
       <div v-if="winEvent._status" id="has-won" class="win-effect"></div>
-      <div v-else id="has-lost" class="lose-effect"></div>
+      <div v-else id="has-lost"  class="lose-effect"></div>
     </div>
-    <!-- <div class="win-effect"></div> -->
+    <!-- <div class="lose-effect"></div> -->
 
-    <div class="background-image" v-if="winEvent">
-        <img v-if="winEvent._status" id="has-won" src="../assets/ingame_2.gif" style="opacity:0.6" >
-        <img v-else id="has-lost" src="../assets/ingame_2.gif" style="opacity:0.6" >       
+    <div class="background-image">
+      <div v-if="pending" >
+        <img src="../assets/loading.gif">
+      </div>
+      <div v-else>
+        <img v-if="winEvent"  src="../assets/ingame_2.gif" style="opacity:0.6" >
+        <img v-else src="../assets/ingame_2.gif" style="opacity:1" >  
+      </div>
     </div>
 
-    <div class="background-image" >
-        <img src="../assets/ingame_2.gif"  >
-    </div>
-    
+
     <div class="input-window-border">
         <img src="../assets/ui-test.png" >
         <div id="game-result" class="input-window">
@@ -53,13 +55,16 @@
               <el-tab-pane label="My Result"><p>My Result</p>
                 <img v-if="pending" id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
                 <!-- game result -->
-                <div class="event" v-if="winEvent">
-                  <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i> Congragulations, you have won {{winEvent._amount}} wei</p>
-                  <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i> Sorry you lost, try again. You have got just {{winEvent._amount}} wei</p>
+                <div class="event" v-if="winEvent" v-for="(item, index) in myResult" :key="index">
+                  <p>{{item.index}}.</p>
+                  <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i> 
+                   Congragulations, you have won  {{item}}  </p>
+                  <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i> 
+                  Sorry you lost, try again. You have got just {{item}} </p>
                 </div>
               </el-tab-pane>
-              <el-tab-pane label="Total Result"><p>Total Result</p>
-
+              <el-tab-pane label="Total Result" v-for="(item, index) in myResult" :key="index"><p>Total Result</p>
+                  {{item.index}}. {{item}}
               </el-tab-pane>
               <el-tab-pane label="Ranking"><p>Ranking</p>
               </el-tab-pane>
@@ -73,6 +78,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'casino',
   data () {
@@ -80,12 +87,22 @@ export default {
       tabPosition: 'left',
       amount: null,
       pending: false,
-      winEvent: null
+      winEvent: null,
+      myResult: [],
     }
   },
+  
   methods: {
     playE2E (event) {
       this.$store.state.functions.playE2E(this);
+      this.getResult()
+      console.log("dddddd",this.myResult);
+
+      // console.log(this.myResult)
+      // for(i=0; i<10; i++){
+
+      // }
+
     },
     playE2T (event) {
       this.$store.state.functions.playE2T(this);
@@ -95,6 +112,25 @@ export default {
     },
     playT2E (event) {
       this.$store.state.functions.playT2E(this);
+    },
+  
+    getResult(){
+      console.log('adasd')
+      axios.get('https://api.etherscan.io/api?module=account&action=txlistinternal&address=0x2c1ba59d6f58433fb1eaee7d20b26ed83bda51a3&startblock=0&endblock=2702578&page=1&offset=10&sort=asc&apikey=3IZMXH4SJM5SMX68K7P8ZSMMFUS4SM1HPR')
+        .then((response)=>{
+
+          this.myResult = response.data.result.sort(function(a,b){
+            return b['timeStamp'] - a['timeStamp']
+
+          })
+          // console.log(this.myResult)
+
+
+
+          // console.log(response.data.result[0])
+          // this.myResult.push(response.data.result[0])
+          // console.log(this.myResult)
+      })
     }
   },
   mounted () {
@@ -102,7 +138,10 @@ export default {
     this.$store.dispatch('getContractInstance');
     console.log('dispatching getTokenContractInstance');
     this.$store.dispatch('getTokenContractInstance');
-  }
+    this.getResult()
+
+  },
+ 
 }
 </script>
 
@@ -112,6 +151,7 @@ export default {
 .background-image{
     z-index: 1;
     display: block; 
+    /* opacity: 0.6; */
     /* width:70%; */
 }
 
