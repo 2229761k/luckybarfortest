@@ -59,12 +59,12 @@
                   <p>{{item.index}}.</p>
                   <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i> 
                    Congragulations, you have won  {{item}}  </p>
-                  <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i> 
+                  <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i>
                   Sorry you lost, try again. You have got just {{item}} </p>
                 </div>
               </el-tab-pane>
-              <el-tab-pane label="Total Result" v-for="(item, index) in myResult" :key="index"><p>Total Result</p>
-                  {{item.index}}. {{item}}
+              <el-tab-pane label="Total Result" ><p>Total Result</p>
+                  <p v-for="(item, index) in myResult" :key="index"> {{item.timeStamp}}. {{item.value/10**18}} </p>
               </el-tab-pane>
               <el-tab-pane label="Ranking"><p>Ranking</p>
               </el-tab-pane>
@@ -96,12 +96,6 @@ export default {
     playE2E (event) {
       this.$store.state.functions.playE2E(this);
       this.getResult()
-      console.log("dddddd",this.myResult);
-
-      // console.log(this.myResult)
-      // for(i=0; i<10; i++){
-
-      // }
 
     },
     playE2T (event) {
@@ -116,20 +110,21 @@ export default {
   
     getResult(){
       console.log('adasd')
-      axios.get('https://api.etherscan.io/api?module=account&action=txlistinternal&address=0x2c1ba59d6f58433fb1eaee7d20b26ed83bda51a3&startblock=0&endblock=2702578&page=1&offset=10&sort=asc&apikey=3IZMXH4SJM5SMX68K7P8ZSMMFUS4SM1HPR')
+      axios.get('https://api.etherscan.io/api?module=account&action=txlistinternal&address=0x2c1ba59d6f58433fb1eaee7d20b26ed83bda51a3&startblock=0&endblock=99999999999&apikey=3IZMXH4SJM5SMX68K7P8ZSMMFUS4SM1HPR')
         .then((response)=>{
 
           this.myResult = response.data.result.sort(function(a,b){
             return b['timeStamp'] - a['timeStamp']
 
           })
-          // console.log(this.myResult)
+          // res = [];
+          // index = 0;
+          // for(myItem in myResult) {
+          //   res[index++] = Object.keys(myItem).map(key => [key, myItem[key]]);
+          // }
+          console.log("!!!!!!!!!!!!!!", myResult);
 
 
-
-          // console.log(response.data.result[0])
-          // this.myResult.push(response.data.result[0])
-          // console.log(this.myResult)
       })
     }
   },
@@ -150,7 +145,7 @@ export default {
 
 .background-image{
     z-index: 1;
-    display: block; 
+    display: block;
     /* opacity: 0.6; */
     /* width:70%; */
 }
@@ -164,7 +159,7 @@ export default {
     background-image: url("../assets/win.gif");
 
     /* Full height */
-    height: 100%; 
+    height: 100%;
 
     /* Center and scale the image nicely */
     background-position: center;
@@ -181,7 +176,7 @@ export default {
     background-image: url("../assets/lose.gif");
 
     /* Full height */
-    height: 100%; 
+    height: 100%;
 
     /* Center and scale the image nicely */
     background-position: center;
