@@ -1,19 +1,6 @@
 <template>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <!-- Brand/logo -->
-        <a class="navbar-brand" href="/">LuckyBar</a>
-
-        <!-- Links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#section1">Play!</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#section2">Question?</a>
-            </li>
-        </ul>
-        <div class="navbar-collapse ">
-            <ul class="navbar-nav ml-auto">
+        <div>
+            <ul >
               <li>
                 <p v-if="isInjected" id="has-metamask"><i aria-hidden="true" class="fa fa-check"></i> Metamask Connected</p>
                 <p v-else id="no-metamask"><i aria-hidden="true" class="fa fa-times"></i> Metamask Connection failed</p>
@@ -24,7 +11,6 @@
             </ul>
         </div>
 
-    </nav>  
 
 </template>
 

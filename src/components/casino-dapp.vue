@@ -1,6 +1,7 @@
 <template>
 <div>
   <Header />
+  <!-- <HelloMetamask /> -->
   <casino-component/>
   <Question />
   <Footer />
@@ -22,6 +23,8 @@ export default {
   components: {
     // 'hello-metamask': HelloMetamask,
     'Header': Header,
+    // 'hello-metamask': HelloMetamask,
+
     'casino-component': CasinoComponent,
     'Question':Question,
     'Footer':Footer
