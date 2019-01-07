@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import state from './state'
 import getWeb3 from '../util/getWeb3'
 import pollWeb3 from '../util/pollWeb3'
-import { getContract, getToken } from '../util/getContract'
+import { getContract, getToken, getChip } from '../util/getContract'
 
 Vue.use(Vuex)
 export const store = new Vuex.Store({
@@ -34,6 +34,10 @@ export const store = new Vuex.Store({
     registerTokenContractInstance (state, payload) {
       console.log('Token contract instance: ', payload)
       state.tokenInstance = () => payload
+    },
+    registerChipContractInstance (state, payload) {
+      console.log('Chip contract instance: ', payload)
+      state.chipInstance = () => payload
     }
   },
   actions: {
@@ -53,6 +57,11 @@ export const store = new Vuex.Store({
     getContractInstance ({commit}) {
       getContract.then(result => {
         commit('registerContractInstance', result)
+      }).catch(e => console.log(e))
+    },
+    getChipContractInstance ({commit}) {
+      getChip.then(result => {
+        commit('registerChipContractInstance', result)
       }).catch(e => console.log(e))
     },
     getTokenContractInstance ({commit}) {

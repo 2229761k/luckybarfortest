@@ -254,6 +254,8 @@ export default {
     this.$store.dispatch('getContractInstance');
     console.log('dispatching getTokenContractInstance');
     this.$store.dispatch('getTokenContractInstance');
+    console.log('dispatching getChipContractInstance');
+    this.$store.dispatch('getChipContractInstance');
     this.getTotalResult();
     this.getRanking();
 

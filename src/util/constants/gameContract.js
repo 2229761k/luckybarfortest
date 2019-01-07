@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-const address = '0x3ab5f5f5c4aab5ccfd022d8a6a82a4a940bc6d3e'
+const address = '0x55dccb2116c67a55a30286579b113fac370d0262'
 const ABI = [
 	{
 		"constant": false,
@@ -56,6 +56,10 @@ const ABI = [
 		"constant": false,
 		"inputs": [
 			{
+				"name": "_from",
+				"type": "address"
+			},
+			{
 				"name": "_value",
 				"type": "uint256"
 			}
@@ -69,6 +73,10 @@ const ABI = [
 	{
 		"constant": false,
 		"inputs": [
+			{
+				"name": "_from",
+				"type": "address"
+			},
 			{
 				"name": "_value",
 				"type": "uint256"
