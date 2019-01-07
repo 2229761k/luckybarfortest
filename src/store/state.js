@@ -40,11 +40,11 @@ let state = {
         }
       })
     },
-    playE2T: function (window) {
+    playE2R: function (window) {
       console.log('AMOUNT', window.amount)
       window.winEvent = null
       window.pending = true
-      window.$store.state.contractInstance().playE2T({
+      window.$store.state.contractInstance().playE2R({
         gas: 300000,
         value: window.$store.state.web3.web3Instance().toWei(window.amount, 'ether'),
         from: window.$store.state.web3.coinbase
@@ -70,9 +70,9 @@ let state = {
         }
       })
     },
-    playT2E: function (window) {
+    playR2E: function (window) {
       let funcEncoded = Web3EthAbi.encodeFunctionCall({
-        name: 'playT2E',
+        name: 'playR2E',
         type: 'function',
         inputs: [{
           type: 'address',
@@ -109,9 +109,9 @@ let state = {
         }
       })
     },
-    playT2T: function (window) {
+    playR2R: function (window) {
       let funcEncoded = Web3EthAbi.encodeFunctionCall({
-        name: 'playT2T',
+        name: 'playR2R',
         type: 'function',
         inputs: [{
           type: 'address',

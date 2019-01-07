@@ -41,30 +41,30 @@
               </el-tab-pane>
               <el-tab-pane label="ETH to RUPY"><p>ETH to RUPY</p>
                 <hr>
-                <p>Exchange Rate: <br> 1:1000000 +-50% </p>
+                <p>Exchange Rate: <br> 1:100000 +-50% </p>
                 <input v-model="amount" placeholder="0 ETH" style="width:40%">
-                <button v-on:click="playE2T">Play</button>
+                <button v-on:click="playE2R">Play</button>
               </el-tab-pane>
               <el-tab-pane label="RUPY to RUPY"><p>RUPY to RUPY</p>
                 <hr>
                 <p>Exchange Rate: <br> 1:1 +-50% </p>
                 <input v-model="amount" placeholder="0 RUPY" style="width:40%">
-                <button v-on:click="playT2T">Play</button>
+                <button v-on:click="playR2R">Play</button>
               </el-tab-pane>
               <el-tab-pane label="RUPY to ETH"><p>TOKA to ETH</p>
                 <hr>
-                <p>Exchange Rate: <br>1000000:1 +-50% </p>
+                <p>Exchange Rate: <br>100000:1 +-50% </p>
                 <input v-model="amount" placeholder="0 RUPY" style="width:40%">
-                <button v-on:click="playT2E">Play</button>
+                <button v-on:click="playR2E">Play</button>
               </el-tab-pane>
               <el-tab-pane label="SWAP"><p>SWAP</p>
                 <hr>
-                <p>RUPY to CHIP </p>
+                <p>RUPY to TOKA </p>
                 <input v-model="amount" placeholder="0 RUPY" style="width:40%">
-                <button v-on:click="toka2chip">Swap</button> 
-                <br><br>            
-                 <p>CHIP to RUPY </p>
-                <input v-model="amount" placeholder="0 CHIP" style="width:40%">
+                <button v-on:click="toka2chip">Swap</button>
+                <br><br>
+                 <p>TOKA to RUPY </p>
+                <input v-model="amount" placeholder="0 TOKA" style="width:40%">
                 <button v-on:click="chip2toka">Swap</button>            
               </el-tab-pane>
             </el-tabs>
@@ -150,20 +150,20 @@ export default {
       this.getRanking();
 
     },
-    playE2T (event) {
-      this.$store.state.functions.playE2T(this);
+    playE2R (event) {
+      this.$store.state.functions.playE2R(this);
       this.getTotalResult();
       this.getRanking();
 
     },
-    playT2T (event) {
-      this.$store.state.functions.playT2T(this);
+    playR2R (event) {
+      this.$store.state.functions.playR2R(this);
       this.getTotalResult();
       this.getRanking();
 
     },
-    playT2E (event) {
-      this.$store.state.functions.playT2E(this);
+    playR2E (event) {
+      this.$store.state.functions.playR2E(this);
       this.getTotalResult();
       this.getRanking();
     },
