@@ -74,10 +74,14 @@
                 <img v-if="pending" id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
                 <!-- game result -->
                 <div class="event" v-if="winEvent">
-                  <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i> 
-                   Congragulations, you have got  {{winEvent._amount / 10**18}} ETH </p>
+                  <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
+                   Congragulations, you have got {{winEvent._amount / 10**18}} {{winEvent._rewardType}} </p>
                   <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i>
-                  Sorry you lost, try again. You have got just {{winEvent._amount / 10**18}} ETH</p>
+                  Sorry you lost, try again. You have got just {{winEvent._amount / 10**18}} {{winEvent._rewardType}}</p>
+                </div>
+                <div class="event" v-if="swapEvent">
+                  <p id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
+                   Swap Complete, you have got {{swapEvent._amount / 10**18}} {{swapEvent._target}} </p>
                 </div>
               </el-tab-pane>
               <el-tab-pane label="Total Result"  ><p>Total Result</p>
@@ -130,6 +134,7 @@ export default {
       amount: null,
       pending: false,
       winEvent: null,
+      swapEvent: null,
       myResult: [],
       rankingResult: []
     }

@@ -32,6 +32,7 @@ let state = {
               console.log('could not get event Won()')
             } else {
               window.winEvent = result.args
+              window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = parseInt(result.args._amount, 10)
               window.pending = false
               setTimeout("location.reload()", 6000);
@@ -61,6 +62,7 @@ let state = {
               console.log('could not get event Won()')
             } else {
               window.winEvent = result.args
+              window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = parseInt(result.args._amount, 10)
               window.pending = false
               setTimeout("location.reload()", 6000);
@@ -102,6 +104,7 @@ let state = {
               console.log('could not get event Won()')
             } else {
               window.winEvent = result.args
+              window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = parseInt(result.args._amount, 10)
               window.pending = false
             }
@@ -141,6 +144,7 @@ let state = {
               console.log('could not get event Won()')
             } else {
               window.winEvent = result.args
+              window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = parseInt(result.args._amount, 10)
               window.pending = false
             }
@@ -174,13 +178,14 @@ let state = {
           console.log(err)
           window.pending = false
         } else {
-          let Won = window.$store.state.contractInstance().Won()
-          Won.watch((err, result) => {
+          let Swapped = window.$store.state.contractInstance().Swapped()
+          Swapped.watch((err, result) => {
             if (err) {
-              console.log('could not get event Won()')
+              console.log('could not get event Swapped()')
             } else {
-              window.winEvent = result.args
-              window.winEvent._amount = parseInt(result.args._amount, 10)
+              window.swapEvent = result.args
+              window.swapEvent._amount = parseInt(result.args._amount, 10)
+              window.swapEvent._target = result.args._target
               window.pending = false
             }
           })
@@ -213,13 +218,14 @@ let state = {
                   console.log(err)
                   window.pending = false
                 } else {
-                  let Won = window.$store.state.contractInstance().Won()
-                  Won.watch((err, result) => {
+                  let Swapped = window.$store.state.contractInstance().Swapped()
+                  Swapped.watch((err, result) => {
                     if (err) {
-                      console.log('could not get event Won()')
+                      console.log('could not get event Swapped()')
                     } else {
-                      window.winEvent = result.args
-                      window.winEvent._amount = parseInt(result.args._amount, 10)
+                      window.swapEvent = result.args
+                      window.swapEvent._amount = parseInt(result.args._amount, 10)
+                      window.swapEvent._target = result.args._target
                       window.pending = false
                     }
                   })
