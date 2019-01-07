@@ -61,11 +61,11 @@
                 <hr>
                 <p>RUPY to TOKA </p>
                 <input v-model="amount" placeholder="0 RUPY" style="width:40%">
-                <button v-on:click="toka2rupy">Swap</button>
+                <button v-on:click="rupy2toka">Swap</button>
                 <br><br>
                  <p>TOKA to RUPY </p>
                 <input v-model="amount" placeholder="0 TOKA" style="width:40%">
-                <button v-on:click="rupy2toka">Swap</button>
+                <button v-on:click="toka2rupy">Swap</button>
               </el-tab-pane>
             </el-tabs>
             <hr>
