@@ -1,5 +1,5 @@
 <template>
- <div id="section1" align="center" style="position:relative;width: 100%;height: auto;" >
+ <div id="section1" align="center" style="position:relative;width: 100%;height: 1400px;" >
 
     <div class="event" v-if="winEvent">
       <div v-if="winEvent._status" id="has-won" class="win-effect"></div>

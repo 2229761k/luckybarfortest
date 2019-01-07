@@ -97,6 +97,8 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
+          setTimeout("location.reload()", 6000);
+
         } else {
           let Won = window.$store.state.contractInstance().Won()
           Won.watch((err, result) => {
@@ -107,6 +109,8 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = parseInt(result.args._amount, 10)
               window.pending = false
+              setTimeout("location.reload()", 6000);
+
             }
           })
         }
@@ -137,6 +141,8 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
+          setTimeout("location.reload()", 6000);
+
         } else {
           let Won = window.$store.state.contractInstance().Won()
           Won.watch((err, result) => {
@@ -147,6 +153,8 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = parseInt(result.args._amount, 10)
               window.pending = false
+              setTimeout("location.reload()", 6000);
+
             }
           })
         }
@@ -177,6 +185,8 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
+          setTimeout("location.reload()", 6000);
+
         } else {
           let Swapped = window.$store.state.contractInstance().Swapped()
           Swapped.watch((err, result) => {
@@ -187,6 +197,8 @@ let state = {
               window.swapEvent._amount = parseInt(result.args._amount, 10)
               window.swapEvent._target = result.args._target
               window.pending = false
+              setTimeout("location.reload()", 6000);
+
             }
           })
         }
@@ -203,6 +215,8 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
+          setTimeout("location.reload()", 6000);
+
         } else {
           let Approval = window.$store.state.tokenInstance().Approval()
           Approval.watch((err, result) => {
@@ -227,6 +241,8 @@ let state = {
                       window.swapEvent._amount = parseInt(result.args._amount, 10)
                       window.swapEvent._target = result.args._target
                       window.pending = false
+                      setTimeout("location.reload()", 6000);
+
                     }
                   })
                 }
