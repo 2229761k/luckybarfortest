@@ -1,32 +1,38 @@
 <template>
      <div class="bg-light" id="section2">
        <br><br><br>
-        <div class="container" style="z-index:1;height: 1400px;">
-            <h1>FAQ</h1>
-            <h4>What is Etherball?</h4>
-            <p class="lead">Etherball is a lottery built on top of the Etherum blockchain. Because of its decentralized
-              nature, Etherball is completely controlled by the blockchain, so payments and ticket-buying is secured with
-              the power of millions of computers around the world.</p>
-            <h4>Why should I trust it?</h4>
-            <p class="lead">You're free (and encouraged) to check out the source code at (etherscan link here). If you
-              have any questions or concerns feel free to contact me using the links at the bottom of the page.</p>
-            <h4>How can I use Etherball?</h4>
-            <p class="lead">The easiest way to use Etherball is to download the Metamask wallet <a href="https://metamask.io">here</a>,
-              send your Metamask wallet some ether using an exchange of sorts, and choosing a ticket to buy at the top of
-              the page.</p>
-            <h4>My transaction isn't going through. Why?</h4>
-            <p class="lead">Try raising your gas limit for the transaction. Don't worry if it seems high; most of the
-              times, the gas limit isn't even reached. Also, it's possible that someone else just bought the ticket that
-              you clicked on and the website or blockchain didn't update yet. Try choosing a different ticket.</p>
-            <h4>Why so few tickets?</h4>
-            <p class="lead">Fewer tickets equals to faster games, which means less time waiting to see if you've won! The
-              game resets automatically too, so you can play more games quicker.</p>
-            <h4>What's your share?</h4>
-            <p class="lead">Nothing! All of the ether raised by tickets goes to the winner. </p>
+        <div class="container" style="z-index: 2; display: block;">
+            <h1>LuckyBar</h1>
+            <br>
+            <h4>What is Lucky bar?</h4><br>
+            <p class="lead">The user can transfer the RUPY or Ethereum to the contract and get a random reward. The reward rate is + -50%. <br>Rupy is a game money used in Lucky Bar and will be switched to TOKA 1: 1. You can switch at any time via the SWAP button. 
+              If you play the game with Ethereum, Rupy will be mined. The game player receives a Rupy of the amount corresponding to the commission rate. (Exchange ratio 1: 100000)</p><br>
+            <h4>How to start?</h4><br>
+            <p class="lead">You need to install the Meta Mask plugin to play the game.
+              To play, enter the ETH(or RUPY) quantity and press the send button. Once the transaction is approved by the Meta Mask plugin, the game will start. Results can be found in ‘myresult’ section on the game screen.</p>
+            <br>
+            <h4>There are four types of games</h4><br>
+            <p class="lead">ETH to ETH:  Use Ether to get Ether. The base exchange rate is 1 : 1. The commission rate is 5%.</p>
+            <p class="lead">ETH to RUPY: Use Ethereum to get Rs. The base exchange rate is 1 : 100000, and is updated periodically according to the quotation. The commission rate is 0%.</p>
+            <p class="lead">RUPY to ETH: Use Rupee to get Ethereum. The base exchange rate is 100000 : 1, and is updated periodically according to the quotation. The commission rate is 5%.</p>
+            <p class="lead">RUPY to RUPY: Use Rupee to get Rupee. The base exchange rate is 1 : 1. The commission rate is 1%.</p>
+            <hr>
+            <p class="lead">The maximum number of transfers and the minimum number are specified.</p>
+            <p class="lead">ETH to ETH - min: 0.1ETH // max: inf.</p>
+            <p class="lead">ETH to RUPY - min: 0.1ETH // max: inf.</p>
+            <p class="lead">RUPY to RUPY - min: 100RUPY // max: inf.</p>
+            <p class="lead">RUPY to ETH - Will be open later.</p> 
+
+
+            <h4>The result confirmation window is as follows.</h4><br>
+            <p class="lead">My result: You can check my play results.</p>
+            <p class="lead">Total Result: You can check the latest five play history.</p>
+            <p class="lead">Ranking: The highest ranked number of ETHs in the game.</p>
+
         </div>
-        <!-- <div style="z-index:2 ">
-          <img src="../assets/dona.png" alt="" style="height: 500px;">
-        </div> -->
+        <div class="dona">
+          <img src="../assets/dona.gif" alt="" style="height: 500px; margin-left:70%; margin-top:-23% ">
+        </div>
       <br><br><br>
     </div>   
 </template>
@@ -38,8 +44,8 @@ export default {
 </script>
 
 <style>
-/* .bg-light{
-    background-image: url("../assets/dona.jpg");
-    background-repeat: no-repeat;
-} */
+.dona{
+  z-index: 1;
+  display: inline;
+}
 </style>

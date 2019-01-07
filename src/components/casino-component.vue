@@ -33,37 +33,37 @@
         <el-col :span="2" :offset="17" >
           <el-tabs type="border-card"   style="width: 400px; text-align: center;" >
             <el-tabs :tab-position="tabPosition">
-              <el-tab-pane class="lable_font" label="ETH to ETH" ><p>ETH to ETH</p>
+              <el-tab-pane label="ETH to ETH" ><p>ETH to ETH</p>
                 <hr>
-                <p style="font-size: 13px">Exchange Rate: <br> 1:1 <br>+-50%</p>
+                <p>Exchange Rate: <br> 1:1 +-50%</p>
                 <input v-model="amount" placeholder="0 ETH" style="width:40%">
                 <button v-on:click="playE2E">Play</button>
               </el-tab-pane>
-              <el-tab-pane class="lable_font" label="ETH to TOKA"><p>ETH to TOKA</p>
+              <el-tab-pane label="ETH to RUPY"><p>ETH to RUPY</p>
                 <hr>
                 <p>Exchange Rate: <br> 1:1000000 +-50% </p>
                 <input v-model="amount" placeholder="0 ETH" style="width:40%">
                 <button v-on:click="playE2T">Play</button>
               </el-tab-pane>
-              <el-tab-pane class="lable_font" label="TOKA to TOKA"><p>TOKA to TOKA</p>
+              <el-tab-pane label="RUPY to RUPY"><p>RUPY to RUPY</p>
                 <hr>
-                <p>Exchange Rate: <br> 1:1 <br>+-50% </p>
-                <input v-model="amount" placeholder="0 TOKA" style="width:40%">
+                <p>Exchange Rate: <br> 1:1 +-50% </p>
+                <input v-model="amount" placeholder="0 RUPY" style="width:40%">
                 <button v-on:click="playT2T">Play</button>
               </el-tab-pane>
-              <el-tab-pane class="lable_font" label="TOKA to ETH"><p>TOKA to ETH</p>
+              <el-tab-pane label="RUPY to ETH"><p>TOKA to ETH</p>
                 <hr>
                 <p>Exchange Rate: <br>1000000:1 +-50% </p>
-                <input v-model="amount" placeholder="0 TOKA" style="width:40%">
+                <input v-model="amount" placeholder="0 RUPY" style="width:40%">
                 <button v-on:click="playT2E">Play</button>
               </el-tab-pane>
-              <el-tab-pane class="lable_font" label="SWAP"><p>SWAP</p>
+              <el-tab-pane label="SWAP"><p>SWAP</p>
                 <hr>
-                <p>TOKA to CHIP </p>
-                <input v-model="amount" placeholder="0 TOKA" style="width:40%">
+                <p>RUPY to CHIP </p>
+                <input v-model="amount" placeholder="0 RUPY" style="width:40%">
                 <button v-on:click="toka2chip">Swap</button> 
                 <br><br>            
-                 <p>CHIP to TOKA </p>
+                 <p>CHIP to RUPY </p>
                 <input v-model="amount" placeholder="0 CHIP" style="width:40%">
                 <button v-on:click="chip2toka">Swap</button>            
               </el-tab-pane>
