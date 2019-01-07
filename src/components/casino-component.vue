@@ -11,8 +11,12 @@
       <p v-if="isInjected" id="has-metamask"><i aria-hidden="true" class="fa fa-check"></i> Metamask Connected</p>
       <p v-else id="no-metamask"><i aria-hidden="true" class="fa fa-times"></i> Metamask Connection failed</p>
       <!-- <p class="metainfo">Network: {{ network }}</p> -->
-      <p class="metainfo">Account: {{ coinbase }}</p>
-      <p class="metainfo">Balance: {{ ethBalance }} Eth</p>
+      <p class="metainfo"> Account</p>
+      <p class="metainfo"> {{ coinbase }}</p>
+      <p class="metainfo"><img src="../assets/ETH.png" style="width:4%"/> {{ ethBalance }} ETH</p>
+      <p class="metainfo"><img src="../assets/rupy.png" style="width:15%" />  {{ rupyBalance }} RUPY</p>
+      <p class="metainfo"><img src="../assets/TOKA.png" style="width:10%" />  {{ tokaBalance }} TOKA</p>
+
     </div>
 
     <div class="background-image">
@@ -281,8 +285,9 @@ export default {
 .balance{
     position: absolute;
     top: 6%;
-    left: 10%;
-    width: 400px;
+    left: 14%;
+    width: 800px;
+    text-align: left;
 }
 
 .win-effect{
@@ -378,8 +383,9 @@ ul {
 }
 .metainfo{
   color: white;
-  font-size: 0.7rem;
-  height: 1px;
+  font-family: 'Press Start 2P', cursive;
+
+  font-size: 0.8rem;
 }
 .metamask-info {
   text-align:left;

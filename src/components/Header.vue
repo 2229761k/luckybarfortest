@@ -3,35 +3,17 @@
     <div style="position: relative; z-index:1; margin: 0px; padding:0px">
         <img src="../assets/lucky_header.gif" alt="" style="width: 100%;">
     </div>
-    <div style="position: relative; z-index:2; top:-300px">
+    <div style="position: relative; z-index:2; top:-320px">
         <el-row :gutter="12">
-            <el-col :span="2" :offset="4" style="cursor: pointer"> 
-                <!-- <div class="before_hover">          -->
+            <el-col :span="2" :offset="5" style="cursor: pointer"> 
                     <a v-scroll-to="'#section1'" id="button">
                         <!-- <img  src="../assets/play_button.png" style="width:280px "/>      -->
- 
                     </a>
-                    
+                
                     <a v-scroll-to="'#section2'" id="button2">
                         <!-- <img  src="../assets/help_button.png" style="width:280px "/>       -->
                     </a>
-                    <!-- <div class="overlay" style="width:280px; ">
-                      <a v-scroll-to="'#section1'">
-                        <img src="../assets/after_play.png" style="width:280px; "/>
-                      </a>
-                    </div>
-                </div> 
-                <br><br>
-                <div class="before_hover2">         
-                    <a v-scroll-to="'#section2'">
-                        <img  src="../assets/help_button.png" style="width:280px "/>      
-                    </a>
-                    <div class="overlay2" style="width:280px; ">
-                      <a v-scroll-to="'#section2'">
-                        <img src="../assets/after_help.png" style="width:280px; "/>
-                      </a>
-                    </div>
-                </div>  -->
+                  
        
             </el-col>
         </el-row>
@@ -58,8 +40,10 @@ export default {
   background-size: 80%
 }
 #button:active {
-  background: url(../assets/after_play.png) no-repeat bottom;
+  background: url(../assets/after_play.png) no-repeat top;
+  background-size: 80%
 
+    
 }
 #button2 {
   display: block;
@@ -70,7 +54,9 @@ export default {
 
 }
 #button2:active {
-  background: url(../assets/after_help.png) no-repeat bottom;
+  background: url(../assets/after_help.png) no-repeat top;
+  background-size: 80%
+
 }
 
 .before_hover:hover .overlay {
