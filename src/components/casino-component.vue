@@ -189,7 +189,7 @@ export default {
           this.rankingResult = this.rankingResult.slice(0,5);
 
           for(var i=0; i<5; i++){
-            var unix_timestamp = this.rankingResult[i]['timeStamp'];            
+            var unix_timestamp = this.rankingResult[i]['timeStamp'];
             var date = new Date(unix_timestamp*1000);
             var month = date.getMonth();
             var day = date.getDate();

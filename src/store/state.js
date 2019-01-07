@@ -1,4 +1,6 @@
 import Web3EthAbi from 'web3-eth-abi'
+import Web3Utils from 'web3-utils'
+import Sci2Dec from 'scientific-to-decimal'
 
 let state = {
   web3: {
@@ -83,14 +85,14 @@ let state = {
           type: 'uint256',
           name: '_value'
         }]
-      }, [window.$store.state.web3.coinbase, (window.amount * (10 ** 18)).toString()])
+      }, [window.$store.state.web3.coinbase, Web3Utils.toHex(Sci2Dec(window.amount * (10 ** 18)))])
 
       console.log('ACCOUNT: ', window.$store.state.web3.coinbase)
       console.log('funcEncoded:', funcEncoded)
 
       window.winEvent = null
       window.pending = true
-      window.$store.state.chipInstance().approveAndCall(window.$store.state.contractInstance().address, window.amount * (10 ** 18), funcEncoded, {
+      window.$store.state.chipInstance().approveAndCall(window.$store.state.contractInstance().address, Web3Utils.toHex(Sci2Dec(window.amount * (10 ** 18))), funcEncoded, {
         gas: 300000,
         from: window.$store.state.web3.coinbase
       }, (err, result) => {
@@ -127,14 +129,14 @@ let state = {
           type: 'uint256',
           name: '_value'
         }]
-      }, [window.$store.state.web3.coinbase, (window.amount * (10 ** 18)).toString()])
+      }, [window.$store.state.web3.coinbase, Web3Utils.toHex(Sci2Dec(window.amount * (10 ** 18)))])
 
       console.log('ACCOUNT: ', window.$store.state.web3.coinbase)
       console.log('funcEncoded:', funcEncoded)
 
       window.winEvent = null
       window.pending = true
-      window.$store.state.chipInstance().approveAndCall(window.$store.state.contractInstance().address, window.amount * (10 ** 18), funcEncoded, {
+      window.$store.state.chipInstance().approveAndCall(window.$store.state.contractInstance().address, Web3Utils.toHex(Sci2Dec(window.amount * (10 ** 18))), funcEncoded, {
         gas: 300000,
         from: window.$store.state.web3.coinbase
       }, (err, result) => {
@@ -161,6 +163,8 @@ let state = {
       })
     },
     swapR2T: function (window) {
+      console.log('Number: ', Sci2Dec(window.amount * (10 ** 18)))
+
       let funcEncoded = Web3EthAbi.encodeFunctionCall({
         name: 'swapR2T',
         type: 'function',
@@ -171,14 +175,14 @@ let state = {
           type: 'uint256',
           name: '_value'
         }]
-      }, [window.$store.state.web3.coinbase, (window.amount * (10 ** 18)).toString()])
+      }, [window.$store.state.web3.coinbase, Web3Utils.toHex(Sci2Dec(window.amount * (10 ** 18)))])
 
-      console.log('ACCOUNT: ', window.$store.state.web3.coinbase)
+
       console.log('funcEncoded:', funcEncoded)
 
       window.winEvent = null
       window.pending = true
-      window.$store.state.chipInstance().approveAndCall(window.$store.state.contractInstance().address, window.amount * (10 ** 18), funcEncoded, {
+      window.$store.state.chipInstance().approveAndCall(window.$store.state.contractInstance().address, Web3Utils.toHex(Sci2Dec(window.amount * (10 ** 18))), funcEncoded, {
         gas: 300000,
         from: window.$store.state.web3.coinbase
       }, (err, result) => {
@@ -208,7 +212,7 @@ let state = {
       console.log('AMOUNT', window.amount)
       window.winEvent = null
       window.pending = true
-      window.$store.state.tokenInstance().approve(window.$store.state.contractInstance().address ,window.amount * (10 ** 18), {
+      window.$store.state.tokenInstance().approve(window.$store.state.contractInstance().address, window.amount * (10 ** 18), {
         gas: 300000,
         from: window.$store.state.web3.coinbase
       }, (err, result) => {
