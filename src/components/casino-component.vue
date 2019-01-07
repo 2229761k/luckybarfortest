@@ -61,11 +61,11 @@
                 <hr>
                 <p>RUPY to TOKA </p>
                 <input v-model="amount" placeholder="0 RUPY" style="width:40%">
-                <button v-on:click="toka2chip">Swap</button>
+                <button v-on:click="toka2rupy">Swap</button>
                 <br><br>
                  <p>TOKA to RUPY </p>
                 <input v-model="amount" placeholder="0 TOKA" style="width:40%">
-                <button v-on:click="chip2toka">Swap</button>            
+                <button v-on:click="rupy2toka">Swap</button>
               </el-tab-pane>
             </el-tabs>
             <hr>
@@ -167,11 +167,11 @@ export default {
       this.getTotalResult();
       this.getRanking();
     },
-    toka2chip(){
-
+    toka2rupy(){
+      this.$store.state.functions.swapT2R(this);
     },
-    chip2toka(){
-
+    rupy2toka(){
+      this.$store.state.functions.swapR2T(this);
     },
     getRanking(){
      axios.get('https://api.etherscan.io/api?module=account&action=txlistinternal&address=0x2c1ba59d6f58433fb1eaee7d20b26ed83bda51a3&startblock=0&endblock=99999999999&apikey=3IZMXH4SJM5SMX68K7P8ZSMMFUS4SM1HPR')
