@@ -58,7 +58,7 @@
                 <input v-model="amount" placeholder="0 CHIP" style="width:40%">
                 <button v-on:click="playC2C">Play</button>
               </el-tab-pane>
-              <el-tab-pane label="CHIP to ETH"><p>TOKA to ETH</p>
+              <el-tab-pane label="CHIP to ETH"><p>CHIP to ETH</p>
                 <hr>
                 <p>Exchange Rate <br>100000:1 +-50% </p>
                 <input v-model="amount" placeholder="0 CHIP" style="width:40%">
@@ -81,30 +81,16 @@
                 <img v-if="pending" id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
                 <!-- game result -->
                   <div class="event" v-if="winEvent">
-                    <div v-if="winEvent._rewardType === 'ETH'">
-                      <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
-                      Congragulations, you have got {{winEvent._amount /10**18}} {{winEvent._rewardType}} </p>
-                      <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i>
-                      Sorry you lost, try again. You have got just {{winEvent._amount / 10**18}} {{winEvent._rewardType}}</p>
-                    </div>
-                    <div v-else>
-                      <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
-                      Congragulations, you have got {{winEvent._amount }} {{winEvent._rewardType}} </p>
-                      <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i>
-                      Sorry you lost, try again. You have got just {{winEvent._amount}} {{winEvent._rewardType}}</p>
-                    </div>
+                    <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
+                    Congragulations, you have got {{winEvent._amount}} {{winEvent._rewardType}} </p>
+                    <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i>
+                    Sorry you lost, try again. You have got just {{winEvent._amount}} {{winEvent._rewardType}}</p>
                 </div>
    
                 <!-- swap result -->
                 <div class="event" v-if="swapEvent">
-                    <div v-if="swapEvent._target === 'TOKA'"> 
-                      <p id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
-                      Swap Complete, you have got {{swapEvent._amount / 10**18}} {{swapEvent._target}} </p>
-                    </div>
-                    <div v-else>
-                      <p id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
-                      Swap Complete, you have got {{swapEvent._amount / 10**18}} {{swapEvent._target}} </p>
-                    </div>
+                    <p id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
+                    Swap Complete, you have got {{swapEvent._amount }} {{swapEvent._target}} </p>
                 </div>
 
               </el-tab-pane>

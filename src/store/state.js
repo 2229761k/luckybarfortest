@@ -35,7 +35,7 @@ let state = {
             } else {
               window.winEvent = result.args
               window.winEvent._rewardType = result.args._rewardType
-              window.winEvent._amount = parseInt(result.args._amount, 10)
+              window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
               setTimeout("location.reload()", 6000);
             }
@@ -65,7 +65,7 @@ let state = {
             } else {
               window.winEvent = result.args
               window.winEvent._rewardType = result.args._rewardType
-              window.winEvent._amount = parseInt(result.args._amount, 10)
+              window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
               setTimeout("location.reload()", 6000);
          
@@ -109,7 +109,7 @@ let state = {
             } else {
               window.winEvent = result.args
               window.winEvent._rewardType = result.args._rewardType
-              window.winEvent._amount = parseInt(result.args._amount, 10)
+              window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
               setTimeout("location.reload()", 6000);
 
@@ -153,7 +153,7 @@ let state = {
             } else {
               window.winEvent = result.args
               window.winEvent._rewardType = result.args._rewardType
-              window.winEvent._amount = parseInt(result.args._amount, 10)
+              window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
               setTimeout("location.reload()", 6000);
 
@@ -198,7 +198,7 @@ let state = {
               console.log('could not get event Swapped()')
             } else {
               window.swapEvent = result.args
-              window.swapEvent._amount = parseInt(result.args._amount, 10)
+              window.swapEvent._amount = result.args._amount / (10 ** 18)
               window.swapEvent._target = result.args._target
               window.pending = false
               // setTimeout("location.reload()", 6000);
@@ -242,7 +242,7 @@ let state = {
                       console.log('could not get event Swapped()')
                     } else {
                       window.swapEvent = result.args
-                      window.swapEvent._amount = parseInt(result.args._amount, 10)
+                      window.swapEvent._amount = result.args._amount / (10 ** 18)
                       window.swapEvent._target = result.args._target
                       window.pending = false
                       // setTimeout("location.reload()", 6000);
