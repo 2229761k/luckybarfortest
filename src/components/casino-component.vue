@@ -145,6 +145,8 @@ export default {
       pending: false,
       winEvent: null,
       swapEvent: null,
+      CHIPBalance: 0,
+      tokaBalance: 0,
       myResult: [],
       rankingResult: []
     }
@@ -161,32 +163,38 @@ export default {
   methods: {
     playE2E (event) {
       this.$store.state.functions.playE2E(this);
+      this.$store.state.functions.getTokenBalance(this);
       this.getTotalResult();
       this.getRanking();
 
     },
     playE2C (event) {
       this.$store.state.functions.playE2C(this);
+      this.$store.state.functions.getTokenBalance(this);
       this.getTotalResult();
       this.getRanking();
 
     },
     playC2C (event) {
       this.$store.state.functions.playC2C(this);
+      this.$store.state.functions.getTokenBalance(this);
       this.getTotalResult();
       this.getRanking();
 
     },
     playC2E (event) {
       this.$store.state.functions.playC2E(this);
+      this.$store.state.functions.getTokenBalance(this);
       this.getTotalResult();
       this.getRanking();
     },
     toka2CHIP(){
       this.$store.state.functions.swapT2C(this);
+      this.$store.state.functions.getTokenBalance(this);
     },
     CHIP2toka(){
       this.$store.state.functions.swapC2T(this);
+      this.$store.state.functions.getTokenBalance(this);
     },
     getRanking(){
      axios.get('https://api.etherscan.io/api?module=account&action=txlistinternal&address=0x2c1ba59d6f58433fb1eaee7d20b26ed83bda51a3&startblock=0&endblock=99999999999&apikey=3IZMXH4SJM5SMX68K7P8ZSMMFUS4SM1HPR')
@@ -219,7 +227,7 @@ export default {
             this.rankingResult[i]['value'] /= 10**18;
             this.rankingResult[i]['value'] = this.rankingResult[i]['value'].toFixed(2);
             this.rankingResult[i]['to'] = this.rankingResult[i]['to'].slice(0,5) + '***'
-            
+
           }
       })
     },
@@ -230,16 +238,16 @@ export default {
 
           this.myResult = response.data.result.sort(function(a,b){
             return b['timeStamp'] - a['timeStamp']
-        
+
           })
           // this.rankingResult = response.data.result.sort(function(a,b){
           //     return b['value'] - a['value']
           // })
 
           this.myResult = this.myResult.slice(0,5);
-  
+
           for(var i=0; i<5; i++){
-            var unix_timestamp = this.myResult[i]['timeStamp'];            
+            var unix_timestamp = this.myResult[i]['timeStamp'];
             var date = new Date(unix_timestamp*1000);
             var month = date.getMonth();
             var day = date.getDate();
@@ -259,7 +267,7 @@ export default {
             this.myResult[i]['value'] /= 10**18;
             this.myResult[i]['value']= this.myResult[i]['value'].toFixed(2);
             this.myResult[i]['to'] = this.myResult[i]['to'].slice(0,5) + '***'
-            
+
           }
       })
     }
@@ -271,11 +279,12 @@ export default {
     this.$store.dispatch('getTokenContractInstance');
     console.log('dispatching getChipContractInstance');
     this.$store.dispatch('getChipContractInstance');
+    this.$store.state.functions.getTokenBalance(this);
     this.getTotalResult();
     this.getRanking();
 
   },
- 
+
 }
 </script>
 

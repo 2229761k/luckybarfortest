@@ -13,6 +13,14 @@ let state = {
   },
   
   functions: {
+    getTokenBalance: function (window) {
+      window.$store.state.chipInstance().balanceOf(window.$store.state.web3.coinbase, (err, result) => {
+        window.CHIPBalance = result / 10 ** 18
+      })
+      window.$store.state.tokenInstance().balanceOf(window.$store.state.web3.coinbase, (err, result) => {
+        window.tokaBalance = result / 10 ** 18
+      })
+    },
     playE2E: function (window) {
       console.log('AMOUNT', window.amount)
       window.winEvent = null
@@ -25,7 +33,7 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
-          setTimeout("location.reload()", 6000);
+          setTimeout("location.reload()", 6000)
 
         } else {
           let Won = window.$store.state.contractInstance().Won()
@@ -37,7 +45,7 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-              setTimeout("location.reload()", 6000);
+              setTimeout("location.reload()", 6000)
             }
           })
         }
@@ -55,7 +63,7 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
-          setTimeout("location.reload()", 6000);
+          setTimeout("location.reload()", 6000)
 
         } else {
           let Won = window.$store.state.contractInstance().Won()
@@ -67,7 +75,7 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-              setTimeout("location.reload()", 6000);
+              setTimeout("location.reload()", 6000)
          
             }
           })
@@ -99,7 +107,7 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
-          setTimeout("location.reload()", 6000);
+          setTimeout("location.reload()", 6000)
 
         } else {
           let Won = window.$store.state.contractInstance().Won()
@@ -111,7 +119,7 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-              setTimeout("location.reload()", 6000);
+              setTimeout("location.reload()", 6000)
 
             }
           })
@@ -143,7 +151,7 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
-          setTimeout("location.reload()", 6000);
+          setTimeout("location.reload()", 6000)
 
         } else {
           let Won = window.$store.state.contractInstance().Won()
@@ -155,7 +163,7 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-              setTimeout("location.reload()", 6000);
+              setTimeout("location.reload()", 6000)
 
             }
           })
@@ -189,7 +197,7 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
-          // setTimeout("location.reload()", 6000);
+          // setTimeout("location.reload()", 6000)
 
         } else {
           let Swapped = window.$store.state.contractInstance().Swapped()
@@ -201,7 +209,7 @@ let state = {
               window.swapEvent._amount = result.args._amount / (10 ** 18)
               window.swapEvent._target = result.args._target
               window.pending = false
-              // setTimeout("location.reload()", 6000);
+              // setTimeout("location.reload()", 6000)
 
             }
           })
@@ -219,7 +227,7 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
-          setTimeout("location.reload()", 6000);
+          setTimeout("location.reload()", 6000)
 
         } else {
           let Approval = window.$store.state.tokenInstance().Approval()
@@ -245,7 +253,7 @@ let state = {
                       window.swapEvent._amount = result.args._amount / (10 ** 18)
                       window.swapEvent._target = result.args._target
                       window.pending = false
-                      // setTimeout("location.reload()", 6000);
+                      // setTimeout("location.reload()", 6000)
 
                     }
                   })
