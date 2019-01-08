@@ -189,7 +189,7 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
-          setTimeout("location.reload()", 6000);
+          // setTimeout("location.reload()", 6000);
 
         } else {
           let Swapped = window.$store.state.contractInstance().Swapped()
@@ -201,7 +201,7 @@ let state = {
               window.swapEvent._amount = parseInt(result.args._amount, 10)
               window.swapEvent._target = result.args._target
               window.pending = false
-              setTimeout("location.reload()", 6000);
+              // setTimeout("location.reload()", 6000);
 
             }
           })
@@ -245,7 +245,7 @@ let state = {
                       window.swapEvent._amount = parseInt(result.args._amount, 10)
                       window.swapEvent._target = result.args._target
                       window.pending = false
-                      setTimeout("location.reload()", 6000);
+                      // setTimeout("location.reload()", 6000);
 
                     }
                   })

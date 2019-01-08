@@ -97,13 +97,13 @@
    
                 <!-- swap result -->
                 <div class="event" v-if="swapEvent">
-                    <div v-if="winEvent._rewardType === 'ETH'"> 
+                    <div v-if="swapEvent._target === 'TOKA'"> 
                       <p id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
                       Swap Complete, you have got {{swapEvent._amount / 10**18}} {{swapEvent._target}} </p>
                     </div>
                     <div v-else>
                       <p id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
-                      Swap Complete, you have got {{swapEvent._amount}} {{swapEvent._target}} </p>
+                      Swap Complete, you have got {{swapEvent._amount / 10**18}} {{swapEvent._target}} </p>
                     </div>
                 </div>
 
