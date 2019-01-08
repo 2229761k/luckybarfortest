@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import state from './state'
 import getWeb3 from '../util/getWeb3'
 import pollWeb3 from '../util/pollWeb3'
+import getTokenBalance from '../util/getTokenBalance'
 import { getContract, getToken, getChip } from '../util/getContract'
 
 Vue.use(Vuex)
@@ -21,27 +22,21 @@ export const store = new Vuex.Store({
       web3Copy.web3Instance = result.web3
       state.web3 = web3Copy
       pollWeb3()
-      if(state.chipInstance && state.tokenInstance) {
-        state.chipInstance().balanceOf(result.coinbase, (err, result) => {
-          state.web3.chipBalance = result / 10 ** 18
-        })
-        state.tokenInstance().balanceOf(result.coinbase, (err, result) => {
-          state.web3.tokaBalance = result / 10 ** 18
-        })
-      }
+      getTokenBalance(result.coinbase)
     },
     pollWeb3Instance (state, payload) {
       console.log('pollWeb3Instance mutation being executed', payload)
       state.web3.coinbase = payload.coinbase
       state.web3.balance = parseInt(payload.balance, 10)
-      if(state.chipInstance && state.tokenInstance) {
-        state.chipInstance().balanceOf(payload.coinbase, (err, result) => {
-          state.web3.chipBalance = result / 10 ** 18
-        })
-        state.tokenInstance().balanceOf(payload.coinbase, (err, result) => {
-          state.web3.tokaBalance = result / 10 ** 18
-        })
-      }
+      getTokenBalance(payload.coinbase)
+    },
+    refreshChipBalance (state, payload) {
+      console.log('ChipBalance mutation being executed', payload)
+      state.web3.chipBalance = payload
+    },
+    refreshTokaBalance (state, payload) {
+      console.log('TokaBalance mutation being executed', payload)
+      state.web3.tokaBalance = payload
     },
     registerContractInstance (state, payload) {
       console.log('Casino contract instance: ', payload)
@@ -50,18 +45,10 @@ export const store = new Vuex.Store({
     registerTokenContractInstance (state, payload) {
       console.log('Token contract instance: ', payload)
       state.tokenInstance = () => payload
-      state.tokenInstance().balanceOf(state.web3.coinbase, (err, result) => {
-        console.log('Token balance: ', state.web3.coinbase)
-        state.web3.tokaBalance = result / 10 ** 18
-      })
     },
     registerChipContractInstance (state, payload) {
       console.log('Chip contract instance: ', payload)
       state.chipInstance = () => payload
-      state.chipInstance().balanceOf(state.web3.coinbase, function(err, result) {
-        console.log('Chip balance: ', result/ 10 ** 18)
-        state.web3.chipBalance = result / 10 ** 18
-      })
     }
   },
   actions: {
@@ -77,6 +64,18 @@ export const store = new Vuex.Store({
     pollWeb3 ({commit}, payload) {
       console.log('pollWeb3 action being executed')
       commit('pollWeb3Instance', payload)
+    },
+    getChip ({commit}, payload) {
+      console.log('getChip action being executed')
+      store.state.chipInstance().balanceOf(payload.coinbase, (err, result) => {
+        commit('refreshChipBalance', result / 10 ** 18)
+      })
+    },
+    getToka ({commit}, payload) {
+      console.log('getToka action being executed')
+      store.state.tokenInstance().balanceOf(payload.coinbase, (err, result) => {
+        commit('refreshTokaBalance', result / 10 ** 18)
+      })
     },
     getContractInstance ({commit}) {
       getContract.then(result => {
