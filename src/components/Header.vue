@@ -9,12 +9,9 @@
                     <a v-scroll-to="'#section1'" id="button">
                         <!-- <img  src="../assets/play_button.png" style="width:280px "/>      -->
                     </a>
-                
                     <a v-scroll-to="'#section2'" id="button2">
                         <!-- <img  src="../assets/help_button.png" style="width:280px "/>       -->
-                    </a>
-                  
-       
+                    </a>    
             </el-col>
         </el-row>
     </div>

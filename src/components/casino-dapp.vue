@@ -24,7 +24,6 @@ export default {
     // 'hello-metamask': HelloMetamask,
     'Header': Header,
     // 'hello-metamask': HelloMetamask,
-
     'casino-component': CasinoComponent,
     'Question':Question,
     'Footer':Footer

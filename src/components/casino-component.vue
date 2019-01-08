@@ -8,16 +8,19 @@
     <!-- <div class="lose-effect"></div> -->
 
     <div class="balance">
-      <p v-if="isInjected" id="has-metamask"><i aria-hidden="true" class="fa fa-check"></i> Metamask Connected</p>
-      <p v-else id="no-metamask"><i aria-hidden="true" class="fa fa-times"></i> Metamask Connection failed</p>
+      <p class="metainfo" v-if="isInjected" id="has-metamask"><i aria-hidden="true" class="fa fa-check"></i> Metamask Connected</p>
+      <p class="metainfo" v-else id="no-metamask"><i aria-hidden="true" class="fa fa-times"></i> Metamask Connection failed</p>
       <!-- <p class="metainfo">Network: {{ network }}</p> -->
-      <p class="metainfo"> Account</p>
+      <p class="metainfo" style="font-size:30px"> Account</p>
       <p class="metainfo"> {{ coinbase }}</p>
+      <hr class="hr1" />
       <p class="metainfo"><img src="../assets/ETH.png" style="width:4%"/> {{ ethBalance }} ETH</p>
-      <p class="metainfo"><img src="../assets/rupy.png" style="width:15%" />  {{ rupyBalance }} RUPY</p>
-      <p class="metainfo"><img src="../assets/TOKA.png" style="width:10%" />  {{ tokaBalance }} TOKA</p>
+      <p class="metainfo"><img src="../assets/CHIP.png" style="width:13%" />  {{ CHIPBalance }} CHIP</p>
+      <p class="metainfo"><img src="../assets/TOKA.png" style="width:8%" />  {{ tokaBalance }} TOKA</p>
+      <p class="metainfo"><img src="../assets/TOKA.png" style="width:8%" />  0.00 IDR</p>
 
     </div>
+
 
     <div class="background-image">
       <div v-if="pending" >
@@ -39,37 +42,37 @@
             <el-tabs :tab-position="tabPosition">
               <el-tab-pane label="ETH to ETH" ><p>ETH to ETH</p>
                 <hr>
-                <p>Exchange Rate: <br> 1:1 +-50%</p>
+                <p>Exchange Rate <br> 1:1 +-50%</p>
                 <input v-model="amount" placeholder="0 ETH" style="width:40%">
                 <button v-on:click="playE2E">Play</button>
               </el-tab-pane>
-              <el-tab-pane label="ETH to RUPY"><p>ETH to RUPY</p>
+              <el-tab-pane label="ETH to CHIP"><p>ETH to CHIP</p>
                 <hr>
-                <p>Exchange Rate: <br> 1:100000 +-50% </p>
+                <p>Exchange Rate <br> 1:100000 +-50% </p>
                 <input v-model="amount" placeholder="0 ETH" style="width:40%">
                 <button v-on:click="playE2R">Play</button>
               </el-tab-pane>
-              <el-tab-pane label="RUPY to RUPY"><p>RUPY to RUPY</p>
+              <el-tab-pane label="CHIP to CHIP"><p>CHIP to CHIP</p>
                 <hr>
-                <p>Exchange Rate: <br> 1:1 +-50% </p>
-                <input v-model="amount" placeholder="0 RUPY" style="width:40%">
+                <p>Exchange Rate <br> 1:1 +-50% </p>
+                <input v-model="amount" placeholder="0 CHIP" style="width:40%">
                 <button v-on:click="playR2R">Play</button>
               </el-tab-pane>
-              <el-tab-pane label="RUPY to ETH"><p>TOKA to ETH</p>
+              <el-tab-pane label="CHIP to ETH"><p>TOKA to ETH</p>
                 <hr>
-                <p>Exchange Rate: <br>100000:1 +-50% </p>
-                <input v-model="amount" placeholder="0 RUPY" style="width:40%">
+                <p>Exchange Rate <br>100000:1 +-50% </p>
+                <input v-model="amount" placeholder="0 CHIP" style="width:40%">
                 <button v-on:click="playR2E">Play</button>
               </el-tab-pane>
               <el-tab-pane label="SWAP"><p>SWAP</p>
                 <hr>
-                <p>RUPY to TOKA </p>
-                <input v-model="amount" placeholder="0 RUPY" style="width:40%">
-                <button v-on:click="rupy2toka">Swap</button>
+                <p>CHIP to TOKA </p>
+                <input v-model="amount" placeholder="0 CHIP" style="width:40%">
+                <button v-on:click="CHIP2toka">Swap</button>
                 <br><br>
-                 <p>TOKA to RUPY </p>
+                 <p>TOKA to CHIP </p>
                 <input v-model="amount" placeholder="0 TOKA" style="width:40%">
-                <button v-on:click="toka2rupy">Swap</button>
+                <button v-on:click="toka2CHIP">Swap</button>
               </el-tab-pane>
             </el-tabs>
             <hr>
@@ -77,16 +80,27 @@
               <el-tab-pane label="My Result" ><p>My Result</p>
                 <img v-if="pending" id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
                 <!-- game result -->
-                <div class="event" v-if="winEvent">
-                  <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
-                   Congragulations, you have got {{winEvent._amount / 10**18}} {{winEvent._rewardType}} </p>
-                  <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i>
-                  Sorry you lost, try again. You have got just {{winEvent._amount / 10**18}} {{winEvent._rewardType}}</p>
+                  <div class="event" v-if="winEvent">
+                    <div v-if="winEvent._rewardType === 'ETH'">
+                      <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
+                      Congragulations, you have got {{winEvent._amount /10**18}} {{winEvent._rewardType}} </p>
+                      <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i>
+                      Sorry you lost, try again. You have got just {{winEvent._amount / 10**18}} {{winEvent._rewardType}}</p>
+                    </div>
+                    <div v-else>
+                      <p v-if="winEvent._status" id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
+                      Congragulations, you have got {{winEvent._amount }} {{winEvent._rewardType}} </p>
+                      <p v-else id="has-lost"><i aria-hidden="true" class="fa fa-times"></i>
+                      Sorry you lost, try again. You have got just {{winEvent._amount}} {{winEvent._rewardType}}</p>
+                    </div>
                 </div>
+   
                 <div class="event" v-if="swapEvent">
                   <p id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
                    Swap Complete, you have got {{swapEvent._amount / 10**18}} {{swapEvent._target}} </p>
                 </div>
+
+
               </el-tab-pane>
               <el-tab-pane label="Total Result"  ><p>Total Result</p>
                     <table class="font_2" style="width:100%">
@@ -176,10 +190,10 @@ export default {
       this.getTotalResult();
       this.getRanking();
     },
-    toka2rupy(){
+    toka2CHIP(){
       this.$store.state.functions.swapT2R(this);
     },
-    rupy2toka(){
+    CHIP2toka(){
       this.$store.state.functions.swapR2T(this);
     },
     getRanking(){
@@ -219,7 +233,7 @@ export default {
     },
     getTotalResult(){
       console.log('adasd')
-      axios.get('https://api.etherscan.io/api?module=account&action=txlistinternal&address=0x2c1ba59d6f58433fb1eaee7d20b26ed83bda51a3&startblock=0&endblock=99999999999&apikey=3IZMXH4SJM5SMX68K7P8ZSMMFUS4SM1HPR')
+      axios.get('https://api.etherscan.io/api?module=account&action=txlistinternal&address=0xd90c20b9a57ec628ae4b1d38eb1f30680b8f1594&startblock=0&endblock=99999999999&apikey=3IZMXH4SJM5SMX68K7P8ZSMMFUS4SM1HPR')
         .then((response)=>{
 
           this.myResult = response.data.result.sort(function(a,b){
@@ -276,6 +290,11 @@ export default {
 <style scoped>
 @import "https://fonts.googleapis.com/css?family=Press+Start+2P";
 
+.hr1{
+  border: 1px solid white;
+  width:70%;
+  margin-left: 0px
+}
 .background-image{
     z-index: 1;
     display: block;
