@@ -21,11 +21,27 @@ export const store = new Vuex.Store({
       web3Copy.web3Instance = result.web3
       state.web3 = web3Copy
       pollWeb3()
+      if(state.chipInstance && state.tokenInstance) {
+        state.chipInstance().balanceOf(result.coinbase, (err, result) => {
+          state.web3.chipBalance = result / 10 ** 18
+        })
+        state.tokenInstance().balanceOf(result.coinbase, (err, result) => {
+          state.web3.tokaBalance = result / 10 ** 18
+        })
+      }
     },
     pollWeb3Instance (state, payload) {
       console.log('pollWeb3Instance mutation being executed', payload)
       state.web3.coinbase = payload.coinbase
       state.web3.balance = parseInt(payload.balance, 10)
+      if(state.chipInstance && state.tokenInstance) {
+        state.chipInstance().balanceOf(payload.coinbase, (err, result) => {
+          state.web3.chipBalance = result / 10 ** 18
+        })
+        state.tokenInstance().balanceOf(payload.coinbase, (err, result) => {
+          state.web3.tokaBalance = result / 10 ** 18
+        })
+      }
     },
     registerContractInstance (state, payload) {
       console.log('Casino contract instance: ', payload)
@@ -34,10 +50,18 @@ export const store = new Vuex.Store({
     registerTokenContractInstance (state, payload) {
       console.log('Token contract instance: ', payload)
       state.tokenInstance = () => payload
+      state.tokenInstance().balanceOf(state.web3.coinbase, (err, result) => {
+        console.log('Token balance: ', state.web3.coinbase)
+        state.web3.tokaBalance = result / 10 ** 18
+      })
     },
     registerChipContractInstance (state, payload) {
       console.log('Chip contract instance: ', payload)
       state.chipInstance = () => payload
+      state.chipInstance().balanceOf(state.web3.coinbase, function(err, result) {
+        console.log('Chip balance: ', result/ 10 ** 18)
+        state.web3.chipBalance = result / 10 ** 18
+      })
     }
   },
   actions: {

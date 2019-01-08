@@ -15,7 +15,7 @@
       <p class="metainfo"> {{ coinbase }}</p>
       <hr class="hr1" />
       <p class="metainfo"><img src="../assets/ETH.png" style="width:4%"/> {{ ethBalance }} ETH</p>
-      <p class="metainfo"><img src="../assets/CHIP.png" style="width:13%" />  {{ CHIPBalance }} CHIP</p>
+      <p class="metainfo"><img src="../assets/CHIP.png" style="width:13%" />  {{ chipBalance }} CHIP</p>
       <p class="metainfo"><img src="../assets/TOKA.png" style="width:8%" />  {{ tokaBalance }} TOKA</p>
       <p class="metainfo"><img src="../assets/TOKA.png" style="width:8%" />  0.00 IDR</p>
 
@@ -145,8 +145,6 @@ export default {
       pending: false,
       winEvent: null,
       swapEvent: null,
-      CHIPBalance: 0,
-      tokaBalance: 0,
       myResult: [],
       rankingResult: []
     }
@@ -158,43 +156,39 @@ export default {
     balance: state => state.web3.balance,
     ethBalance: state => {
       if (state.web3.web3Instance !== null) return state.web3.web3Instance().fromWei(state.web3.balance, 'ether')
-    }
-  }), 
+    },
+    tokaBalance: state => state.web3.tokaBalance,
+    chipBalance: state => state.web3.chipBalance
+  }),
   methods: {
     playE2E (event) {
       this.$store.state.functions.playE2E(this);
-      this.$store.state.functions.getTokenBalance(this);
       this.getTotalResult();
       this.getRanking();
 
     },
     playE2C (event) {
       this.$store.state.functions.playE2C(this);
-      this.$store.state.functions.getTokenBalance(this);
       this.getTotalResult();
       this.getRanking();
 
     },
     playC2C (event) {
       this.$store.state.functions.playC2C(this);
-      this.$store.state.functions.getTokenBalance(this);
       this.getTotalResult();
       this.getRanking();
 
     },
     playC2E (event) {
       this.$store.state.functions.playC2E(this);
-      this.$store.state.functions.getTokenBalance(this);
       this.getTotalResult();
       this.getRanking();
     },
     toka2CHIP(){
       this.$store.state.functions.swapT2C(this);
-      this.$store.state.functions.getTokenBalance(this);
     },
     CHIP2toka(){
       this.$store.state.functions.swapC2T(this);
-      this.$store.state.functions.getTokenBalance(this);
     },
     getRanking(){
      axios.get('https://api.etherscan.io/api?module=account&action=txlistinternal&address=0x2c1ba59d6f58433fb1eaee7d20b26ed83bda51a3&startblock=0&endblock=99999999999&apikey=3IZMXH4SJM5SMX68K7P8ZSMMFUS4SM1HPR')
@@ -232,7 +226,6 @@ export default {
       })
     },
     getTotalResult(){
-      console.log('adasd')
       axios.get('https://api.etherscan.io/api?module=account&action=txlistinternal&address=0xd90c20b9a57ec628ae4b1d38eb1f30680b8f1594&startblock=0&endblock=99999999999&apikey=3IZMXH4SJM5SMX68K7P8ZSMMFUS4SM1HPR')
         .then((response)=>{
 
@@ -279,7 +272,6 @@ export default {
     this.$store.dispatch('getTokenContractInstance');
     console.log('dispatching getChipContractInstance');
     this.$store.dispatch('getChipContractInstance');
-    this.$store.state.functions.getTokenBalance(this);
     this.getTotalResult();
     this.getRanking();
 
