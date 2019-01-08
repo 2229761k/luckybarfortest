@@ -50,19 +50,19 @@
                 <hr>
                 <p>Exchange Rate <br> 1:100000 +-50% </p>
                 <input v-model="amount" placeholder="0 ETH" style="width:40%">
-                <button v-on:click="playE2R">Play</button>
+                <button v-on:click="playE2C">Play</button>
               </el-tab-pane>
               <el-tab-pane label="CHIP to CHIP"><p>CHIP to CHIP</p>
                 <hr>
                 <p>Exchange Rate <br> 1:1 +-50% </p>
                 <input v-model="amount" placeholder="0 CHIP" style="width:40%">
-                <button v-on:click="playR2R">Play</button>
+                <button v-on:click="playC2C">Play</button>
               </el-tab-pane>
               <el-tab-pane label="CHIP to ETH"><p>TOKA to ETH</p>
                 <hr>
                 <p>Exchange Rate <br>100000:1 +-50% </p>
                 <input v-model="amount" placeholder="0 CHIP" style="width:40%">
-                <button v-on:click="playR2E">Play</button>
+                <button v-on:click="playC2E">Play</button>
               </el-tab-pane>
               <el-tab-pane label="SWAP"><p>SWAP</p>
                 <hr>
@@ -173,28 +173,28 @@ export default {
       this.getRanking();
 
     },
-    playE2R (event) {
-      this.$store.state.functions.playE2R(this);
+    playE2C (event) {
+      this.$store.state.functions.playE2C(this);
       this.getTotalResult();
       this.getRanking();
 
     },
-    playR2R (event) {
-      this.$store.state.functions.playR2R(this);
+    playC2C (event) {
+      this.$store.state.functions.playC2C(this);
       this.getTotalResult();
       this.getRanking();
 
     },
-    playR2E (event) {
-      this.$store.state.functions.playR2E(this);
+    playC2E (event) {
+      this.$store.state.functions.playC2E(this);
       this.getTotalResult();
       this.getRanking();
     },
     toka2CHIP(){
-      this.$store.state.functions.swapT2R(this);
+      this.$store.state.functions.swapT2C(this);
     },
     CHIP2toka(){
-      this.$store.state.functions.swapR2T(this);
+      this.$store.state.functions.swapC2T(this);
     },
     getRanking(){
      axios.get('https://api.etherscan.io/api?module=account&action=txlistinternal&address=0x2c1ba59d6f58433fb1eaee7d20b26ed83bda51a3&startblock=0&endblock=99999999999&apikey=3IZMXH4SJM5SMX68K7P8ZSMMFUS4SM1HPR')

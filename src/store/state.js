@@ -43,11 +43,11 @@ let state = {
         }
       })
     },
-    playE2R: function (window) {
+    playE2C: function (window) {
       console.log('AMOUNT', window.amount)
       window.winEvent = null
       window.pending = true
-      window.$store.state.contractInstance().playE2R({
+      window.$store.state.contractInstance().playE2C({
         gas: 300000,
         value: window.$store.state.web3.web3Instance().toWei(window.amount, 'ether'),
         from: window.$store.state.web3.coinbase
@@ -74,9 +74,9 @@ let state = {
         }
       })
     },
-    playR2E: function (window) {
+    playC2E: function (window) {
       let funcEncoded = Web3EthAbi.encodeFunctionCall({
-        name: 'playR2E',
+        name: 'playC2E',
         type: 'function',
         inputs: [{
           type: 'address',
@@ -118,9 +118,9 @@ let state = {
         }
       })
     },
-    playR2R: function (window) {
+    playC2C: function (window) {
       let funcEncoded = Web3EthAbi.encodeFunctionCall({
-        name: 'playR2R',
+        name: 'playC2C',
         type: 'function',
         inputs: [{
           type: 'address',
@@ -162,11 +162,11 @@ let state = {
         }
       })
     },
-    swapR2T: function (window) {
+    swapC2T: function (window) {
       console.log('Number: ', Sci2Dec(window.amount * (10 ** 18)))
 
       let funcEncoded = Web3EthAbi.encodeFunctionCall({
-        name: 'swapR2T',
+        name: 'swapC2T',
         type: 'function',
         inputs: [{
           type: 'address',
@@ -208,7 +208,7 @@ let state = {
         }
       })
     },
-    swapT2R: function (window) {
+    swapT2C: function (window) {
       console.log('AMOUNT', window.amount)
       window.winEvent = null
       window.pending = true
@@ -228,7 +228,7 @@ let state = {
               console.log('could not get event Approval()')
             } else {
 
-              window.$store.state.contractInstance().swapT2R(window.$store.state.web3.coinbase, result.args.value, {
+              window.$store.state.contractInstance().swapT2C(window.$store.state.web3.coinbase, result.args.value, {
                 gas: 300000,
                 from: window.$store.state.web3.coinbase
               }, (err, result) => {
