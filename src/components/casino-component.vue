@@ -11,7 +11,7 @@
       <p class="metainfo" v-if="isInjected" id="has-metamask"><i aria-hidden="true" class="fa fa-check"></i> Metamask Connected</p>
       <p class="metainfo" v-else id="no-metamask"><i aria-hidden="true" class="fa fa-times"></i> Metamask Connection failed</p>
       <!-- <p class="metainfo">Network: {{ network }}</p> -->
-      <p class="metainfo" style="font-size:30px"> Account</p>
+      <p class="metainfo" style="font-size:25px"> Account</p>
       <p class="metainfo"> {{ coinbase }}</p>
       <hr class="hr1" />
       <p class="metainfo"><img src="../assets/ETH.png" style="width:4%"/> {{ ethBalance }} ETH</p>
@@ -21,6 +21,9 @@
 
     </div>
 
+    <div class="backboard">
+        <img src="../assets/backboard.png" style="width:85%; opacity:1">
+    </div>
 
     <div class="background-image">
       <div v-if="pending" >
@@ -294,11 +297,18 @@ export default {
     /* opacity: 0.6; */
     /* width:70%; */
 }
+.backboard{
+  z-index: 2;
+  position: absolute;
+  left: 5%;
+}
+
 .balance{
+    z-index: 3;
     position: absolute;
     top: 6%;
     left: 14%;
-    width: 800px;
+    width: 700px;
     text-align: left;
 }
 
