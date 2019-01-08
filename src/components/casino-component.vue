@@ -95,11 +95,17 @@
                     </div>
                 </div>
    
+                <!-- swap result -->
                 <div class="event" v-if="swapEvent">
-                  <p id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
-                   Swap Complete, you have got {{swapEvent._amount / 10**18}} {{swapEvent._target}} </p>
+                    <div v-if="winEvent._rewardType === 'ETH'"> 
+                      <p id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
+                      Swap Complete, you have got {{swapEvent._amount / 10**18}} {{swapEvent._target}} </p>
+                    </div>
+                    <div v-else>
+                      <p id="has-won"><i aria-hidden="true" class="fa fa-check"></i>
+                      Swap Complete, you have got {{swapEvent._amount}} {{swapEvent._target}} </p>
+                    </div>
                 </div>
-
 
               </el-tab-pane>
               <el-tab-pane label="Total Result"  ><p>Total Result</p>
