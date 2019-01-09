@@ -1,22 +1,22 @@
 const express = require('express');
 const logger = require('morgan');
-const bodyParser = require('body-parser');
+const helmet = require('helmet');
 const app = express();
-
-
-app.all('/*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-  });
 
 const LocalStorage = require('node-localstorage').LocalStorage;
 localStorage = new LocalStorage('./log');
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(logger("combined"));
+app.use(helmet());
 
 var index = 0
+
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 
 app
   .route("/save/:date/:amount/:address")
