@@ -23,6 +23,7 @@ app
   .get((req, res) => {
     const {params: {date, amount, address}} = req;
     var obj = {"Date" : date, "Amount" : amount, "Address":address}
+    console.log("new item", obj);
 
     index = localStorage.getItem('index');
     if(index == null) index = 0;
@@ -46,6 +47,9 @@ app
     for(j=index-1; j>=limit; j--){
         before.push(JSON.parse(localStorage.getItem(j)));
     }
+
+    // console.log('index: ', index);
+    // console.log('before sort', before.slice(0,5));
 
     if(index>5){
         res.send(before.slice(0,5));
@@ -71,8 +75,9 @@ app
         before.push(JSON.parse(localStorage.getItem(j)));
     }
 
-    console.log('index: ', index);
-    console.log('before sort', before);
+    // console.log('index: ', index);
+    // console.log('before sort', before);
+
     after_sort = before.sort(function(a,b){
        return b['Amount'] - a['Amount'];
     });
