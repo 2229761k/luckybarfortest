@@ -7,18 +7,17 @@
     </div>
     <!-- <div class="lose-effect"></div> -->
 
-    <div class="balance">
-      <p class="metainfo" v-if="isInjected" id="has-metamask"><i aria-hidden="true" class="fa fa-check"></i> Metamask Connected</p>
-      <p class="metainfo" v-else id="no-metamask"><i aria-hidden="true" class="fa fa-times"></i> Metamask Connection failed</p>
+    <div class="balance" style="margin-top:30px" >
       <!-- <p class="metainfo">Network: {{ network }}</p> -->
-      <p class="metainfo" style="font-size:25px"> Account</p>
+      <label class="metainfo" style="font-size:25px"> Account</label>
+      <label class="metainfo-connect" v-if="isInjected" id="has-metamask"><i aria-hidden="true" class="fa fa-check"></i> Metamask Connected</label>
+      <label class="metainfo-connect" v-else id="no-metamask"><i aria-hidden="true" class="fa fa-times"></i> Metamask Connection failed</label>
       <p class="metainfo"> {{ coinbase }}</p>
       <hr class="hr1" />
       <p class="metainfo"><img src="../assets/ETH.png" style="width:4%"/> {{ ethBalance }} ETH</p>
       <p class="metainfo"><img src="../assets/CHIP.png" style="width:13%" />  {{ chipBalance }} CHIP</p>
       <p class="metainfo"><img src="../assets/TOKA.png" style="width:8%" />  {{ tokaBalance }} TOKA</p>
       <p class="metainfo"><img src="../assets/TOKA.png" style="width:8%" />  0.00 IDR</p>
-
     </div>
 
     <div class="backboard">
@@ -406,7 +405,13 @@ ul {
 .metainfo{
   color: white;
   font-family: 'Press Start 2P', cursive;
-
+  font-size: 0.8rem;
+  position: relative;
+  top: 5px;
+}
+.metainfo-connect{
+  margin-bottom: 20px;
+  font-family: 'Press Start 2P', cursive;
   font-size: 0.8rem;
 }
 .metamask-info {
