@@ -34,7 +34,6 @@
       </div>
     </div>
 
-
     <div class="input-window-border">
         <img src="../assets/scroll.png" >
         <div id="game-result" class="input-window">
@@ -216,8 +215,8 @@ export default {
 
             // this.rankingResult[i]['timeStamp'] = formattedTime;
 
-            this.myResult[i]['Date'] = response.data[i]['Date']
-            this.rankingResult[i]['Amount']= this.rankingResult[i]['Amount'];//.toFixed(2);
+            // this.rankingResult[i]['Date'] = response.data[i]['Date']
+            this.rankingResult[i]['Amount']= parseFloat(this.rankingResult[i]['Amount']).toFixed(2);
             this.rankingResult[i]['Address'] = this.rankingResult[i]['Address'].toString().slice(0,5) + '***'
 
           }
@@ -227,15 +226,10 @@ export default {
       axios.get('http://localhost:3000/loadtotalresult')
         .then((response)=>{
 
-          console.log('my result: ',this.myResult)
-
           this.myResult = response.data
           for(var i=0; i<5; i++){
-            // console.log('asdasd', response.data[i]['Date'])
-            console.log('asdasd', this.myResult[i]['Amount'])
-            
             // this.myResult[i]['Date'] = response.data[i]['Date']
-            this.myResult[i]['Amount']= this.myResult[i]['Amount'];//.toFixed(2);
+            this.myResult[i]['Amount']= parseFloat(this.myResult[i]['Amount']).toFixed(2);
             this.myResult[i]['Address'] = this.myResult[i]['Address'].toString().slice(0,5) + '***'
 
           }

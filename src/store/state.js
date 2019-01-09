@@ -1,6 +1,7 @@
 import Web3EthAbi from 'web3-eth-abi'
 import Web3Utils from 'web3-utils'
 import Sci2Dec from 'scientific-to-decimal'
+import axios from 'axios'
 
 let state = {
   web3: {
@@ -39,6 +40,7 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
+              axios.get('http://localhost:3000/save/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout("location.reload()", 6000)
             }
           })
@@ -69,8 +71,9 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
+              axios.get('http://localhost:3000/save/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout("location.reload()", 6000)
-         
+
             }
           })
         }
@@ -113,6 +116,7 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
+              axios.get('http://localhost:3000/save/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout("location.reload()", 6000)
 
             }
@@ -157,6 +161,7 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
+              axios.get('http://localhost:3000/save/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout("location.reload()", 6000)
 
             }
@@ -203,7 +208,6 @@ let state = {
               window.swapEvent._target = result.args._target
               window.pending = false
               setTimeout("location.reload()", 6000)
-
             }
           })
         }
