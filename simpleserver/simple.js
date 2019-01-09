@@ -51,7 +51,9 @@ app
     var index = localStorage.getItem('index');
     if(index == null) return;
 
-    for(j=index; j>=0; j--){
+    var limit = index - 100 > 0 ? index - 100 : 0;
+
+    for(j=index-1; j>=limit; j--){
         console.log(j)
         before.push(JSON.parse(localStorage.getItem(j)))    
     }
