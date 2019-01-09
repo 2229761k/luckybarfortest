@@ -68,13 +68,13 @@ export const store = new Vuex.Store({
     getChip ({commit}, payload) {
       console.log('getChip action being executed')
       store.state.chipInstance().balanceOf(payload.coinbase, (err, result) => {
-        commit('refreshChipBalance', result / 10 ** 18)
+        commit('refreshChipBalance', (result / 10 ** 18).toFixed(5))
       })
     },
     getToka ({commit}, payload) {
       console.log('getToka action being executed')
       store.state.tokenInstance().balanceOf(payload.coinbase, (err, result) => {
-        commit('refreshTokaBalance', result / 10 ** 18)
+        commit('refreshTokaBalance', (result / 10 ** 18).toFixed(5))
       })
     },
     getContractInstance ({commit}) {
