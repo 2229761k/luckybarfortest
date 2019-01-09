@@ -44,10 +44,35 @@ app
 
 //이더스캔 전체 불러옴 제이슨 형태로  
 app
-  .route("/load")
+  .route("/loadtotalresult")
   .get((req, res) => {
     var before = [];
     var after_sort = [];
+    
+    var index = localStorage.getItem('index');
+    if(index == null) return;
+
+    var limit = index - 100 > 0 ? index - 100 : 0;
+
+    for(j=index-1; j>=limit; j--){
+        console.log(j)
+        before.push(JSON.parse(localStorage.getItem(j)))    
+    }
+    
+    if(index>5){
+        res.send(before.slice(0,5))
+    }
+    else{
+        res.send(before.slice(0,index))
+    } 
+  })
+
+  app
+  .route("/loadranking")
+  .get((req, res) => {
+    var before = [];
+    var after_sort = [];
+    
     var index = localStorage.getItem('index');
     if(index == null) return;
 
@@ -71,7 +96,6 @@ app
         res.send(after_sort.slice(0,index))
     } 
   })
-
   const server = app.listen(3000, () => {
     console.log('http server for saving a few logs');
   });

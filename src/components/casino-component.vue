@@ -104,9 +104,9 @@
                         <th>Address</th>
                       </thead>
                       <tbody v-for="(item, index) in myResult" :key="index" style="font-size:14px">
-                        <td>{{item.timeStamp}}</td>
-                        <td>{{item.value}}</td>
-                        <td>{{item.to}}</td>
+                        <td>{{item.Date}}</td>
+                        <td>{{item.Amount}}</td>
+                        <td>{{item.Address}}</td>
                       </tbody>
                     </table>
               </el-tab-pane>
@@ -118,9 +118,9 @@
                         <th>Address</th>
                       </thead>
                       <tbody v-for="(item, index) in rankingResult" :key="index" style="font-size:14px">
-                        <td>{{item.timeStamp}}</td>
-                        <td>{{item.value}}</td>
-                        <td>{{item.to}}</td>
+                        <td>{{item.Date}}</td>
+                        <td>{{item.Amount}}</td>
+                        <td>{{item.Address}}</td>
                       </tbody>
                     </table>
               </el-tab-pane>
@@ -193,75 +193,50 @@ export default {
       this.$store.state.functions.swapC2T(this);
     },
     getRanking(){
-     axios.get('https://api.etherscan.io/api?module=account&action=txlistinternal&address=0x2c1ba59d6f58433fb1eaee7d20b26ed83bda51a3&startblock=0&endblock=99999999999&apikey=3IZMXH4SJM5SMX68K7P8ZSMMFUS4SM1HPR')
+     axios.get('http://localhost:3000/loadranking')
         .then((response)=>{
 
-          this.rankingResult = response.data.result.sort(function(a,b){
-              return b['value'] - a['value']
-          })
-
-          this.rankingResult = this.rankingResult.slice(0,5);
+          this.rankingResult = response.data
 
           for(var i=0; i<5; i++){
-            var unix_timestamp = this.rankingResult[i]['timeStamp'];
-            var date = new Date(unix_timestamp*1000);
-            var month = date.getMonth();
-            var day = date.getDate();
-            var year = date.getFullYear();
-            // Hours part from the timestamp
-            var hours = date.getHours();
-            // Minutes part from the timestamp
-            var minutes = "0" + date.getMinutes();
-            // Seconds part from the timestamp
-            var seconds = "0" + date.getSeconds();
+            // var unix_timestamp = this.rankingResult[i]['timeStamp'];
+            // var date = new Date(unix_timestamp*1000);
+            // var month = date.getMonth();
+            // var day = date.getDate();
+            // var year = date.getFullYear();
+            // // Hours part from the timestamp
+            // var hours = date.getHours();
+            // // Minutes part from the timestamp
+            // var minutes = "0" + date.getMinutes();
+            // // Seconds part from the timestamp
+            // var seconds = "0" + date.getSeconds();
 
-            // Will display time in 10:30:23 format
-            var formattedTime = year + '.' + month + '.'+ day + ',' + hours + ':' + minutes.substr(-2)
+            // // Will display time in 10:30:23 format
+            // var formattedTime = year + '.' + month + '.'+ day + ',' + hours + ':' + minutes.substr(-2)
 
-            this.rankingResult[i]['timeStamp'] = formattedTime;
+            // this.rankingResult[i]['timeStamp'] = formattedTime;
 
-            this.rankingResult[i]['value'] /= 10**18;
-            this.rankingResult[i]['value'] = this.rankingResult[i]['value'].toFixed(2);
-            this.rankingResult[i]['to'] = this.rankingResult[i]['to'].slice(0,5) + '***'
+            this.myResult[i]['Date'] = response.data[i]['Date']
+            this.rankingResult[i]['Amount']= this.rankingResult[i]['Amount'];//.toFixed(2);
+            this.rankingResult[i]['Address'] = this.rankingResult[i]['Address'].toString().slice(0,5) + '***'
 
           }
       })
     },
     getTotalResult(){
-      axios.get('https://api.etherscan.io/api?module=account&action=txlistinternal&address=0xd90c20b9a57ec628ae4b1d38eb1f30680b8f1594&startblock=0&endblock=99999999999&apikey=3IZMXH4SJM5SMX68K7P8ZSMMFUS4SM1HPR')
+      axios.get('http://localhost:3000/loadtotalresult')
         .then((response)=>{
 
-          this.myResult = response.data.result.sort(function(a,b){
-            return b['timeStamp'] - a['timeStamp']
+          console.log('my result: ',this.myResult)
 
-          })
-          // this.rankingResult = response.data.result.sort(function(a,b){
-          //     return b['value'] - a['value']
-          // })
-
-          this.myResult = this.myResult.slice(0,5);
-
+          this.myResult = response.data
           for(var i=0; i<5; i++){
-            var unix_timestamp = this.myResult[i]['timeStamp'];
-            var date = new Date(unix_timestamp*1000);
-            var month = date.getMonth();
-            var day = date.getDate();
-            var year = date.getFullYear();
-            // Hours part from the timestamp
-            var hours = date.getHours();
-            // Minutes part from the timestamp
-            var minutes = "0" + date.getMinutes();
-            // Seconds part from the timestamp
-            var seconds = "0" + date.getSeconds();
-
-            // Will display time in 10:30:23 format
-            var formattedTime = year + '.' + month + '.'+ day + ',' + hours + ':' + minutes.substr(-2)
-
-            this.myResult[i]['timeStamp'] = formattedTime;
-
-            this.myResult[i]['value'] /= 10**18;
-            this.myResult[i]['value']= this.myResult[i]['value'].toFixed(2);
-            this.myResult[i]['to'] = this.myResult[i]['to'].slice(0,5) + '***'
+            // console.log('asdasd', response.data[i]['Date'])
+            console.log('asdasd', this.myResult[i]['Amount'])
+            
+            // this.myResult[i]['Date'] = response.data[i]['Date']
+            this.myResult[i]['Amount']= this.myResult[i]['Amount'];//.toFixed(2);
+            this.myResult[i]['Address'] = this.myResult[i]['Address'].toString().slice(0,5) + '***'
 
           }
       })
