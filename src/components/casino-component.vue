@@ -268,14 +268,14 @@ export default {
 .backboard{
   z-index: 2;
   position: absolute;
-  left: 5%;
+  left: 0%;
 }
 
 .balance{
     z-index: 3;
     position: absolute;
     top: 6%;
-    left: 14%;
+    left: 9%;
     width: 700px;
     text-align: left;
 }
