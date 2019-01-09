@@ -37,7 +37,7 @@
 
 
     <div class="input-window-border">
-        <img src="../assets/ui-test.png" >
+        <img src="../assets/scroll.png" >
         <div id="game-result" class="input-window">
       <el-row :gutter="24" class="font_change" >
         <el-col :span="2" :offset="17" >
