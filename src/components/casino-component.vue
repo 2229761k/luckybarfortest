@@ -17,7 +17,7 @@
       <p class="metainfo"><img src="../assets/ETH.png" style="width:4%"/> {{ ethBalance }} ETH</p>
       <p class="metainfo"><img src="../assets/CHIP.png" style="width:13%" />  {{ chipBalance }} CHIP</p>
       <p class="metainfo"><img src="../assets/TOKA.png" style="width:8%" />  {{ tokaBalance }} TOKA</p>
-      <p class="metainfo"><img src="../assets/TOKA.png" style="width:8%" />  0.00 IDR</p>
+      <p class="metainfo"><img src="../assets/IDR.png" style="width:7%" />  0.00 IDR</p>
     </div>
 
     <div class="backboard">
@@ -77,7 +77,7 @@
               </el-tab-pane>
             </el-tabs>
             <hr>
-            <el-tabs :tab-position="tabPosition" style="height: 200px;">
+            <el-tabs :tab-position="tabPosition" style="height: 190px;">
               <el-tab-pane label="My Result" ><p>My Result</p>
                 <img v-if="pending" id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
                 <!-- game result -->
@@ -268,14 +268,14 @@ export default {
 .backboard{
   z-index: 2;
   position: absolute;
-  left: 5%;
+  left: 0%;
 }
 
 .balance{
     z-index: 3;
     position: absolute;
     top: 6%;
-    left: 14%;
+    left: 9%;
     width: 700px;
     text-align: left;
 }
@@ -317,10 +317,9 @@ export default {
 .input-window{
     z-index: 3;
     position: absolute;
-    top: 4%;
+    top: 15%;
     left: -70%;
     width: 400px;
-    opacity: 0.8;
 }
 
 .input-window-border {
