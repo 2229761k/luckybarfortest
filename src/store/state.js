@@ -40,7 +40,7 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-              axios.get('http://localhost:3000/save/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
+              axios.get('http://localhost:3000/save/' + 'e2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout("location.reload()", 6000)
             }
           })
@@ -71,7 +71,7 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-              axios.get('http://localhost:3000/save/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
+              axios.get('http://localhost:3000/save/' + 'e2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout("location.reload()", 6000)
 
             }
@@ -116,7 +116,7 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-              axios.get('http://localhost:3000/save/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
+              axios.get('http://localhost:3000/save/' + 'c2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout("location.reload()", 6000)
 
             }
@@ -161,7 +161,7 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-              axios.get('http://localhost:3000/save/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
+              axios.get('http://localhost:3000/save/' + 'c2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout("location.reload()", 6000)
 
             }

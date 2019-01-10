@@ -40,28 +40,28 @@
       <el-row :gutter="24" class="font_change" >
         <el-col :span="2" :offset="17" >
           <el-tabs type="border-card"   style="width: 400px; text-align: center;" >
-            <el-tabs :tab-position="tabPosition">
-              <el-tab-pane label="ETH to ETH" ><p>ETH to ETH</p>
+            <el-tabs v-model="selectedCategory" :tab-position="tabPosition">
+              <el-tab-pane label="ETH to ETH" name = 'e2e'><p>ETH to ETH</p>
                 <hr>
                 <p>Exchange Rate <br> 1:1 +-50%</p>
                 <input v-model="amount" placeholder="0 ETH" style="width:40%">
                 <button v-on:click="playE2E">Play</button>
               </el-tab-pane>
-              <el-tab-pane label="ETH to CHIP"><p>ETH to CHIP</p>
+              <el-tab-pane label="ETH to CHIP" name = 'e2c'><p>ETH to CHIP</p>
                 <hr>
                 <p>Exchange Rate <br> 1:100000 +-50% </p>
                 <input v-model="amount" placeholder="0 ETH" style="width:40%">
                 <button v-on:click="playE2C">Play</button>
               </el-tab-pane>
-              <el-tab-pane label="CHIP to CHIP"><p>CHIP to CHIP</p>
+              <el-tab-pane label="CHIP to CHIP" name = 'c2c'><p>CHIP to CHIP</p>
                 <hr>
                 <p>Exchange Rate <br> 1:1 +-50% </p>
                 <input v-model="amount" placeholder="0 CHIP" style="width:40%">
                 <button v-on:click="playC2C">Play</button>
               </el-tab-pane>
-              <el-tab-pane label="CHIP to ETH"><p>CHIP to ETH</p>
+              <el-tab-pane label="CHIP to ETH" name = 'c2e'><p>CHIP to ETH</p>
                 <hr>
-                <p>Exchange Rate <br>100000:1 +-50% </p>
+                <p>Exchange Rate <br>100000:1 +-50%</p>
                 <input v-model="amount" placeholder="0 CHIP" style="width:40%">
                 <button v-on:click="playC2E">Play</button>
               </el-tab-pane>
@@ -102,7 +102,7 @@
                         <th>Amount</th>
                         <th>Address</th>
                       </thead>
-                      <tbody v-for="(item, index) in myResult" :key="index" style="font-size:14px">
+                      <tbody v-for="(item, index) in myResult[selectedCategory]" :key="index" style="font-size:14px">
                         <td>{{item.Date}}</td>
                         <td>{{item.Amount}}</td>
                         <td>{{item.Address}}</td>
@@ -116,7 +116,7 @@
                         <th>Amount</th>
                         <th>Address</th>
                       </thead>
-                      <tbody v-for="(item, index) in rankingResult" :key="index" style="font-size:14px">
+                      <tbody v-for="(item, index) in rankingResult[selectedCategory]" :key="index" style="font-size:14px">
                         <td>{{item.Date}}</td>
                         <td>{{item.Amount}}</td>
                         <td>{{item.Address}}</td>
@@ -147,6 +147,7 @@ export default {
       winEvent: null,
       swapEvent: null,
       myResult: [],
+      selectedCategory: 'e2e',
       rankingResult: []
     }
   },
@@ -164,26 +165,26 @@ export default {
   methods: {
     playE2E (event) {
       this.$store.state.functions.playE2E(this);
-      this.getTotalResult();
-      this.getRanking();
+      this.getTotalResult('e2e');
+      this.getRanking('e2e');
 
     },
     playE2C (event) {
       this.$store.state.functions.playE2C(this);
-      this.getTotalResult();
-      this.getRanking();
+      this.getTotalResult('e2c');
+      this.getRanking('e2c');
 
     },
     playC2C (event) {
       this.$store.state.functions.playC2C(this);
-      this.getTotalResult();
-      this.getRanking();
+      this.getTotalResult('c2c');
+      this.getRanking('c2c');
 
     },
     playC2E (event) {
       this.$store.state.functions.playC2E(this);
-      this.getTotalResult();
-      this.getRanking();
+      this.getTotalResult('c2e');
+      this.getRanking('c2e');
     },
     toka2CHIP(){
       this.$store.state.functions.swapT2C(this);
@@ -191,49 +192,27 @@ export default {
     CHIP2toka(){
       this.$store.state.functions.swapC2T(this);
     },
-    getRanking(){
-     axios.get('http://localhost:3000/loadranking')
+    getRanking(type){
+      axios.get('http://localhost:3000/loadranking/' + type)
         .then((response)=>{
-
-          this.rankingResult = response.data
-
-          for(var i=0; i<5; i++){
-            // var unix_timestamp = this.rankingResult[i]['timeStamp'];
-            // var date = new Date(unix_timestamp*1000);
-            // var month = date.getMonth();
-            // var day = date.getDate();
-            // var year = date.getFullYear();
-            // // Hours part from the timestamp
-            // var hours = date.getHours();
-            // // Minutes part from the timestamp
-            // var minutes = "0" + date.getMinutes();
-            // // Seconds part from the timestamp
-            // var seconds = "0" + date.getSeconds();
-
-            // // Will display time in 10:30:23 format
-            // var formattedTime = year + '.' + month + '.'+ day + ',' + hours + ':' + minutes.substr(-2)
-
-            // this.rankingResult[i]['timeStamp'] = formattedTime;
-
-            // this.rankingResult[i]['Date'] = response.data[i]['Date']
-            this.rankingResult[i]['Amount']= parseFloat(this.rankingResult[i]['Amount']).toFixed(2);
-            this.rankingResult[i]['Address'] = this.rankingResult[i]['Address'].toString().slice(0,5) + '***'
-
-          }
+          this.rankingResult[type] = response.data
+          this.makeItNice(this.rankingResult[type])
       })
     },
-    getTotalResult(){
-      axios.get('http://localhost:3000/loadtotalresult')
+    getTotalResult(type){
+      axios.get('http://localhost:3000/loadtotalresult/' + type)
         .then((response)=>{
-
-          this.myResult = response.data
-          for(var i=0; i<5; i++){
-            // this.myResult[i]['Date'] = response.data[i]['Date']
-            this.myResult[i]['Amount']= parseFloat(this.myResult[i]['Amount']).toFixed(2);
-            this.myResult[i]['Address'] = this.myResult[i]['Address'].toString().slice(0,5) + '***'
-
-          }
+          console.log('type: ',type)
+          console.log('contents: ',this.myResult)
+          this.myResult[type] = response.data
+          this.makeItNice(this.myResult[type])
       })
+    },
+    makeItNice(data) {
+      for(var i=0; i<5; i++){
+        data[i]['Amount']= parseFloat(data[i]['Amount']).toFixed(2);
+        data[i]['Address'] = data[i]['Address'].toString().slice(0,5) + '***'
+      }
     }
   },
   mounted () {
@@ -243,8 +222,8 @@ export default {
     this.$store.dispatch('getTokenContractInstance');
     console.log('dispatching getChipContractInstance');
     this.$store.dispatch('getChipContractInstance');
-    this.getTotalResult();
-    this.getRanking();
+    this.getTotalResult('e2e');
+    this.getRanking('e2e');
 
   },
 

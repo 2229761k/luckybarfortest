@@ -77,12 +77,12 @@ app
     var limit = index - 100 > 0 ? index - 100 : 0;
 
     for(j=index-1; j>=limit; j--){
-
-        before.push(JSON.parse(localStorage.getItem(type+j)));
+        contents =localStorage.getItem(type+j);
+        if(contents != null) before.push(JSON.parse(contents));
     }
 
     // console.log('index: ', index);
-    // console.log('before sort', before);
+    console.log('before sort', before);
 
     after_sort = before.sort(function(a,b){
        return b['Amount'] - a['Amount'];
