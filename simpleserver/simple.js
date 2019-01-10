@@ -5,7 +5,7 @@ const app = express();
 const ipfilter = require('express-ipfilter').IpFilter;
 
 // Whitelist the following IPs
-const ips = ['127.0.0.1'];
+const ips = ['127.0.0.1', '::1'];
  
 app.use(ipfilter(ips, {mode: 'allow'}));
 app.use(express.json());
@@ -14,9 +14,6 @@ app.use(helmet());
 
 const LocalStorage = require('node-localstorage').LocalStorage;
 localStorage = new LocalStorage('./log');
-
-var index = 0
-var type = ["e2e", "e2c", "c2e", "c2c"]
 
 app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -31,25 +28,28 @@ app
     var obj = {"Type" : type, "Date" : date, "Amount" : amount, "Address":address}
     console.log("new item", obj);
 
-    index = localStorage.getItem('index');
+    var index = localStorage.getItem('index'+ type);
     if(index == null) index = 0;
 
     localStorage.setItem(type + index.toString(), JSON.stringify(obj));
-    localStorage.setItem('index',++index);
+    localStorage.setItem('index'+type,++index);
     console.log(index);
-    console.log(type)
+    console.log(type);
 
   })
 app
   .route("/loadtotalresult/:type")
   .get((req, res) => {
+    const {params: {type}} = req;
     var before = [];
-    var index = localStorage.getItem('index');
-    if(index == null) return;
+    const count = 10;
+    var index = localStorage.getItem('index'+ type);
+    if(index == null) index = 0;
 
-    var limit = index - 100 > 0 ? index - 100 : 0;
+    var limit = index - count > 0 ? index - count : 0;
 
     for(j=index-1; j>=limit; j--){
+        console.log('index: ', type+j);
         before.push(JSON.parse(localStorage.getItem(type+j)));
     }
 
@@ -65,13 +65,14 @@ app
   })
 
   app
-  .route("/loadranking/")
+  .route("/loadranking/:type")
   .get((req, res) => {
+    const {params: {type}} = req;
     var before = [];
     var after_sort = [];
 
-    var index = localStorage.getItem('index');
-    if(index == null) return;
+    var index = localStorage.getItem('index'+ type);
+    if(index == null) index = 0;
 
     var limit = index - 100 > 0 ? index - 100 : 0;
 
@@ -96,5 +97,5 @@ app
   })
 
   const server = app.listen(3000, () => {
-    console.log('http server for saving a few logs');
+    console.log('rest api server for saving/loading logs');
   });
