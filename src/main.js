@@ -11,10 +11,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import ElementUI from 'element-ui';
 import '../theme/index.css'
 import axios from 'axios'
-
+import BackToTop from 'vue-backtotop'
+ 
 
 var VueScrollTo = require('vue-scrollto');
- 
+Vue.use(BackToTop)
+
 Vue.use(VueScrollTo)
 Vue.use(axios)
 

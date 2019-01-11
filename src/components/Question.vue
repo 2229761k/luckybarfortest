@@ -8,7 +8,7 @@
           <h2 >What is Lucky bar?</h2><br>
           <p class="lead" style="height: 280px">The user can transfer the TOKACHIP or Ethereum to the contract and get a <br>random reward. The reward rate is + -50%. <br>TOKACHIP is a game money used in Lucky Bar and will be switched to TOKA 1: 1. <br>You can switch at any time via the SWAP button. 
             If you play the game with Ethereum, <br>TOKACHIP will be mined. The game player receives a TOKACHIP of the amount<br> corresponding to the commission rate. (Exchange ratio 1: 100000)</p>
-          <hr class="hr2" /><br><br><br>
+          <br><br><br>
           <h2 >How to start?</h2>
           <p class="lead" >You need to install the Meta Mask plugin to play the game.
             To play, enter the ETH(or TOKACHIP) quantity and press the send button. Once the transaction is approved by the Meta Mask plugin, the game will start. Results can be found in ‘myresult’ section on the game screen.</p>
@@ -36,6 +36,10 @@
         <div class="dona">
           <img src="../assets/dona.gif" alt="" style="height: 500px; margin-left:70%; margin-top:-32% ">
         </div>
+
+        <back-to-top bottom="50px" right="50px">
+          <button type="button" class="btn btn-info btn-to-top"><i class="fa fa-chevron-up"></i></button>
+        </back-to-top>
       <br><br><br>
     </div>   
 </template>
@@ -47,6 +51,14 @@ export default {
 </script>
 
 <style>
+.btn-to-top {
+  width: 60px;
+  height: 60px;
+  padding: 10px 16px;
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 22px;
+}
 .hr2{
   border: 1px solid #c9c9c9
 }
