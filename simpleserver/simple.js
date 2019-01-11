@@ -2,12 +2,12 @@ const express = require('express');
 const logger = require('morgan');
 const helmet = require('helmet');
 const app = express();
-const ipfilter = require('express-ipfilter').IpFilter;
+//const ipfilter = require('express-ipfilter').IpFilter;
 
 // Whitelist the following IPs
-const ips = ['127.0.0.1', '::1'];
- 
-app.use(ipfilter(ips, {mode: 'allow'}));
+//const ips = ['127.0.0.1', '::1'];
+
+//app.use(ipfilter(ips, {mode: 'allow'}));
 app.use(express.json());
 app.use(logger("combined"));
 app.use(helmet());
