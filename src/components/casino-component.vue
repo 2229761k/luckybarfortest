@@ -16,7 +16,7 @@
           <label class="metainfo-connect" v-if="isInjected" id="has-metamask"><i aria-hidden="true" class="fa fa-check"></i> Metamask Connected</label>
           <label class="metainfo-connect" v-else id="no-metamask"><i aria-hidden="true" class="fa fa-times"></i> Metamask Connection failed</label>
 
-          <p v-if="network == 'Ropsten test network'" class="metainfo"><a v-bind:href="'https://ropsten.etherscan.io/address/' + coinbase">{{ coinbase }}</a></p>
+          <p v-if="network == 'Ropsten test network'" class="metainfo"><a v-bind:href="'https://ropsten.etherscan.io/address/' + coinbase" target="_blank">{{ coinbase }}</a></p>
           <p v-else class="metainfo" id="has-lost" > Available only on Ropsten Test Network</p>
 
           <hr class="hr1" />
