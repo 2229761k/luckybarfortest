@@ -324,13 +324,13 @@ a { color: white; }
 
 p {
 /* font-family: 'Press Start 2P', cursive; */
-font-size: 8px
+font-size: 11px
 }
 
 .font_change{
     font-family: 'Press Start 2P', cursive;
 
-    font-size: 4px;
+    font-size: 10px;
     /* background-image: url("../assets/ui-test.png") !important; 
     background-repeat: no-repeat; */
 }
