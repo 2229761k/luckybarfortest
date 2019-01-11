@@ -12,12 +12,16 @@
       <label class="metainfo" style="font-size:25px"> Account</label>
       <label class="metainfo-connect" v-if="isInjected" id="has-metamask"><i aria-hidden="true" class="fa fa-check"></i> Metamask Connected</label>
       <label class="metainfo-connect" v-else id="no-metamask"><i aria-hidden="true" class="fa fa-times"></i> Metamask Connection failed</label>
-      <p class="metainfo"> {{ coinbase }}</p>
+
+      <p v-if="network == 'Ropsten test network'" class="metainfo"><a v-bind:href="'https://ropsten.etherscan.io/address/' + coinbase">{{ coinbase }}</a></p>
+      <p v-else class="metainfo" id="has-lost" > Available only on Ropsten Test Network</p>
+
       <hr class="hr1" />
       <p class="metainfo"><img src="../assets/ETH.png" style="width:4%"/> {{ ethBalance }} ETH</p>
       <p class="metainfo"><img src="../assets/CHIP.png" style="width:13%" />  {{ chipBalance }} CHIP</p>
       <p class="metainfo"><img src="../assets/TOKA.png" style="width:8%" />  {{ tokaBalance }} TOKA</p>
       <p class="metainfo"><img src="../assets/IDR.png" style="width:7%" />  0.00 IDR</p>
+
     </div>
 
     <div class="backboard">
@@ -193,14 +197,15 @@ export default {
       this.$store.state.functions.swapC2T(this);
     },
     getRanking(type){
-      axios.get('http://localhost:3000/loadranking/' + type)
+
+      axios.get('http://218.39.141.11:3000/loadranking/' + type)
         .then((response)=>{
           this.rankingResult[type] = response.data
           this.makeItNice(this.rankingResult[type])
       })
     },
     getTotalResult(type){
-      axios.get('http://localhost:3000/loadtotalresult/' + type)
+      axios.get('http://218.39.141.11:3000/loadtotalresult/' + type)
         .then((response)=>{
           console.log('type: ',type)
           console.log('contents: ',this.myResult)
@@ -209,7 +214,7 @@ export default {
       })
     },
     makeItNice(data) {
-      for(var i=0; i<5; i++){
+      for(var i=0; i<data.length; i++){
         data[i]['Amount']= parseFloat(data[i]['Amount']).toFixed(2);
         data[i]['Address'] = data[i]['Address'].toString().slice(0,5) + '***'
       }
@@ -263,6 +268,8 @@ export default {
     width: 700px;
     text-align: left;
 }
+
+a { color: white; }
 
 .win-effect{
     z-index: 2;
