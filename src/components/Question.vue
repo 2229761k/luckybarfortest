@@ -14,21 +14,21 @@
             To play, enter the ETH(or TOKA CHIP) quantity and press the send button. Once the transaction is approved by the Meta Mask plugin, the game will start. Results can be found in ‘My Result’ section on the game screen.</p>
           <br>
           <h2>There are four types of games</h2><br>
-          <p class="lead">ETH to ETH :  Use Ethereum to get Ethereum. The base exchange rate is 1 : 1. The commission rate is 5%.</p>
-          <p class="lead">ETH to TOKA CHIP : Use Ethereum to get TOKA CHIP. The base exchange rate is 1 : 100000, and is updated periodically according to the quotation. The commission rate is 0%.</p>
-          <p class="lead">TOKA CHIP to ETH : Use TOKA CHIP to get Ethereum. The base exchange rate is 100000 : 1, and is updated periodically according to the quotation. The commission rate is 5%.</p>
-          <p class="lead">TOKA CHIP to TOKA CHIP : Use TOKA CHIP to get TOKA CHIP. The base exchange rate is 1 : 1. The commission rate is 1%.</p><br>
+          <p class="lead"><b>ETH to ETH</b>:  Use Ethereum to get Ethereum. The base exchange rate is 1 : 1. The commission rate is 5%.</p>
+          <p class="lead"><b>ETH to TOKA CHIP</b> : Use Ethereum to get TOKA CHIP. The base exchange rate is 1 : 100000, and is updated periodically according to the quotation. The commission rate is 0%.</p>
+          <p class="lead"><b>TOKA CHIP to ETH</b> : Use TOKA CHIP to get Ethereum. The base exchange rate is 100000 : 1, and is updated periodically according to the quotation. The commission rate is 5%.</p>
+          <p class="lead"><b>TOKA CHIP to TOKA CHIP</b> : Use TOKA CHIP to get TOKA CHIP. The base exchange rate is 1 : 1. The commission rate is 1%.</p><br>
           <h2>MIN and MAX Transfer quantity</h2><br>
-          <p class="lead">ETH to ETH : min 0.1 ETH / max infinity</p>
-          <p class="lead">ETH to TOKA CHIP : min 0.1ETH / max infinity</p>
-          <p class="lead">TOKA CHIP to TOKA CHIP : min 100 TOKA CHIP / max infinity</p>
-          <p class="lead">TOKA CHIP to ETH : Will be open later.</p><br>
+          <p class="lead"><b>ETH to ETH</b> : min 0.1 ETH / max infinity</p>
+          <p class="lead"><b>ETH to TOKA CHIP</b> : min 0.1ETH / max infinity</p>
+          <p class="lead"><b>TOKA CHIP to TOKA CHIP</b> : min 100 TOKA CHIP / max infinity</p>
+          <p class="lead"><b>TOKA CHIP to ETH</b> : Will be open later.</p><br>
 
 
           <h2>The result confirmation window is as follows.</h2><br>
-          <p class="lead">My result : You can check your play results.</p>
-          <p class="lead">Total Result : You can check the latest five play history.</p>
-          <p class="lead">Ranking: The highest ranked number of ETHs in the game.</p>
+          <p class="lead"><b>My result</b> : You can check your play results.</p>
+          <p class="lead"><b>Total Result</b> : You can check the latest five play history.</p>
+          <p class="lead"><b>Ranking</b>: The highest ranked number of ETHs in the game.</p>
 
         </div>
         
