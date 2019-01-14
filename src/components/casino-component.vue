@@ -229,7 +229,6 @@ export default {
     this.$store.dispatch('getTokenContractInstance');
     console.log('dispatching getChipContractInstance');
     this.$store.dispatch('getChipContractInstance');
-<<<<<<< HEAD
     this.getTotalResult('e2c');
     this.getRanking('e2c');
     this.getTotalResult('c2e');
@@ -238,16 +237,6 @@ export default {
     this.getRanking('c2c');
     this.getTotalResult('e2e');
     this.getRanking('e2e');
-=======
-    // this.getTotalResult('e2e');
-    // this.getRanking('e2e');
-    // this.getTotalResult('e2c');
-    // this.getRanking('e2c');
-    // this.getTotalResult('c2e');
-    // this.getRanking('c2e');
-    // this.getTotalResult('c2c');
-    // this.getRanking('c2c');
->>>>>>> 1f65ae1740cc82650d5be531befd656d2c6d77d0
   },
 
 }
