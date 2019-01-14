@@ -28,7 +28,11 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
-          setTimeout("location.reload()", 6000)
+          setTimeout(function() {
+            location.href = 'section1';
+            // runs first
+            location.reload() // runs second
+          }, 6000)
 
         } else {
           let Won = window.$store.state.contractInstance().Won()
@@ -41,7 +45,11 @@ let state = {
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
               axios.get('http://218.39.141.11:3000/save/' + 'e2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
-              setTimeout("location.reload()", 6000)
+              setTimeout(function() {
+            location.href = 'section1';
+            // runs first
+            location.reload() // runs second
+          }, 6000)
             }
           })
         }
@@ -59,7 +67,11 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
-          setTimeout("location.reload()", 6000)
+          setTimeout(function() {
+            location.href = 'section1';
+            // runs first
+            location.reload() // runs second
+          }, 6000)
 
         } else {
           let Won = window.$store.state.contractInstance().Won()
@@ -72,7 +84,11 @@ let state = {
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
               axios.get('http://218.39.141.11:3000/save/' + 'e2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
-              setTimeout("location.reload()", 6000)
+              setTimeout(function() {
+            location.href = 'section1';
+            // runs first
+            location.reload() // runs second
+          }, 6000)
 
             }
           })
@@ -104,7 +120,11 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
-          setTimeout("location.reload()", 6000)
+          setTimeout(function() {
+            location.href = 'section1';
+            // runs first
+            location.reload() // runs second
+          }, 6000)
 
         } else {
           let Won = window.$store.state.contractInstance().Won()
@@ -117,7 +137,11 @@ let state = {
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
               axios.get('http://218.39.141.11:3000/save/' + 'c2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
-              setTimeout("location.reload()", 6000)
+              setTimeout(function() {
+            location.href = 'section1';
+            // runs first
+            location.reload() // runs second
+          }, 6000)
 
             }
           })
@@ -149,7 +173,11 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
-          setTimeout("location.reload()", 6000)
+          setTimeout(function() {
+            location.href = 'section1';
+            // runs first
+            location.reload() // runs second
+          }, 6000)
 
         } else {
           let Won = window.$store.state.contractInstance().Won()
@@ -162,7 +190,11 @@ let state = {
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
               axios.get('http://218.39.141.11:3000/save/' + 'c2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
-              setTimeout("location.reload()", 6000)
+              setTimeout(function() {
+            location.href = 'section1';
+            // runs first
+            location.reload() // runs second
+          }, 6000)
 
             }
           })
@@ -195,7 +227,11 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
-          setTimeout("location.reload()", 6000)
+          setTimeout(function() {
+            location.href = 'section1';
+            // runs first
+            location.reload() // runs second
+          }, 6000)
 
         } else {
           let Swapped = window.$store.state.contractInstance().Swapped()
@@ -207,7 +243,11 @@ let state = {
               window.swapEvent._amount = result.args._amount / (10 ** 18)
               window.swapEvent._target = result.args._target
               window.pending = false
-              setTimeout("location.reload()", 6000)
+              setTimeout(function() {
+            location.href = 'section1';
+            // runs first
+            location.reload() // runs second
+          }, 6000)
             }
           })
         }
@@ -224,7 +264,11 @@ let state = {
         if (err) {
           console.log(err)
           window.pending = false
-          setTimeout("location.reload()", 6000)
+          setTimeout(function() {
+            location.href = 'section1';
+            // runs first
+            location.reload() // runs second
+          }, 6000)
 
         } else {
           let Approval = window.$store.state.tokenInstance().Approval()
@@ -240,7 +284,11 @@ let state = {
                 if (err) {
                   console.log(err)
                   window.pending = false
-                  setTimeout("location.reload()", 6000)
+                  setTimeout(function() {
+            location.href = 'section1';
+            // runs first
+            location.reload() // runs second
+          }, 6000)
                 } else {
                   let Swapped = window.$store.state.contractInstance().Swapped()
                   Swapped.watch((err, result) => {
@@ -251,7 +299,11 @@ let state = {
                       window.swapEvent._amount = result.args._amount / (10 ** 18)
                       window.swapEvent._target = result.args._target
                       window.pending = false
-                      setTimeout("location.reload()", 6000)
+                      setTimeout(function() {
+            location.href = 'section1';
+            // runs first
+            location.reload() // runs second
+          }, 6000)
                     }
                   })
                 }
