@@ -29,9 +29,12 @@ let state = {
           console.log(err)
           window.pending = false
           setTimeout(function() {
+
             location.reload(true);
+            location.replace("http://localhost:8080/#section1")
+
           }, 6000)
-          location.href = "#section1"
+          
 
         } else {
           let Won = window.$store.state.contractInstance().Won()
@@ -45,9 +48,12 @@ let state = {
               window.pending = false
               axios.get('http://218.39.141.11:3000/save/' + 'e2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout(function() {
-                    location.reload(true);
+
+                location.reload(true);
+                location.replace("http://localhost:8080/#section1")
+
               }, 6000)
-              location.href = "#section1"
+              
 
             }
           })
@@ -67,9 +73,12 @@ let state = {
           console.log(err)
           window.pending = false
           setTimeout(function() {
+
             location.reload(true);
+            location.replace("http://localhost:8080/#section1")
+
           }, 6000)
-          location.href = "#section1"
+          
 
 
         } else {
@@ -84,9 +93,12 @@ let state = {
               window.pending = false
               axios.get('http://218.39.141.11:3000/save/' + 'e2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout(function() {
-                    location.reload(true);
+
+                location.reload(true);
+                location.replace("http://localhost:8080/#section1")
+
           }, 6000)
-          location.href = "#section1"
+          
 
 
             }
@@ -120,9 +132,12 @@ let state = {
           console.log(err)
           window.pending = false
           setTimeout(function() {
+
             location.reload(true);
+            location.replace("http://localhost:8080/#section1")
+
           }, 6000)
-          location.href = "#section1"
+          
 
 
         } else {
@@ -137,9 +152,12 @@ let state = {
               window.pending = false
               axios.get('http://218.39.141.11:3000/save/' + 'c2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout(function() {
-                    location.reload(true);
+
+                location.reload(true);
+                location.replace("http://localhost:8080/#section1")
+
           }, 6000)
-          location.href = "#section1"
+          
 
 
             }
@@ -173,9 +191,12 @@ let state = {
           console.log(err)
           window.pending = false
           setTimeout(function() {
+
             location.reload(true);
+            location.replace("http://localhost:8080/#section1")
+
           }, 6000)
-          location.href = "#section1"
+          
 
 
         } else {
@@ -190,9 +211,12 @@ let state = {
               window.pending = false
               axios.get('http://218.39.141.11:3000/save/' + 'c2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout(function() {
-                    location.reload(true);
+
+                location.reload(true);
+                location.replace("http://localhost:8080/#section1")
+
           }, 6000)
-          location.href = "#section1"
+          
 
 
             }
@@ -227,9 +251,12 @@ let state = {
           console.log(err)
           window.pending = false
           setTimeout(function() {
+
             location.reload(true);
+            location.replace("http://localhost:8080/#section1")
+
           }, 6000)
-          location.href = "#section1"
+          
 
 
         } else {
@@ -243,9 +270,12 @@ let state = {
               window.swapEvent._target = result.args._target
               window.pending = false
               setTimeout(function() {
-                    location.reload(true);
+
+                location.reload(true);
+                location.replace("http://localhost:8080/#section1")
+
           }, 6000)
-          location.href = "#section1"
+          
 
             }
           })
@@ -264,9 +294,12 @@ let state = {
           console.log(err)
           window.pending = false
           setTimeout(function() {
+
             location.reload(true);
+            location.replace("http://localhost:8080/#section1")
+
           }, 6000)
-          location.href = "#section1"
+          
 
 
         } else {
@@ -284,9 +317,11 @@ let state = {
                   console.log(err)
                   window.pending = false
                   setTimeout(function() {
-                            location.reload(true);
-          }, 6000)
-          location.href = "#section1"
+                    
+                    location.reload(true);
+                    location.replace("http://localhost:8080/#section1")
+
+                  }, 6000)
 
                 } else {
                   let Swapped = window.$store.state.contractInstance().Swapped()
@@ -299,9 +334,12 @@ let state = {
                       window.swapEvent._target = result.args._target
                       window.pending = false
                       setTimeout(function() {
-                                    location.reload(true);
-          }, 6000)
-          location.href = "#section1"
+
+                          location.reload(true);
+                          location.replace("http://localhost:8080/#section1")
+
+                        }, 6000)
+                        
 
                     }
                   })
