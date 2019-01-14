@@ -198,19 +198,21 @@ export default {
     },
     getRanking(type){
 
-      axios.get('http://218.39.141.11:3000/loadranking/' + type)
+      axios.get('http://148.66.138.146:3000/loadranking/' + type)
         .then((response)=>{
           this.rankingResult[type] = response.data
           this.makeItNice(this.rankingResult[type])
+          // this.selectedCategory = type
       })
     },
     getTotalResult(type){
-      axios.get('http://218.39.141.11:3000/loadtotalresult/' + type)
+      axios.get('http://148.66.138.146:3000/loadtotalresult/' + type)
         .then((response)=>{
           console.log('type: ',type)
           console.log('contents: ',this.myResult)
           this.myResult[type] = response.data
           this.makeItNice(this.myResult[type])
+          // this.selectedCategory = type
       })
     },
     makeItNice(data) {
@@ -227,14 +229,14 @@ export default {
     this.$store.dispatch('getTokenContractInstance');
     console.log('dispatching getChipContractInstance');
     this.$store.dispatch('getChipContractInstance');
-    this.getTotalResult('e2e');
-    this.getRanking('e2e');
     this.getTotalResult('e2c');
     this.getRanking('e2c');
     this.getTotalResult('c2e');
     this.getRanking('c2e');
     this.getTotalResult('c2c');
     this.getRanking('c2c');
+    this.getTotalResult('e2e');
+    this.getRanking('e2e');
   },
 
 }

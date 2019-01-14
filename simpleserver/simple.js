@@ -28,23 +28,29 @@ app
     var obj = {"Type" : type, "Date" : date, "Amount" : amount, "Address":address}
     console.log("new item", obj);
 
-    var index = localStorage.getItem('index'+ type);
+    var index = null;
+    try{
+      index = localStorage.getItem('index'+ type);
+    } catch(e) {}
     if(index == null) index = 0;
 
     localStorage.setItem(type + index.toString(), JSON.stringify(obj));
     localStorage.setItem('index'+type,++index);
     console.log(index);
     console.log(type);
-
   })
+
 app
   .route("/loadtotalresult/:type")
   .get((req, res) => {
     const {params: {type}} = req;
     var before = [];
-    const count = 10;
-    var index = localStorage.getItem('index'+ type);
-    if(index == null) index = 0;
+    const count = 5;
+    var index = null;
+    try{
+      index = localStorage.getItem('index'+ type);
+    } catch(e) { return; }
+    if(index == null) return;
 
     var limit = index - count > 0 ? index - count : 0;
 
@@ -55,13 +61,7 @@ app
 
     // console.log('index: ', index);
     // console.log('before sort', before.slice(0,5));
-
-    if(index>5){
-        res.send(before.slice(0,5));
-    }
-    else{
-        res.send(before.slice(0,index));
-    }
+    res.send(before);
   })
 
   app
@@ -71,9 +71,12 @@ app
     var before = [];
     var after_sort = [];
 
-    var index = localStorage.getItem('index'+ type);
-    if(index == null) index = 0;
-
+    var index = null;
+    try{
+      index = localStorage.getItem('index'+ type);
+    } catch(e) { return; }
+    if(index == null) return;
+    
     var limit = index - 100 > 0 ? index - 100 : 0;
 
     for(j=index-1; j>=limit; j--){
