@@ -46,20 +46,8 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-<<<<<<< HEAD
               axios.get('http://148.66.138.146:3000/save/' + 'e2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout("location.reload()", 6000)
-=======
-              axios.get('http://218.39.141.11:3000/save/' + 'e2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
-              setTimeout(function() {
-
-                location.reload(true);
-                location.replace("http://localhost:8080/#section1")
-
-              }, 6000)
-              
-
->>>>>>> 1f65ae1740cc82650d5be531befd656d2c6d77d0
             }
           })
         }
@@ -96,20 +84,8 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-<<<<<<< HEAD
               axios.get('http://148.66.138.146:3000/save/' + 'e2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout("location.reload()", 6000)
-=======
-              axios.get('http://218.39.141.11:3000/save/' + 'e2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
-              setTimeout(function() {
-
-                location.reload(true);
-                location.replace("http://localhost:8080/#section1")
-
-          }, 6000)
-          
-
->>>>>>> 1f65ae1740cc82650d5be531befd656d2c6d77d0
 
             }
           })
@@ -160,20 +136,8 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-<<<<<<< HEAD
               axios.get('http://148.66.138.146:3000/save/' + 'c2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout("location.reload()", 6000)
-=======
-              axios.get('http://218.39.141.11:3000/save/' + 'c2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
-              setTimeout(function() {
-
-                location.reload(true);
-                location.replace("http://localhost:8080/#section1")
-
-          }, 6000)
-          
-
->>>>>>> 1f65ae1740cc82650d5be531befd656d2c6d77d0
 
             }
           })
@@ -224,20 +188,8 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-<<<<<<< HEAD
               axios.get('http://148.66.138.146:3000/save/' + 'c2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
               setTimeout("location.reload()", 6000)
-=======
-              axios.get('http://218.39.141.11:3000/save/' + 'c2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
-              setTimeout(function() {
-
-                location.reload(true);
-                location.replace("http://localhost:8080/#section1")
-
-          }, 6000)
-          
-
->>>>>>> 1f65ae1740cc82650d5be531befd656d2c6d77d0
 
             }
           })
