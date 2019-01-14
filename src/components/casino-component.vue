@@ -198,7 +198,7 @@ export default {
     },
     getRanking(type){
 
-      axios.get('http://148.66.138.146:3000/loadranking/' + type)
+      axios.get('http://218.39.141.11:3000/loadranking/' + type)
         .then((response)=>{
           this.rankingResult[type] = response.data
           this.makeItNice(this.rankingResult[type])
@@ -206,7 +206,7 @@ export default {
       })
     },
     getTotalResult(type){
-      axios.get('http://148.66.138.146:3000/loadtotalresult/' + type)
+      axios.get('http://218.39.141.11:3000/loadtotalresult/' + type)
         .then((response)=>{
           console.log('type: ',type)
           console.log('contents: ',this.myResult)
