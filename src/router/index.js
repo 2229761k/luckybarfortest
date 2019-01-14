@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import CasinoDapp from '@/components/casino-dapp'
+import CasinoComponent from '@/components/casino-component'
+import Question from '@/components/Question'
 
 Vue.use(Router)
 
@@ -11,6 +13,7 @@ export default new Router({
       path: '/',
       name: 'casino-dapp',
       component: CasinoDapp
-    }
+    },
+
   ]
 })
