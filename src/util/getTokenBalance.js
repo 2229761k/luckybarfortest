@@ -10,4 +10,8 @@ let getTokenBalance = function (_coinbase) {
   })
 }
 
-export default getTokenBalance
+let getRecords = function () {
+  store.dispatch('getRecord')
+}
+
+export { getRecords, getTokenBalance }

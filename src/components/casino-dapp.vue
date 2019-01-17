@@ -1,7 +1,6 @@
 <template>
 <div>
   <Header />
-  <!-- <HelloMetamask /> -->
   <casino-component/>
   <Question />
   <Footer />
@@ -20,14 +19,29 @@ export default {
     console.log('registerWeb3 Action dispatched from casino-dapp.vue')
     this.$store.dispatch('registerWeb3')
   },
+  methods: {
+      isMobile() {
+          if( screen.width <= 760 ) {
+              return true;
+          }
+          else {
+              return false;
+          }
+      }
+  },
+  created() {
+      if (this.isMobile()) {
+          this.$router.push('/mobile');
+      }
+      else {
+          this.$router.push('/');
+      }
+  },
   components: {
-    // 'hello-metamask': HelloMetamask,
     'Header': Header,
-    // 'hello-metamask': HelloMetamask,
     'casino-component': CasinoComponent,
     'Question':Question,
     'Footer':Footer
-
   }
 }
 </script>

@@ -1,14 +1,86 @@
 /* eslint-disable */
 
-const address = '0xb0f765cb6b43592f4d472c109d1d5ae28191e801'
+const address = '0x8d37f4df36f5229ccb1cecbd2f82cccf7a50f705'
 const ABI = [
 	{
 		"constant": false,
-		"inputs": [],
-		"name": "deposit",
+		"inputs": [
+			{
+				"name": "_salt",
+				"type": "string"
+			},
+			{
+				"name": "_E2C_Ratio",
+				"type": "uint256"
+			}
+		],
+		"name": "setProperties",
 		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "terminate",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_token",
+				"type": "address"
+			}
+		],
+		"name": "setToken",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "C2C",
+				"type": "uint256"
+			},
+			{
+				"name": "E2C",
+				"type": "uint256"
+			},
+			{
+				"name": "C2E",
+				"type": "uint256"
+			},
+			{
+				"name": "E2E",
+				"type": "uint256"
+			}
+		],
+		"name": "setReward",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "checkContractBalanceToka",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -23,6 +95,144 @@ const ABI = [
 		"outputs": [],
 		"payable": true,
 		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "withdraw",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "sC2E",
+		"outputs": [
+			{
+				"name": "minBet",
+				"type": "uint256"
+			},
+			{
+				"name": "houseEdge",
+				"type": "uint256"
+			},
+			{
+				"name": "reward",
+				"type": "uint256"
+			},
+			{
+				"name": "bEnabled",
+				"type": "bool"
+			},
+			{
+				"components": [
+					{
+						"name": "date",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "amount",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "account",
+						"type": "address[5]"
+					}
+				],
+				"name": "ranking",
+				"type": "tuple"
+			},
+			{
+				"components": [
+					{
+						"name": "date",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "amount",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "account",
+						"type": "address[5]"
+					}
+				],
+				"name": "latest",
+				"type": "tuple"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "sE2C",
+		"outputs": [
+			{
+				"name": "minBet",
+				"type": "uint256"
+			},
+			{
+				"name": "houseEdge",
+				"type": "uint256"
+			},
+			{
+				"name": "reward",
+				"type": "uint256"
+			},
+			{
+				"name": "bEnabled",
+				"type": "bool"
+			},
+			{
+				"components": [
+					{
+						"name": "date",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "amount",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "account",
+						"type": "address[5]"
+					}
+				],
+				"name": "ranking",
+				"type": "tuple"
+			},
+			{
+				"components": [
+					{
+						"name": "date",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "amount",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "account",
+						"type": "address[5]"
+					}
+				],
+				"name": "latest",
+				"type": "tuple"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -52,57 +262,281 @@ const ABI = [
 		"type": "function"
 	},
 	{
-		"constant": false,
+		"constant": true,
 		"inputs": [],
-		"name": "estalishOwnership",
+		"name": "manager",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "checkContractBalance",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getRecordsC2C",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "address[5]"
+			},
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "address[5]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "sE2E",
+		"outputs": [
+			{
+				"name": "minBet",
+				"type": "uint256"
+			},
+			{
+				"name": "houseEdge",
+				"type": "uint256"
+			},
+			{
+				"name": "reward",
+				"type": "uint256"
+			},
+			{
+				"name": "bEnabled",
+				"type": "bool"
+			},
+			{
+				"components": [
+					{
+						"name": "date",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "amount",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "account",
+						"type": "address[5]"
+					}
+				],
+				"name": "ranking",
+				"type": "tuple"
+			},
+			{
+				"components": [
+					{
+						"name": "date",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "amount",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "account",
+						"type": "address[5]"
+					}
+				],
+				"name": "latest",
+				"type": "tuple"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "checkContractBalanceChip",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getRecordsE2E",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "address[5]"
+			},
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "address[5]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_from",
+				"type": "address"
+			},
+			{
+				"name": "_value",
+				"type": "uint256"
+			}
+		],
+		"name": "swapT2C",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "C2C",
+				"type": "uint256"
+			},
+			{
+				"name": "E2C",
+				"type": "uint256"
+			},
+			{
+				"name": "C2E",
+				"type": "uint256"
+			},
+			{
+				"name": "E2E",
+				"type": "uint256"
+			}
+		],
+		"name": "setGameFee",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_from",
-				"type": "address"
-			},
-			{
-				"name": "_value",
-				"type": "uint256"
-			}
-		],
-		"name": "playC2C",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_from",
-				"type": "address"
-			},
-			{
-				"name": "_value",
-				"type": "uint256"
-			}
-		],
-		"name": "playC2E",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
+		"constant": true,
 		"inputs": [],
-		"name": "playE2C",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
+		"name": "getRecordsC2E",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "address[5]"
+			},
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "address[5]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "E2C_Ratio",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -132,23 +566,175 @@ const ABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "C2C",
-				"type": "uint256"
+				"name": "_from",
+				"type": "address"
 			},
 			{
-				"name": "E2C",
-				"type": "uint256"
-			},
-			{
-				"name": "C2E",
-				"type": "uint256"
-			},
-			{
-				"name": "E2E",
+				"name": "_value",
 				"type": "uint256"
 			}
 		],
-		"name": "setGameFee",
+		"name": "playC2E",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "estalishOwnership",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "deposit",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_manager",
+				"type": "address"
+			}
+		],
+		"name": "setManager",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "sC2C",
+		"outputs": [
+			{
+				"name": "minBet",
+				"type": "uint256"
+			},
+			{
+				"name": "houseEdge",
+				"type": "uint256"
+			},
+			{
+				"name": "reward",
+				"type": "uint256"
+			},
+			{
+				"name": "bEnabled",
+				"type": "bool"
+			},
+			{
+				"components": [
+					{
+						"name": "date",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "amount",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "account",
+						"type": "address[5]"
+					}
+				],
+				"name": "ranking",
+				"type": "tuple"
+			},
+			{
+				"components": [
+					{
+						"name": "date",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "amount",
+						"type": "uint256[5]"
+					},
+					{
+						"name": "account",
+						"type": "address[5]"
+					}
+				],
+				"name": "latest",
+				"type": "tuple"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_from",
+				"type": "address"
+			},
+			{
+				"name": "_value",
+				"type": "uint256"
+			}
+		],
+		"name": "swapC2T",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getRecordsE2C",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "address[5]"
+			},
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "uint256[5]"
+			},
+			{
+				"name": "",
+				"type": "address[5]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -184,78 +770,6 @@ const ABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_manager",
-				"type": "address"
-			}
-		],
-		"name": "setManager",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_salt",
-				"type": "string"
-			},
-			{
-				"name": "_E2C_Ratio",
-				"type": "uint256"
-			}
-		],
-		"name": "setProperties",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "C2C",
-				"type": "uint256"
-			},
-			{
-				"name": "E2C",
-				"type": "uint256"
-			},
-			{
-				"name": "C2E",
-				"type": "uint256"
-			},
-			{
-				"name": "E2E",
-				"type": "uint256"
-			}
-		],
-		"name": "setReward",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_token",
-				"type": "address"
-			}
-		],
-		"name": "setToken",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
 				"name": "_from",
 				"type": "address"
 			},
@@ -264,25 +778,7 @@ const ABI = [
 				"type": "uint256"
 			}
 		],
-		"name": "swapC2T",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_from",
-				"type": "address"
-			},
-			{
-				"name": "_value",
-				"type": "uint256"
-			}
-		],
-		"name": "swapT2C",
+		"name": "playC2C",
 		"outputs": [],
 		"payable": true,
 		"stateMutability": "payable",
@@ -291,35 +787,7 @@ const ABI = [
 	{
 		"constant": false,
 		"inputs": [],
-		"name": "terminate",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "withdraw",
+		"name": "playE2C",
 		"outputs": [],
 		"payable": true,
 		"stateMutability": "payable",
@@ -391,194 +859,6 @@ const ABI = [
 		],
 		"name": "OwnershipTransferred",
 		"type": "event"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "checkContractBalance",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "checkContractBalanceChip",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "checkContractBalanceToka",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "E2C_Ratio",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "manager",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "sC2C",
-		"outputs": [
-			{
-				"name": "minBet",
-				"type": "uint256"
-			},
-			{
-				"name": "houseEdge",
-				"type": "uint256"
-			},
-			{
-				"name": "reward",
-				"type": "uint256"
-			},
-			{
-				"name": "bEnabled",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "sC2E",
-		"outputs": [
-			{
-				"name": "minBet",
-				"type": "uint256"
-			},
-			{
-				"name": "houseEdge",
-				"type": "uint256"
-			},
-			{
-				"name": "reward",
-				"type": "uint256"
-			},
-			{
-				"name": "bEnabled",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "sE2C",
-		"outputs": [
-			{
-				"name": "minBet",
-				"type": "uint256"
-			},
-			{
-				"name": "houseEdge",
-				"type": "uint256"
-			},
-			{
-				"name": "reward",
-				"type": "uint256"
-			},
-			{
-				"name": "bEnabled",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "sE2E",
-		"outputs": [
-			{
-				"name": "minBet",
-				"type": "uint256"
-			},
-			{
-				"name": "houseEdge",
-				"type": "uint256"
-			},
-			{
-				"name": "reward",
-				"type": "uint256"
-			},
-			{
-				"name": "bEnabled",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
 	}
 ]
 

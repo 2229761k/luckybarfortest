@@ -10,8 +10,10 @@ let state = {
     networkId: null,
     coinbase: null,
     balance: null,
-    tokaBalance: 0,
-    chipBalance: 0,
+    tokaBalance: null,
+    chipBalance: null,
+    latest: [],
+    ranking: [],
     error: null
   },
   
@@ -21,7 +23,7 @@ let state = {
       window.winEvent = null
       window.pending = true
       window.$store.state.contractInstance().playE2E({
-        gas: 300000,
+        gas: 600000,
         value: window.$store.state.web3.web3Instance().toWei(window.amount, 'ether'),
         from: window.$store.state.web3.coinbase
       }, (err, result) => {
@@ -40,8 +42,8 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-              axios.get('http://218.39.141.11:3000/save/' + 'e2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
-              setTimeout("location.reload()", 6000)
+              window.$store.dispatch('getRecord')
+              //axios.get('http://218.39.141.11:3000/save/' + 'e2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
             }
           })
         }
@@ -52,7 +54,7 @@ let state = {
       window.winEvent = null
       window.pending = true
       window.$store.state.contractInstance().playE2C({
-        gas: 300000,
+        gas: 600000,
         value: window.$store.state.web3.web3Instance().toWei(window.amount, 'ether'),
         from: window.$store.state.web3.coinbase
       }, (err, result) => {
@@ -71,8 +73,8 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-              axios.get('http://218.39.141.11:3000/save/' + 'e2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
-              setTimeout("location.reload()", 6000)
+              window.$store.dispatch('getRecord')
+              //axios.get('http://218.39.141.11:3000/save/' + 'e2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
 
             }
           })
@@ -98,7 +100,7 @@ let state = {
       window.winEvent = null
       window.pending = true
       window.$store.state.chipInstance().approveAndCall(window.$store.state.contractInstance().address, Web3Utils.toHex(Sci2Dec(window.amount * (10 ** 18))), funcEncoded, {
-        gas: 300000,
+        gas: 600000,
         from: window.$store.state.web3.coinbase
       }, (err, result) => {
         if (err) {
@@ -116,8 +118,8 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-              axios.get('http://218.39.141.11:3000/save/' + 'c2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
-              setTimeout("location.reload()", 6000)
+              window.$store.dispatch('getRecord')
+              //axios.get('http://218.39.141.11:3000/save/' + 'c2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
 
             }
           })
@@ -143,7 +145,7 @@ let state = {
       window.winEvent = null
       window.pending = true
       window.$store.state.chipInstance().approveAndCall(window.$store.state.contractInstance().address, Web3Utils.toHex(Sci2Dec(window.amount * (10 ** 18))), funcEncoded, {
-        gas: 300000,
+        gas: 600000,
         from: window.$store.state.web3.coinbase
       }, (err, result) => {
         if (err) {
@@ -161,9 +163,8 @@ let state = {
               window.winEvent._rewardType = result.args._rewardType
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
-              axios.get('http://218.39.141.11:3000/save/' + 'c2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
-              setTimeout("location.reload()", 6000)
-
+              window.$store.dispatch('getRecord')
+              //axios.get('http://218.39.141.11:3000/save/' + 'c2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
             }
           })
         }

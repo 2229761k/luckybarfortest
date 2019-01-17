@@ -106,7 +106,7 @@
                         <th>Amount</th>
                         <th>Address</th>
                       </thead>
-                      <tbody v-for="(item, index) in myResult[selectedCategory]" :key="index" style="font-size:14px">
+                      <tbody v-for="(item, index) in latest[selectedCategory]" :key="index" style="font-size:14px">
                         <td>{{item.Date}}</td>
                         <td>{{item.Amount}}</td>
                         <td>{{item.Address}}</td>
@@ -120,7 +120,7 @@
                         <th>Amount</th>
                         <th>Address</th>
                       </thead>
-                      <tbody v-for="(item, index) in rankingResult[selectedCategory]" :key="index" style="font-size:14px">
+                      <tbody v-for="(item, index) in ranking[selectedCategory]" :key="index" style="font-size:14px">
                         <td>{{item.Date}}</td>
                         <td>{{item.Amount}}</td>
                         <td>{{item.Address}}</td>
@@ -150,9 +150,7 @@ export default {
       pending: false,
       winEvent: null,
       swapEvent: null,
-      myResult: [],
-      selectedCategory: 'e2e',
-      rankingResult: []
+      selectedCategory: 'e2e'
     }
   },
    computed: mapState({
@@ -164,62 +162,28 @@ export default {
       if (state.web3.web3Instance !== null) return state.web3.web3Instance().fromWei(state.web3.balance, 'ether')
     },
     tokaBalance: state => state.web3.tokaBalance,
-    chipBalance: state => state.web3.chipBalance
+    chipBalance: state => state.web3.chipBalance,
+    ranking: state => state.web3.ranking,
+    latest: state => state.web3.latest
   }),
   methods: {
     playE2E (event) {
       this.$store.state.functions.playE2E(this);
-      this.getTotalResult('e2e');
-      this.getRanking('e2e');
-
     },
     playE2C (event) {
       this.$store.state.functions.playE2C(this);
-      this.getTotalResult('e2c');
-      this.getRanking('e2c');
-
     },
     playC2C (event) {
       this.$store.state.functions.playC2C(this);
-      this.getTotalResult('c2c');
-      this.getRanking('c2c');
-
     },
     playC2E (event) {
       this.$store.state.functions.playC2E(this);
-      this.getTotalResult('c2e');
-      this.getRanking('c2e');
     },
     toka2CHIP(){
       this.$store.state.functions.swapT2C(this);
     },
     CHIP2toka(){
       this.$store.state.functions.swapC2T(this);
-    },
-    getRanking(type){
-
-      axios.get('http://218.39.141.11:3000/loadranking/' + type)
-        .then((response)=>{
-          this.rankingResult[type] = response.data
-          this.makeItNice(this.rankingResult[type])
-          // this.selectedCategory = type
-      })
-    },
-    getTotalResult(type){
-      axios.get('http://218.39.141.11:3000/loadtotalresult/' + type)
-        .then((response)=>{
-          console.log('type: ',type)
-          console.log('contents: ',this.myResult)
-          this.myResult[type] = response.data
-          this.makeItNice(this.myResult[type])
-          // this.selectedCategory = type
-      })
-    },
-    makeItNice(data) {
-      for(var i=0; i<data.length; i++){
-        data[i]['Amount']= parseFloat(data[i]['Amount']).toFixed(2);
-        data[i]['Address'] = data[i]['Address'].toString().slice(0,5) + '***'
-      }
     }
   },
   mounted () {
@@ -229,14 +193,7 @@ export default {
     this.$store.dispatch('getTokenContractInstance');
     console.log('dispatching getChipContractInstance');
     this.$store.dispatch('getChipContractInstance');
-    this.getTotalResult('e2c');
-    this.getRanking('e2c');
-    this.getTotalResult('c2e');
-    this.getRanking('c2e');
-    this.getTotalResult('c2c');
-    this.getRanking('c2c');
-    this.getTotalResult('e2e');
-    this.getRanking('e2e');
+    this.selectedCategory = 'e2e';
   },
 
 }
