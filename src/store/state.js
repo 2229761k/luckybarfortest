@@ -43,6 +43,7 @@ let state = {
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
               window.$store.dispatch('getRecord')
+              setTimeout("location.reload()", 6000)
               //axios.get('http://218.39.141.11:3000/save/' + 'e2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
             }
           })
@@ -74,6 +75,7 @@ let state = {
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
               window.$store.dispatch('getRecord')
+              setTimeout("location.reload()", 6000)
               //axios.get('http://218.39.141.11:3000/save/' + 'e2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
 
             }
@@ -119,6 +121,7 @@ let state = {
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
               window.$store.dispatch('getRecord')
+              setTimeout("location.reload()", 6000)
               //axios.get('http://218.39.141.11:3000/save/' + 'c2e/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
 
             }
@@ -164,6 +167,7 @@ let state = {
               window.winEvent._amount = result.args._amount / (10 ** 18)
               window.pending = false
               window.$store.dispatch('getRecord')
+              setTimeout("location.reload()", 6000)
               //axios.get('http://218.39.141.11:3000/save/' + 'c2c/' + new Date().toISOString().slice(0,10) + '/' + window.winEvent._amount + '/' + window.$store.state.web3.coinbase)
             }
           })
