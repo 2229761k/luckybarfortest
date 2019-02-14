@@ -1,13 +1,13 @@
 <template>
- <div id="section1" align="center" style="position:relative;width: 100%;height: 1400px;" >
+ <div id="section1" align="center" >
 
-    <div class="event" v-if="winEvent">
+    <!-- <div class="event" v-if="winEvent">
       <div v-if="winEvent._status" id="has-won" class="win-effect"></div>
       <div v-else id="has-lost"  class="lose-effect"></div>
-    </div>
+    </div> -->
     <!-- <div class="lose-effect"></div> -->
 
-
+<!-- 
     <div class="backboard">
         <img src="../assets/backboard.png" style="width:85%;">
    
@@ -26,9 +26,9 @@
           <p class="metainfo"><img src="../assets/IDR.png" style="width:7%" />  0.00 IDR</p>
         </div>
 
-    </div>
+    </div> -->
 
-    <div class="background-image">
+    <!-- <div class="background-image">
       <div v-if="pending" >
         <img src="../assets/loading.gif">
       </div>
@@ -36,47 +36,44 @@
         <img v-if="winEvent"  src="../assets/ingame_2.gif" style="opacity:0.6" >
         <img v-else src="../assets/ingame_2.gif" style="opacity:1" >  
       </div>
-    </div>
-
-    <div class="input-window-border">
-        <img src="../assets/scroll.png" >
-        <div id="game-result" class="input-window">
-      <el-row :gutter="24" class="font_change" >
-        <el-col :span="2" :offset="17" >
-          <el-tabs type="border-card"   style="width: 400px; text-align: center;" >
+    </div> -->
+      
+      <el-row :gutter="24" >
+        <el-col :span="2" :offset="3" >
+          <el-tabs type="border-card"   style="width: 500px; text-align: center;" >
             <el-tabs v-model="selectedCategory" :tab-position="tabPosition">
-              <el-tab-pane label="ETH to ETH" name = 'e2e'><p>ETH to ETH</p>
+              <el-tab-pane label="GPA to Moon" name = 'e2e'><p>GPA to Moon</p>
                 <hr>
-                <p>Exchange Rate <br> 1:1 +-50%</p>
-                <input v-model="amount" placeholder="0 ETH" style="width:40%">
-                <button v-on:click="playE2E">Play</button>
+                <p>Exchange Rate <br> 1:10000 </p>
+                <input v-model="amount" placeholder="0 GPA" style="width:40%">
+                <button v-on:click="playE2E">Swap</button>
               </el-tab-pane>
-              <el-tab-pane label="ETH to CHIP" name = 'e2c'><p>ETH to CHIP</p>
+              <el-tab-pane label="GPA to Poker" name = 'e2c'><p>GPA to Poker</p>
                 <hr>
-                <p>Exchange Rate <br> 1:100000 +-50% </p>
-                <input v-model="amount" placeholder="0 ETH" style="width:40%">
-                <button v-on:click="playE2C">Play</button>
+                <p>Exchange Rate <br> 1:100000 </p>
+                <input v-model="amount" placeholder="0 GPA" style="width:40%">
+                <button v-on:click="playE2C">Swap</button>
               </el-tab-pane>
-              <el-tab-pane label="CHIP to CHIP" name = 'c2c'><p>CHIP to CHIP</p>
+              <el-tab-pane label="Moon to GPA" name = 'c2c'><p>Moon to GPA</p>
                 <hr>
-                <p>Exchange Rate <br> 1:1 +-50% </p>
+                <p>Exchange Rate <br> 10000:1 </p>
                 <input v-model="amount" placeholder="0 CHIP" style="width:40%">
-                <button v-on:click="playC2C">Play</button>
+                <button v-on:click="playC2C">Swap</button>
               </el-tab-pane>
-              <el-tab-pane label="CHIP to ETH" name = 'c2e'><p>CHIP to ETH</p>
+              <el-tab-pane label="Poker to GPA" name = 'c2e'><p>Poker to GPA</p>
                 <hr>
-                <p>Exchange Rate <br>100000:1 +-50%</p>
+                <p>Exchange Rate <br>100000:1 </p>
                 <input v-model="amount" placeholder="0 CHIP" style="width:40%">
-                <button v-on:click="playC2E">Play</button>
+                <button v-on:click="playC2E">Swap</button>
               </el-tab-pane>
-              <el-tab-pane label="SWAP"><p>SWAP</p>
+              <el-tab-pane label="Fiat"><p>Fiat</p>
                 <hr>
-                <p>CHIP to TOKA </p>
-                <input v-model="amount" placeholder="0 CHIP" style="width:40%">
+                <p>GPA to BMS </p>
+                <input v-model="amount" placeholder="0 GPA" style="width:40%">
                 <button v-on:click="CHIP2toka">Swap</button>
                 <br><br>
-                 <p>TOKA to CHIP </p>
-                <input v-model="amount" placeholder="0 TOKA" style="width:40%">
+                 <p>BMS to GPA </p>
+                <input v-model="amount" placeholder="0 BMS" style="width:40%">
                 <button v-on:click="toka2CHIP">Swap</button>
               </el-tab-pane>
             </el-tabs>
@@ -113,26 +110,12 @@
                       </tbody>
                     </table>
               </el-tab-pane>
-              <el-tab-pane label="Ranking"><p>Ranking</p>
-                    <table class="font_2" style="width:100%">
-                      <thead style="font-size:14px">
-                        <th>Date</th>
-                        <th>Amount</th>
-                        <th>Address</th>
-                      </thead>
-                      <tbody v-for="(item, index) in ranking[selectedCategory]" :key="index" style="font-size:14px">
-                        <td>{{item.Date}}</td>
-                        <td>{{item.Amount}}</td>
-                        <td>{{item.Address}}</td>
-                      </tbody>
-                    </table>
-              </el-tab-pane>
+              
             </el-tabs>
           </el-tabs>
         </el-col>
       </el-row>
-    </div>
-    </div> 
+  
   </div>
 </template>
 
@@ -199,147 +182,8 @@ export default {
 }
 </script>
 
-<style scoped>
-@import "https://fonts.googleapis.com/css?family=Press+Start+2P";
-
-.hr1{
-  border: 1px solid white;
-  width:70%;
-  margin-left: 0px
-}
-.background-image{
-    z-index: 1;
-    display: block;
-    /* opacity: 0.6; */
-    /* width:70%; */
-}
-
-
-a { color: white; }
-
-.win-effect{
-    z-index: 2;
-    position: absolute;
-    top: 0%;
-    width: 100%;
-
-    background-image: url("../assets/win.gif");
-
-    /* Full height */
-    height: 100%;
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.lose-effect{
-    z-index: 2;
-    position: absolute;
-    top: 0%;
-    width: 100%;
-
-    background-image: url("../assets/lose.gif");
-
-    /* Full height */
-    height: 100%;
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-.backboard{
-  z-index: 2;
-  position: absolute;
-  left: 0%;
-  width:800px
-}
-
-.balance{
-    z-index: 3;
-    position: absolute;
-    top: 12%;
-    left: 17%;
-    width: 700px;
-    text-align: left;
-}
-.input-window{
-    z-index: 3;
-    position: absolute;
-    top: 15%;
-    left: -70%;
-    width: 400px;
-}
-
-.input-window-border {
-    z-index: 2;
-    position: absolute;
-    top: 20%;
-    left: 70%;
-    width: 400px;
-}
-
-p {
-/* font-family: 'Press Start 2P', cursive; */
-font-size: 11px
-}
-
-.font_change{
-    font-family: 'Press Start 2P', cursive;
-
-    font-size: 10px;
-    /* background-image: url("../assets/ui-test.png") !important; 
-    background-repeat: no-repeat; */
-}
-.font_2{
-    font-family: 'ZCOOL QingKe HuangYou', cursive;
-    
-}
-/* .casino {
-     margin-top: 50px;
-     text-align:center;
-} */
-
-
-#loader {
-  width:150px;
-}
-ul {
-    margin: 25px;
-    list-style-type: none;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-column-gap:25px;
-    grid-row-gap:25px;
-}
-
-#has-won {
-  color: green;
-}
-#has-lost {
-  color:red;
-}
-.metainfo{
-  color: white;
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.8rem;
-  position: relative;
-  top: 5px;
-}
-.metainfo-connect{
-  margin-bottom: 20px;
-  font-family: 'Press Start 2P', cursive;
-  font-size: 0.8rem;
-}
-.metamask-info {
-  text-align:left;
-}
-#has-metamask {
-  color: green;
-}
-#no-metamask {
-  color:red;
-}
+<style>
+p{color: white}
+th{color: white}
+td{color: white}
 </style>

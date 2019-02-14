@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <br><br><br>
     <router-view/>
   </div>
 </template>
@@ -14,7 +15,8 @@ export default {
 
 <style>
 #app{
-background: #1f181c;
+background: rgb(116, 104, 104);
+height: 1000px;
 /* .headerimg{
     background-image: url("../assets/lucky_header.jpg");
     background-repeat: no-repeat;

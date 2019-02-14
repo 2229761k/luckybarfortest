@@ -1,9 +1,9 @@
 <template>
 <div>
-  <Header />
+  <!-- <Header /> -->
   <casino-component/>
-  <Question />
-  <Footer />
+  <!-- <Question />
+  <Footer /> -->
 </div>
 </template>
 <script>
